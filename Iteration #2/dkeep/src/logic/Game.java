@@ -12,31 +12,19 @@ public class Game {
 		WON, LEVEL_1, LEVEL_2, LOST
 	};
 
-	private char[][] map_1 = { 
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'X', ' ', ' ', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, 
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, 
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, 
-			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			};
+	private char[][] map_1 = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'X', ' ', ' ', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
+			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, { 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
-	private char[][] map_2 = {
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'I', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'k', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, 
-			};
+	private char[][] map_2 = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'k', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
 	private int rows = 10;
 	private int cols = 10;
@@ -124,7 +112,16 @@ public class Game {
 	public void updateMap() {
 
 		drawCharacter(hero);
-		drawCharacter(guard);
+
+		switch (state) {
+		case LEVEL_1:
+			drawCharacter(guard);
+			break;
+		case LEVEL_2:
+			break;
+		default:
+			break;
+		}
 
 	}
 
@@ -144,10 +141,18 @@ public class Game {
 		new_hero_pos = hero.getNewPosition(direction);
 		hero.updateHero(getChar(new_hero_pos));
 
-		if (hero.getState() == HeroState.LEVER)
+		if (hero.getState() == HeroState.K)
 			openDoors();
 
-		guard.updateGuard();
+		switch (state) {
+		case LEVEL_1:
+
+			guard.updateGuard();
+			break;
+
+		case LEVEL_2:
+			break;
+		}
 
 	}
 
@@ -164,15 +169,26 @@ public class Game {
 
 	public void cleanMap() {
 		cleanCharacter(hero);
-		if (hero.getState() == HeroState.LEVER)
-			drawCharacter(lever);
-		if (hero.getState() == HeroState.STAIR)
-			state = GameState.LEVEL_2;
-		
-		if(isHeroCaptured(guard))
-			state = GameState.LOST;
 
-		cleanCharacter(guard);
+		switch (state) {
+		case LEVEL_1:
+			if (hero.getState() == HeroState.K)
+				drawCharacter(lever);
+
+			if (hero.getState() == HeroState.STAIR)
+				state = GameState.LEVEL_2;
+
+			if (isHeroCaptured(guard))
+				state = GameState.LOST;
+
+			cleanCharacter(guard);
+
+			break;
+
+		case LEVEL_2:
+			break;
+		}
+
 	}
 
 	public void openDoors() {
@@ -217,9 +233,8 @@ public class Game {
 
 		return false;
 	}
-	
-	
-	public GameState getState(){
+
+	public GameState getState() {
 		return state;
 	}
 }

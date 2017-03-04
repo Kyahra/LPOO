@@ -37,7 +37,6 @@ public class CommandLineInterface {
 		if(g.getState() == GameState.WON){
 			System.out.println();
 			System.out.println();
-			System.out.println();
 			
 			System.out.print("---------------");
 			System.out.print(" VICTORY ");
