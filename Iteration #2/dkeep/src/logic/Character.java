@@ -41,4 +41,9 @@ public class Character {
 	public char getCharacter() {
 		return c;
 	}
+
+	public void setChar(char c){
+		this.c = c;
+	}
 }
+
