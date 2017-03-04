@@ -45,6 +45,7 @@ public class Game {
 	private Hero hero;
 	private Guard guard;
 
+
 	public Game() {
 		state = GameState.LEVEL_1;
 
@@ -143,7 +144,7 @@ public class Game {
 		new_hero_pos = hero.getNewPosition(direction);
 		hero.updateHero(getChar(new_hero_pos));
 		
-		
+		guard.updateGuard();		
 	}
 	
 	public void cleanCharacter(Character c){
