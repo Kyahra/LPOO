@@ -78,4 +78,10 @@ public class Hero extends Character {
 		return state;
 	}
 
+	public boolean gotKey(){
+		
+		if(getChar() == 'K')
+			return true;
+		else return false;
+	}
 }

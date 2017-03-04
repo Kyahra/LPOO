@@ -142,8 +142,13 @@ public class Game {
 			drawCharacter(guard);
 			break;
 		case LEVEL_2:
-			k.setPosition(8,1);
-			drawCharacter(k);
+
+        
+			if(!hero.gotKey()){
+				k.setPosition(8,1);
+				drawCharacter(k);
+			}
+
 			drawCharacter(ogre);
 			club.setPosition(ogre.getClubPos());
 			drawCharacter(club);
@@ -192,6 +197,10 @@ public class Game {
 			do{
 			new_ogre_pos = ogre.getNewPosition();
 			}while(!ogre.updateOgre(getChar(new_ogre_pos)));
+			
+			if(hero.getState() == HeroState.K){
+				hero.setChar('K');		
+			}
 			
 			if(ogre.getState() == OgreState.KEY){
 				ogre.setChar('$');				
