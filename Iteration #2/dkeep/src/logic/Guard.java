@@ -7,7 +7,6 @@ public class Guard extends Character{
 
 	public Guard(Point position, char c){
 		super(position, c);
-		
 		}
 	
 }

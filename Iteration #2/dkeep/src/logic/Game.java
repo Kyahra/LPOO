@@ -1,6 +1,7 @@
 package logic;
 
 import logic.Hero;
+import logic.Hero.HeroState;
 import logic.Guard;
 import java.awt.Point;
 import java.util.Scanner;
@@ -44,6 +45,7 @@ public class Game {
 
 	private Hero hero;
 	private Guard guard;
+	private Character lever;
 
 	public Game() {
 		state = GameState.LEVEL_1;
@@ -54,6 +56,9 @@ public class Game {
 
 		Point guard_init_pos = new Point(8, 1);
 		guard = new Guard(guard_init_pos, 'G');
+		
+		Point lever_init_pos = new Point(7,8);
+		lever = new Character(lever_init_pos,'k');
 
 	}
 
@@ -121,8 +126,6 @@ public class Game {
 
 		drawCharacter(hero);
 		drawCharacter(guard);
-		// atualizar a posição do ogre
-		// atualizar a moca
 
 	}
 
@@ -143,6 +146,8 @@ public class Game {
 		new_hero_pos = hero.getNewPosition(direction);
 		hero.updateHero(getChar(new_hero_pos));
 		
+		if(hero.getState() == HeroState.LEVER)openDoors();
+				
 		
 	}
 	
@@ -159,6 +164,36 @@ public class Game {
 	
 	public void cleanMap(){
 		cleanCharacter(hero);
+		if(hero.getState() == HeroState.LEVER)drawCharacter(lever);
+		if(hero.getState() == HeroState.STAIR)state = GameState.LEVEL_2;
+		
+			
 		cleanCharacter(guard);
+	}
+	
+	public void openDoors(){
+		
+		switch(state){
+		case LEVEL_1:
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				if (map_1[i][j] == 'I')
+					map_1[i][j] = 'S';
+			}
+		}
+		break;
+		
+		case LEVEL_2:
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < cols; j++) {
+					if (map_2[i][j] == 'I')
+						map_2[i][j] = 'S';
+				}
+			}
+			break;
+			
+		default:
+			break;
+		}
 	}
 }
