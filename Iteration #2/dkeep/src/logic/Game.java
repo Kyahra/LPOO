@@ -47,6 +47,7 @@ public class Game {
 	private Guard guard;
 	private Character lever;
 
+
 	public Game() {
 		state = GameState.LEVEL_1;
 
@@ -145,10 +146,12 @@ public class Game {
 		
 		new_hero_pos = hero.getNewPosition(direction);
 		hero.updateHero(getChar(new_hero_pos));
-		
+	
 		if(hero.getState() == HeroState.LEVER)openDoors();
 				
-		
+
+		guard.updateGuard();		
+
 	}
 	
 	public void cleanCharacter(Character c){
