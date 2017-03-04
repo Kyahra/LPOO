@@ -6,7 +6,7 @@ import java.awt.Point;
 public class Hero extends Character {
 
 	Point new_position;
-	public enum HeroState { LEVER, STAIR, MOVE};
+	public enum HeroState { K, STAIR, MOVE};
 	
 	private HeroState state;
 
@@ -66,7 +66,7 @@ public class Hero extends Character {
 		case 'k':
 			setX(new_position.x);
 			setY(new_position.y);
-			state = HeroState.LEVER;
+			state = HeroState.K;
 			break;
 		default:
 			break;
