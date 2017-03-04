@@ -15,7 +15,8 @@ import java.util.Random;
 
 	public Ogre(Point position, char c) {
 		super(position, c);
-		new_position = new Point(getX(),getY());
+		new_position = new Point(position);
+		club_position = new Point(getX()-1, getY());
 		state = OgreState.MOVE;
 		
 
@@ -37,28 +38,28 @@ import java.util.Random;
 	}
 
 
-	void updateOgre(char c) {
+	public boolean updateOgre(char c) {
 
 		switch (c) {
 		case 'X':
-			break;
+			return false;
 		case 'I':
 			break;
 		case ' ':
-			this.setX(new_position.x);
-			this.setY(new_position.y);
+			setPosition(new_position);
 			state = OgreState.MOVE;
-			break;
+			return true;
 		case 'S':
-			break;
+			return false;
 		case 'k':
-			setX(new_position.x);
-			setY(new_position.y);
+			setPosition(new_position);
 			state = OgreState.KEY;
-			break;
+			return true;
 		default:
 			break;
 		}
+		
+		return false;
 	}
 	
 	
@@ -75,6 +76,29 @@ import java.util.Random;
 		
 		return club_position;
 		
+	}
+	
+	public boolean updateClub(char c){
+		switch (c) {
+		case 'X':
+			return false;
+		case 'I':
+			return false;
+		case ' ':
+			return true;
+		case 'S':
+			return false;
+		case 'k':
+			return true;
+		default:
+			break;
+		}
+		
+		return false;
+	}
+	
+	public Point getClubPos(){
+		return club_position;
 	}
 	
 	

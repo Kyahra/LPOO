@@ -38,6 +38,10 @@ public class Character {
 		this.position.x = x;
 		this.position.y = y;
 	}
+	
+	public void setPosition(Point p){
+		this.position =p;
+	}
 
 	public char getChar() {
 		return c;
