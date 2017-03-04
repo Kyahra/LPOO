@@ -17,11 +17,14 @@ import java.util.Random;
 		state = OgreState.MOVE;
 
 	}
+	
 
+	
 	public Point getNewPosition() {
 
 		Random rand = new Random();		
 		int direction = rand.nextInt(4);
+		
 
 		switch(direction){
 		case 0:
@@ -44,6 +47,7 @@ import java.util.Random;
 			break;
 		}
 
+		
 		return new_position;
 	}
 
