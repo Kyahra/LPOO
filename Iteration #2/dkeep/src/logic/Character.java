@@ -32,6 +32,11 @@ public class Character {
 	public Point getPosition() {
 		return position;
 	}
+	
+	public void setPosition(int x, int y){
+		this.position.x = x;
+		this.position.y = y;
+	}
 
 	public char getCharacter() {
 		return c;
