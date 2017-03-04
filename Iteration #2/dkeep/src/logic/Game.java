@@ -72,8 +72,8 @@ public class Game {
 
 	public char getChar(Point position) {
 
-		char c = '0';
-
+		char c = 'X';
+		
 		switch (state) {
 
 		case LEVEL_1:
@@ -213,11 +213,7 @@ public class Game {
 		case LEVEL_1:
 			if (hero.getState() == HeroState.K)
 				drawCharacter(lever);
-
-			/*
-			if (hero.getState() == HeroState.STAIR)
-				state = GameState.LEVEL_2;
-			*/	
+			
 
 			if (isHeroCaptured(guard))
 				state = GameState.LOST;
@@ -235,28 +231,16 @@ public class Game {
 
 	public void openDoors() {
 
-		switch (state) {
-		case LEVEL_1:
+		
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
 					if (map_1[i][j] == 'I')
 						map_1[i][j] = 'S';
 				}
 			}
-			break;
+			
 
-		case LEVEL_2:
-			for (int i = 0; i < rows; i++) {
-				for (int j = 0; j < cols; j++) {
-					if (map_2[i][j] == 'I')
-						map_2[i][j] = 'S';
-				}
-			}
-			break;
-
-		default:
-			break;
-		}
+		
 	}
 
 	public boolean isHeroCaptured(Character enemy) {

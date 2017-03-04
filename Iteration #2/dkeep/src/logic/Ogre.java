@@ -25,16 +25,20 @@ import java.util.Random;
 
 		switch(direction){
 		case 0:
-			this.setX(new_position.x++);
+			new_position.x = getX() + 1;
+			new_position.y = getY();
 			break;
 		case 1:
-			this.setX(new_position.x--);
+			new_position.x = getX() - 1;
+			new_position.y = getY();
 			break;
 		case 2:
-			this.setY(new_position.y++);
+			new_position.x = getX();
+			new_position.y = getY() + 1;
 			break;
 		case 3:
-			this.setY(new_position.y--);
+			new_position.x = getX();
+			new_position.y = getY() - 1;
 			break;
 		default:
 			break;
