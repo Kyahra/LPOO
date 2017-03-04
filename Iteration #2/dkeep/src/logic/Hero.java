@@ -42,8 +42,7 @@ public class Hero extends Character {
 			break;
 
 		}
-		
-
+	
 		return new_position;
 	}
 
