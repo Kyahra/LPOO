@@ -138,8 +138,10 @@ public class Game {
 			drawCharacter(guard);
 			break;
 		case LEVEL_2:
-			lever.setPosition(8,1);
-			drawCharacter(lever);
+			if(!hero.gotKey()){
+				k.setPosition(8,1);
+				drawCharacter(k);
+			}
 			drawCharacter(ogre);
 			break;
 		default:
@@ -185,6 +187,10 @@ public class Game {
 				
 			new_ogre_pos = ogre.getNewPosition();
 			ogre.updateOgre(getChar(new_ogre_pos));
+			
+			if(hero.getState() == HeroState.K){
+				hero.setChar('K');		
+			}
 			
 			if(ogre.getState() == OgreState.KEY){
 				ogre.setChar('$');				
