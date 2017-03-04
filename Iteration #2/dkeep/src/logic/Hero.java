@@ -6,10 +6,14 @@ import java.awt.Point;
 public class Hero extends Character {
 
 	Point new_position;
+	public enum HeroState { LEVER, STAIR, MOVE};
+	
+	private HeroState state;
 
 	public Hero(Point position, char c) {
 		super(position, c);
 		new_position = new Point(getX(), getY());
+		state = HeroState.MOVE;
 
 	}
 
@@ -20,7 +24,6 @@ public class Hero extends Character {
 		case 'D':
 			new_position.x = getX() + 1;
 			new_position.y = getY();
-			System.out.println("yo");
 			break;
 		case 'A':
 			new_position.x = getX() - 1;
@@ -40,8 +43,6 @@ public class Hero extends Character {
 
 		}
 		
-		System.out.println(new_position.x);
-		System.out.println(new_position.y);
 
 		return new_position;
 	}
@@ -55,20 +56,26 @@ public class Hero extends Character {
 		case ' ':
 			this.setX(new_position.x);
 			this.setY(new_position.y);
+			state = HeroState.MOVE;
 			break;
 		case 'S':
 			setX(new_position.x);
 			setY(new_position.y);
+			state =HeroState.STAIR;
 			break;
 		case 'k':
 			setX(new_position.x);
 			setY(new_position.y);
+			state = HeroState.LEVER;
 			break;
 		default:
 			break;
 		}
 		
+	}
 	
+	public HeroState getState(){
+		return state;
 	}
 
 }

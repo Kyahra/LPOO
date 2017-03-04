@@ -12,6 +12,7 @@ public class Guard extends Character{
 	
 	public Guard(Point position, char c){
 		super(position, c);
+
 		guard_x_idx = 0;
 		guard_y_idx = 0;
 	
