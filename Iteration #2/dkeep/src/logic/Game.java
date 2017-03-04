@@ -65,7 +65,7 @@ public class Game {
 		Point lever_init_pos = new Point(7, 8);
 		lever = new Character(lever_init_pos, 'k');
 		
-		Point ogre_init_pos = new Point(4, 1);
+		Point ogre_init_pos = new Point(7, 1);
 		ogre = new Ogre(ogre_init_pos, 'O');
 
 	}
@@ -138,6 +138,8 @@ public class Game {
 			drawCharacter(guard);
 			break;
 		case LEVEL_2:
+			lever.setPosition(8,1);
+			drawCharacter(lever);
 			drawCharacter(ogre);
 			break;
 		default:
@@ -180,16 +182,13 @@ public class Game {
 			break;
 
 		case LEVEL_2:
-			
-			if(ogre.getState() == OgreState.KEY){
-				ogre.setChar('$');				
-			}
-			else ogre.setChar('O');
-			
+				
 			new_ogre_pos = ogre.getNewPosition();
 			ogre.updateOgre(getChar(new_ogre_pos));
 			
-			
+			if(ogre.getState() == OgreState.KEY){
+				ogre.setChar('$');				
+			}			
 			break;
 		}
 
@@ -223,7 +222,12 @@ public class Game {
 			break;
 
 		case LEVEL_2:
+					
+			if (ogre.getState() == OgreState.KEY){
+				ogre.setChar('O');
+			}
 			cleanCharacter(ogre);
+			
 			break;
 		}
 
