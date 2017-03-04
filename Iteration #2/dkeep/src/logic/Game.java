@@ -52,6 +52,7 @@ public class Game {
 	private Guard guard;
 	private Character k;
 	private Ogre ogre;
+	private Character club;
 
 	public Game() {
 		state = GameState.LEVEL_1;
@@ -67,6 +68,9 @@ public class Game {
 		
 		Point ogre_init_pos = new Point(7, 1);
 		ogre = new Ogre(ogre_init_pos, 'O');
+		
+		Point club_init_pos = new Point(6,1);
+		club = new Character(club_init_pos,'*');
 
 	}
 
@@ -138,9 +142,11 @@ public class Game {
 			drawCharacter(guard);
 			break;
 		case LEVEL_2:
-			lever.setPosition(8,1);
-			drawCharacter(lever);
+			k.setPosition(8,1);
+			drawCharacter(k);
 			drawCharacter(ogre);
+			club.setPosition(ogre.getClubPos());
+			drawCharacter(club);
 			break;
 		default:
 			break;
@@ -159,7 +165,7 @@ public class Game {
 	}
 
 	public void updateGame() {
-		Point new_hero_pos, new_ogre_pos;
+		Point new_hero_pos, new_ogre_pos, new_club_pos;
 
 		new_hero_pos = hero.getNewPosition(direction);
 		hero.updateHero(getChar(new_hero_pos));
@@ -183,12 +189,18 @@ public class Game {
 
 		case LEVEL_2:
 				
+			do{
 			new_ogre_pos = ogre.getNewPosition();
-			ogre.updateOgre(getChar(new_ogre_pos));
+			}while(!ogre.updateOgre(getChar(new_ogre_pos)));
 			
 			if(ogre.getState() == OgreState.KEY){
 				ogre.setChar('$');				
-			}			
+			}		
+			
+			do{
+			new_club_pos = ogre.getNewClubPosition();
+			}while (!ogre.updateClub(getChar(new_club_pos)));
+			
 			break;
 		}
 
@@ -227,6 +239,7 @@ public class Game {
 				ogre.setChar('O');
 			}
 			cleanCharacter(ogre);
+			cleanCharacter(club);
 			
 			break;
 		}
