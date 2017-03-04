@@ -20,6 +20,7 @@ import java.util.Random;
 		
 
 	}
+	
 
 	
 	public Point getNewPosition() {
@@ -27,6 +28,7 @@ import java.util.Random;
 		Random rand = new Random();		
 		int direction = rand.nextInt(4);
 		
+
 		new_position = super.getNewPosition(getPosition(), direction);
 		
 		return new_position;
