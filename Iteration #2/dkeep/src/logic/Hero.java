@@ -12,28 +12,28 @@ public class Hero extends Character {
 
 	public Hero(Point position, char c) {
 		super(position, c);
-		new_position = new Point(getX(), getY());
+		new_position = new Point(getX(),getY());
 		state = HeroState.MOVE;
 
 	}
 
-	public Point getNewPosition(char direction) {
+	public Point getNewPosition(String direction) {
 
 		
 		switch (direction) {
-		case 'D':
+		case "D":
 			new_position.x = getX() + 1;
 			new_position.y = getY();
 			break;
-		case 'A':
+		case "A":
 			new_position.x = getX() - 1;
 			new_position.y = getY();
 			break;
-		case 'S':
+		case "S":
 			new_position.x = getX();
 			new_position.y = getY() + 1;
 			break;
-		case 'W':
+		case "W":
 			new_position.x = getX();
 			new_position.y = getY() - 1;
 			break;

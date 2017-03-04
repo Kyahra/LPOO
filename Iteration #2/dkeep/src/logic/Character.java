@@ -11,6 +11,7 @@ public class Character {
 
 		this.position = position;
 		this.c = c;
+
 	}
 
 	public int getX() {
@@ -38,12 +39,42 @@ public class Character {
 		this.position.y = y;
 	}
 
-	public char getCharacter() {
+	public char getChar() {
 		return c;
 	}
 
 	public void setChar(char c){
 		this.c = c;
 	}
+	
+	public Point getNewPosition(Point actual_pos,int direction){
+		Point new_pos = new Point();
+		
+		switch(direction){
+		case 0:
+			new_pos.x = actual_pos.x+ 1;
+			new_pos.y = actual_pos.y;
+			break;
+		case 1:
+			new_pos.x = actual_pos.x - 1;
+			new_pos.y = actual_pos.y;
+			break;
+		case 2:
+			new_pos.x = actual_pos.x;
+			new_pos.y = actual_pos.y + 1;
+			break;
+		case 3:
+			new_pos.x = actual_pos.x;
+			new_pos.y = actual_pos.y - 1;
+			break;
+		default:
+			break;
+		}
+		
+		return new_pos;
+
+	}
+		
+	
 }
 

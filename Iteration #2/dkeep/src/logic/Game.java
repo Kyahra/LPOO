@@ -46,11 +46,11 @@ public class Game {
 	private int cols = 10;
 
 	private GameState state;
-	private char direction;
+	private String direction;
 
 	private Hero hero;
 	private Guard guard;
-	private Character lever;
+	private Character k;
 	private Ogre ogre;
 
 	public Game() {
@@ -63,7 +63,7 @@ public class Game {
 		guard = new Guard(guard_init_pos, 'G');
 
 		Point lever_init_pos = new Point(7, 8);
-		lever = new Character(lever_init_pos, 'k');
+		k = new Character(lever_init_pos, 'k');
 		
 		Point ogre_init_pos = new Point(7, 1);
 		ogre = new Ogre(ogre_init_pos, 'O');
@@ -120,10 +120,10 @@ public class Game {
 
 		switch (state) {
 		case LEVEL_1:
-			map_1[c.getY()][c.getX()] = c.getCharacter();
+			map_1[c.getY()][c.getX()] = c.getChar();
 			break;
 		case LEVEL_2:
-			map_2[c.getY()][c.getX()] = c.getCharacter();
+			map_2[c.getY()][c.getX()] = c.getChar();
 			break;
 		}
 
@@ -152,9 +152,9 @@ public class Game {
 
 		Scanner keyboard = new Scanner(System.in);
 
-		String input = keyboard.nextLine().toUpperCase();
+		direction = keyboard.nextLine().toUpperCase();
 
-		direction = input.charAt(0);
+		
 
 	}
 
@@ -211,7 +211,7 @@ public class Game {
 		switch (state) {
 		case LEVEL_1:
 			if (hero.getState() == HeroState.K)
-				drawCharacter(lever);
+				drawCharacter(k);
 			
 
 			if (isHeroCaptured(guard))
