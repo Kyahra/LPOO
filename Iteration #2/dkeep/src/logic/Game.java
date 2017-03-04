@@ -4,6 +4,8 @@ import logic.Hero;
 import logic.Hero.HeroState;
 import logic.Guard;
 import logic.Ogre;
+import logic.Ogre.OgreState;
+
 import java.awt.Point;
 import java.util.Scanner;
 
@@ -178,8 +180,16 @@ public class Game {
 			break;
 
 		case LEVEL_2:
+			
+			if(ogre.getState() == OgreState.KEY){
+				ogre.setChar('$');				
+			}
+			else ogre.setChar('O');
+			
 			new_ogre_pos = ogre.getNewPosition();
 			ogre.updateOgre(getChar(new_ogre_pos));
+			
+			
 			break;
 		}
 

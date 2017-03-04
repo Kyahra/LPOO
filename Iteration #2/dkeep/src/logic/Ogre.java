@@ -2,7 +2,6 @@ package logic;
 
 import java.awt.Point;
 import java.util.Random;
-import logic.Hero.HeroState;
 
 	public class Ogre extends Character{
 
@@ -73,4 +72,6 @@ import logic.Hero.HeroState;
 	public OgreState getState(){
 		return state;
 	}
+	
+	
 }
