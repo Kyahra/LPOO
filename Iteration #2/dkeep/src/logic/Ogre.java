@@ -3,9 +3,11 @@ package logic;
 import java.awt.Point;
 import java.util.Random;
 
+
 	public class Ogre extends Character{
 
-	Point new_position;
+	private Point club_position;
+	private Point new_position;
 
 	public enum OgreState { KEY, MOVE};
 
@@ -13,38 +15,23 @@ import java.util.Random;
 
 	public Ogre(Point position, char c) {
 		super(position, c);
-		new_position = new Point(getX(), getY());
+		new_position = new Point(getX(),getY());
 		state = OgreState.MOVE;
+		
 
 	}
 
+	
 	public Point getNewPosition() {
 
 		Random rand = new Random();		
 		int direction = rand.nextInt(4);
-
-		switch(direction){
-		case 0:
-			new_position.x = getX() + 1;
-			new_position.y = getY();
-			break;
-		case 1:
-			new_position.x = getX() - 1;
-			new_position.y = getY();
-			break;
-		case 2:
-			new_position.x = getX();
-			new_position.y = getY() + 1;
-			break;
-		case 3:
-			new_position.x = getX();
-			new_position.y = getY() - 1;
-			break;
-		default:
-			break;
-		}
-
+		
+		new_position = super.getNewPosition(getPosition(), direction);
+		
 		return new_position;
+		
+		
 	}
 
 
@@ -75,6 +62,17 @@ import java.util.Random;
 	
 	public OgreState getState(){
 		return state;
+	}
+	
+	public Point getNewClubPosition(){
+		Random rand = new Random();	
+		
+		int direction = rand.nextInt(4);
+		
+		club_position = super.getNewPosition(getPosition(), direction);
+		
+		return club_position;
+		
 	}
 	
 	
