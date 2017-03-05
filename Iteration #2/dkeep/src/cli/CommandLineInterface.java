@@ -22,6 +22,7 @@ public class CommandLineInterface {
 		g.updateGame();
 		
 		
+		
 		}
 		
 		if(g.getState() == GameState.LOST){
