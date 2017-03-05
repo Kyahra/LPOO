@@ -30,7 +30,7 @@ public class Game {
 
 	private char[][] map_2 = { 
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'k', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
@@ -52,7 +52,7 @@ public class Game {
 	private Guard guard;
 	private Character k;
 	private Ogre ogre;
-	private Character club;
+
 
 	public Game() {
 		state = GameState.LEVEL_1;
@@ -69,8 +69,6 @@ public class Game {
 		Point ogre_init_pos = new Point(7, 1);
 		ogre = new Ogre(ogre_init_pos, 'O');
 		
-		Point club_init_pos = new Point(6,1);
-		club = new Character(club_init_pos,'*');
 
 	}
 
@@ -141,18 +139,13 @@ public class Game {
 		case LEVEL_1:
 			drawCharacter(guard);
 			break;
+			
 		case LEVEL_2:
-
-        
-			if(!hero.gotKey()){
-				k.setPosition(8,1);
-				drawCharacter(k);
-			}
-
+			drawCharacter(k);
 			drawCharacter(ogre);
-			club.setPosition(ogre.getClubPos());
-			drawCharacter(club);
+			drawCharacter(ogre.getClub());
 			break;
+			
 		default:
 			break;
 		}
@@ -176,7 +169,6 @@ public class Game {
 		hero.updateHero(getChar(new_hero_pos));
 		
 		
-
 		if (hero.getState() == HeroState.K)
 			openDoors();
 
@@ -187,6 +179,7 @@ public class Game {
 			if (hero.getState() == HeroState.STAIR){
 				state = GameState.LEVEL_2;
 				hero.setPosition(1,8);
+				k.setPosition(8,1);
 				
 			}
 		
@@ -198,16 +191,14 @@ public class Game {
 			new_ogre_pos = ogre.getNewPosition();
 			}while(!ogre.updateOgre(getChar(new_ogre_pos)));
 			
+			
 			if(hero.getState() == HeroState.K){
 				hero.setChar('K');		
 			}
-			
-			if(ogre.getState() == OgreState.KEY){
-				ogre.setChar('$');				
-			}		
-			
+
 			do{
 			new_club_pos = ogre.getNewClubPosition();
+		
 			}while (!ogre.updateClub(getChar(new_club_pos)));
 			
 			break;
@@ -243,12 +234,16 @@ public class Game {
 			break;
 
 		case LEVEL_2:
-					
-			if (ogre.getState() == OgreState.KEY){
-				ogre.setChar('O');
-			}
+			
+			if (isHeroCaptured(ogre))
+				state = GameState.LOST;
+			
+			if (isHeroCaptured(ogre.getClub()))
+				state = GameState.LOST;
+			
 			cleanCharacter(ogre);
-			cleanCharacter(club);
+			cleanCharacter(ogre.getClub());
+			drawCharacter(k);
 			
 			break;
 		}
@@ -257,15 +252,12 @@ public class Game {
 
 	public void openDoors() {
 
-		
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
 					if (map_1[i][j] == 'I')
 						map_1[i][j] = 'S';
 				}
 			}
-			
-
 		
 	}
 

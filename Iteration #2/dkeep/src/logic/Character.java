@@ -51,6 +51,8 @@ public class Character {
 		this.c = c;
 	}
 	
+	
+	
 	public Point getNewPosition(Point actual_pos,int direction){
 		Point new_pos = new Point();
 		
