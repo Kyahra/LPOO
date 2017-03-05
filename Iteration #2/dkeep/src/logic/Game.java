@@ -47,7 +47,7 @@ public class Game {
 		hero = new Hero(hero_init_pos, 'H');
 
 		Point guard_init_pos = new Point(8, 1);
-		guard = new Guard(guard_init_pos, 'G');
+		guard = new Suspicious(guard_init_pos, 'G'); //just to check whether it works or not
 
 		Point lever_init_pos = new Point(7, 8);
 		k = new Character(lever_init_pos, 'k');
