@@ -155,9 +155,6 @@ public class Game {
 		Scanner keyboard = new Scanner(System.in);
 
 		direction = keyboard.nextLine().toUpperCase();
-
-		
-
 	}
 
 	public void updateGame() {
@@ -239,19 +236,44 @@ public class Game {
 
 	}
 
+	public boolean isGoingToOpen(){
+		
+		if(map_2[hero.getX()+1][hero.getY()] == 'I')
+			return true;
+		if(map_2[hero.getX()-1][hero.getY()] == 'I')
+			return true;
+		if(map_2[hero.getX()][hero.getY()+1] == 'I')
+			return true;
+		if(map_2[hero.getX()][hero.getY()-1] == 'I')
+			return true;
+		else return false;
+	}
+	
 	public void openDoors() {
 
-		
+		switch (state) {
+		case LEVEL_1:
 			for (int i = 0; i < rows; i++) {
 				for (int j = 0; j < cols; j++) {
 					if (map_1[i][j] == 'I')
 						map_1[i][j] = 'S';
 				}
-			}
+			}	
+			break;
+		case LEVEL_2:
 			
-
-		
+			if(hero.gotKey() && isGoingToOpen()){
+				for (int i = 0; i < rows; i++) {
+					for (int j = 0; j < cols; j++) {
+						if (map_1[i][j] == 'I')
+							map_1[i][j] = 'S';
+					}
+				}		
+			}
+		}
 	}
+	
+	
 
 	public boolean isHeroCaptured(Character enemy) {
 
