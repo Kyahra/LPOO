@@ -15,32 +15,19 @@ public class Game {
 		WON, LEVEL_1, LEVEL_2, LOST
 	};
 
-	private char[][] map_1 = { 
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'X', ' ', ' ', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, 
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, 
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' },
-			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, 
-	};
+	private char[][] map_1 = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'X', ' ', ' ', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
+			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, { 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
-	private char[][] map_2 = { 
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'k', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, 
-	};
-
+	private char[][] map_2 = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
 	private int rows = 10;
 	private int cols = 10;
@@ -64,7 +51,7 @@ public class Game {
 
 		Point lever_init_pos = new Point(7, 8);
 		k = new Character(lever_init_pos, 'k');
-		
+
 		Point ogre_init_pos = new Point(7, 1);
 		ogre = new Ogre(ogre_init_pos, 'O');
 
@@ -73,7 +60,7 @@ public class Game {
 	public char getChar(Point position) {
 
 		char c = 'X';
-		
+
 		switch (state) {
 
 		case LEVEL_1:
@@ -105,7 +92,13 @@ public class Game {
 				case LEVEL_2:
 					System.out.print(map_2[i][j] + " ");
 					break;
+				case WON:
+					System.out.print(map_2[i][j] + " ");
+					break;
 				}
+				
+				
+					
 			}
 
 			System.out.println();
@@ -137,13 +130,15 @@ public class Game {
 		case LEVEL_1:
 			drawCharacter(guard);
 			break;
+
 		case LEVEL_2:
-			if(!hero.gotKey()){
-				k.setPosition(8,1);
+			if (!hero.gotKey())
 				drawCharacter(k);
-			}
+
 			drawCharacter(ogre);
+			drawCharacter(ogre.getClub());
 			break;
+
 		default:
 			break;
 		}
@@ -155,43 +150,55 @@ public class Game {
 		Scanner keyboard = new Scanner(System.in);
 
 		direction = keyboard.nextLine().toUpperCase();
+
 	}
 
 	public void updateGame() {
-		Point new_hero_pos, new_ogre_pos;
+		Point new_hero_pos, new_ogre_pos, new_club_pos;
 
 		new_hero_pos = hero.getNewPosition(direction);
 		hero.updateHero(getChar(new_hero_pos));
-		
-		
 
-		if (hero.getState() == HeroState.K)
-			openDoors();
+	
 
 		switch (state) {
 		case LEVEL_1:
 			guard.updateGuard();
-			
-			if (hero.getState() == HeroState.STAIR){
+
+			if (hero.getState() == HeroState.STAIR) {
 				state = GameState.LEVEL_2;
-				hero.setPosition(1,8);
-				
+				hero.setPosition(1, 8);
+				k.setPosition(8, 1);
+
 			}
-		
+			
+			if (hero.getState() == HeroState.K)
+				openDoors();
+
 			break;
 
 		case LEVEL_2:
-				
-			new_ogre_pos = ogre.getNewPosition();
-			ogre.updateOgre(getChar(new_ogre_pos));
+
+			if (hero.getState() == HeroState.K)
+				hero.setChar('K');
 			
-			if(hero.getState() == HeroState.K){
-				hero.setChar('K');		
-			}
+
+			do {
+				new_ogre_pos = ogre.getNewPosition();
+			} while (!ogre.updateOgre(getChar(new_ogre_pos)));
+
+			do {
+				new_club_pos = ogre.getNewClubPosition();
+
+			} while (!ogre.updateClub(getChar(new_club_pos)));
+
+			if (hero.getState() == HeroState.DOOR)
+				openDoors();
 			
-			if(ogre.getState() == OgreState.KEY){
-				ogre.setChar('$');				
-			}			
+			if (hero.getState() == HeroState.STAIR)
+				state = GameState.WON;
+
+
 			break;
 		}
 
@@ -215,7 +222,6 @@ public class Game {
 		case LEVEL_1:
 			if (hero.getState() == HeroState.K)
 				drawCharacter(k);
-			
 
 			if (isHeroCaptured(guard))
 				state = GameState.LOST;
@@ -225,29 +231,26 @@ public class Game {
 			break;
 
 		case LEVEL_2:
-					
-			if (ogre.getState() == OgreState.KEY){
-				ogre.setChar('O');
-			}
-			cleanCharacter(ogre);
+
+			if (isHeroCaptured(ogre))
+				state = GameState.LOST;
+
+			if (isHeroCaptured(ogre.getClub()))
+				state = GameState.LOST;
 			
+			
+
+			cleanCharacter(ogre);
+			cleanCharacter(ogre.getClub());
+
+			if (!hero.gotKey())
+				drawCharacter(k);
+
 			break;
 		}
 
 	}
 
-	public boolean isGoingToOpen(){
-		
-		if(map_2[hero.getX()+1][hero.getY()] == 'I')
-			return true;
-		if(map_2[hero.getX()-1][hero.getY()] == 'I')
-			return true;
-		if(map_2[hero.getX()][hero.getY()+1] == 'I')
-			return true;
-		if(map_2[hero.getX()][hero.getY()-1] == 'I')
-			return true;
-		else return false;
-	}
 	
 	public void openDoors() {
 
@@ -258,18 +261,13 @@ public class Game {
 					if (map_1[i][j] == 'I')
 						map_1[i][j] = 'S';
 				}
-			}	
+			}
 			break;
 		case LEVEL_2:
-			
-			if(hero.gotKey() && isGoingToOpen()){
-				for (int i = 0; i < rows; i++) {
-					for (int j = 0; j < cols; j++) {
-						if (map_1[i][j] == 'I')
-							map_1[i][j] = 'S';
-					}
-				}		
-			}
+			map_2[1][0] = 'S';
+			break;
+		default:
+			break;
 		}
 	}
 	
