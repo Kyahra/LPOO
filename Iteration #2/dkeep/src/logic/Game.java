@@ -251,6 +251,7 @@ public class Game {
 
 	}
 
+	
 	public void openDoors() {
 
 		switch (state) {
@@ -265,13 +266,12 @@ public class Game {
 		case LEVEL_2:
 			map_2[1][0] = 'S';
 			break;
-
 		default:
 			break;
-
 		}
-
 	}
+	
+	
 
 	public boolean isHeroCaptured(Character enemy) {
 
