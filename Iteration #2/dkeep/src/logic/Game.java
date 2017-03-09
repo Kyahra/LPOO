@@ -7,6 +7,7 @@ import logic.Ogre;
 import logic.Ogre.OgreState;
 
 import java.awt.Point;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -43,17 +44,31 @@ public class Game {
 	public Game() {
 		state = GameState.LEVEL_1;
 
+		Random rand = new Random();		
+		int guar = rand.nextInt(3);
+		
 		Point hero_init_pos = new Point(1, 1);
 		hero = new Hero(hero_init_pos, 'H');
-
-		Point guard_init_pos = new Point(8, 1);
-		guard = new Suspicious(guard_init_pos, 'G'); //just to check whether it works or not
 
 		Point lever_init_pos = new Point(7, 8);
 		k = new Character(lever_init_pos, 'k');
 
 		Point ogre_init_pos = new Point(7, 1);
 		ogre = new Ogre(ogre_init_pos, 'O');
+		
+		Point guard_init_pos = new Point(8, 1);
+		
+		switch(guar){		
+		case 0:
+			guard = new Suspicious(guard_init_pos, 'G');
+			break;
+		case 1:
+			guard = new Rookie(guard_init_pos, 'G');
+			break;
+		case 2:
+			guard = new Drunken(guard_init_pos, 'G');
+			break;		
+		}
 
 	}
 
@@ -275,6 +290,9 @@ public class Game {
 
 	public boolean isHeroCaptured(Character enemy) {
 
+		if(enemy.getChar() == 'g')
+			return false;
+		
 		if (hero.getX() == enemy.getX() + 1 && hero.getY() == enemy.getY())
 			return true;
 
