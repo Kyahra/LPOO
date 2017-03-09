@@ -7,6 +7,7 @@ import logic.Ogre;
 import logic.Ogre.OgreState;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -38,7 +39,7 @@ public class Game {
 	private Hero hero;
 	private Guard guard;
 	private Character k;
-	private Ogre ogre;
+	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 
 	public Game() {
 		state = GameState.LEVEL_1;
@@ -51,9 +52,11 @@ public class Game {
 
 		Point lever_init_pos = new Point(7, 8);
 		k = new Character(lever_init_pos, 'k');
-
-		Point ogre_init_pos = new Point(7, 1);
-		ogre = new Ogre(ogre_init_pos, 'O');
+			
+		for(int i =0; i <3; i++){
+		Point ogre_init_pos =new Point(7,1);
+		ogres.add(new Ogre(ogre_init_pos, 'O'));
+		}
 
 	}
 
@@ -135,8 +138,11 @@ public class Game {
 			if (!hero.gotKey())
 				drawCharacter(k);
 
+			for(Ogre ogre: ogres){
 			drawCharacter(ogre);
 			drawCharacter(ogre.getClub());
+			}
+			
 			break;
 
 		default:
@@ -182,7 +188,8 @@ public class Game {
 			if (hero.getState() == HeroState.K)
 				hero.setChar('K');
 			
-
+			for(Ogre ogre: ogres){
+				
 			do {
 				new_ogre_pos = ogre.getNewPosition();
 			} while (!ogre.updateOgre(getChar(new_ogre_pos)));
@@ -191,6 +198,8 @@ public class Game {
 				new_club_pos = ogre.getNewClubPosition();
 
 			} while (!ogre.updateClub(getChar(new_club_pos)));
+			
+			}
 
 			if (hero.getState() == HeroState.DOOR)
 				openDoors();
@@ -231,6 +240,8 @@ public class Game {
 			break;
 
 		case LEVEL_2:
+			
+			for(Ogre ogre: ogres){
 
 			if (isHeroCaptured(ogre))
 				state = GameState.LOST;
@@ -242,11 +253,16 @@ public class Game {
 
 			cleanCharacter(ogre);
 			cleanCharacter(ogre.getClub());
+			
+			}
 
 			if (!hero.gotKey())
 				drawCharacter(k);
 
 			break;
+			
+			default:
+				break;
 		}
 
 	}
