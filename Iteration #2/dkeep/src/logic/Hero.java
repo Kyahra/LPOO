@@ -6,9 +6,10 @@ import java.awt.Point;
 public class Hero extends Character {
 
 	Point new_position;
-	public enum HeroState { K, STAIR, MOVE,DOOR};
+	public enum HeroState { K, STAIR, MOVE,DOOR, ARMED};
 	
 	private HeroState state;
+	private boolean armed= false;
 
 	public Hero(Point position, char c) {
 		super(position, c);
@@ -68,6 +69,13 @@ public class Hero extends Character {
 			setY(new_position.y);
 			state = HeroState.K;
 			break;
+			
+		case '*':
+			setX(new_position.x);
+			setY(new_position.y);
+			armed = true;
+			setChar('A');
+			
 		default:
 			break;
 		}
@@ -83,5 +91,9 @@ public class Hero extends Character {
 		if(getChar() == 'K')
 			return true;
 		else return false;
+	}
+	
+	public boolean isArmed(){
+		return armed;
 	}
 }

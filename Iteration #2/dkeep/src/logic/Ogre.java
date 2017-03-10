@@ -11,6 +11,8 @@ import java.util.Random;
 	private Point new_position;
 	private OgreState state;
 	private Character club;
+	private boolean stuned ;
+	private int stun_counter;
 	
 	public Ogre(Point position, char c) {
 		super(position, c);
@@ -18,13 +20,15 @@ import java.util.Random;
 		new_position = new Point(position);
 		state = OgreState.MOVE;
 		club = new Character(new Point(getX()-1, getY()), '*');
+		stuned = false;
+		stun_counter = 0;
 		
 
 	}
 	
-	//private int[] move = {0,1,0,1,0,1,0,1,0,1,0,1};
+	private int[] move = {0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,1};
 	
-	//int i = 0;
+	int i = 0;
 	public Point getNewPosition() {
 
 		Random rand = new Random();		
@@ -56,17 +60,31 @@ import java.util.Random;
 			break;
 		}
 		
-		return new_position;*/
+		return new_position;
+		*/
 
 		new_position = super.getNewPosition(getPosition(), direction);
 		
 		return new_position;
 		
 		
+		
+		
 	}
 
 
 	public boolean updateOgre(char c) {
+		
+		if(stuned){
+			stun_counter++;
+			
+			if(stun_counter == 2)
+				stuned = false;
+				
+
+			return true;
+		}
+		
 
 		switch (c) {
 		case 'X':
@@ -133,6 +151,11 @@ import java.util.Random;
 		return club;
 	}
 	
+	
+	public void getStuned(){
+		stuned = true;
+		setChar('8');
+	}
 	
 	
 }

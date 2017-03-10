@@ -31,11 +31,16 @@ public class Game {
 			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, { 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
-	private char[][] map_2 = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+	private char[][] map_2 = {
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
 	private int rows = 10;
@@ -47,6 +52,7 @@ public class Game {
 	private Hero hero;
 	private Guard guard;
 	private Character k;
+	private Character club;
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 
 	private Level lev;
@@ -63,11 +69,15 @@ public class Game {
 
 		Point lever_init_pos = new Point(7, 8);
 		k = new Character(lever_init_pos, 'k');
+		
+		Point club_init_pos = new Point(3,8);
+		club = new Character(club_init_pos, '*');
 
 			
-		for(int i =0; i <3; i++){
+		for(int i =0; i <1; i++){
 		Point ogre_init_pos =new Point(7,1);
 		ogres.add(new Ogre(ogre_init_pos, 'O'));
+
 		}
 
 		Point guard_init_pos = new Point(8, 1);
@@ -170,6 +180,9 @@ public class Game {
 		case LEVEL_2:
 			if (!hero.gotKey())
 				drawCharacter(k);
+			
+			if(!hero.isArmed())
+				drawCharacter(club);
 
 			for(Ogre ogre: ogres){
 			drawCharacter(ogre);
@@ -220,6 +233,7 @@ public class Game {
 			break;
 
 		case LEVEL_2:
+			
 
 			if (hero.getState() == HeroState.K)
 				hero.setChar('K');
@@ -273,7 +287,7 @@ public class Game {
 			if (hero.getState() == HeroState.K)
 				drawCharacter(k);
 
-			if (isHeroCaptured(guard))
+			if (isCaptured(hero,guard))
 				state = GameState.LOST;
 
 			cleanCharacter(guard);
@@ -284,18 +298,22 @@ public class Game {
 			
 			for(Ogre ogre: ogres){
 
-			if (isHeroCaptured(ogre))
-				state = GameState.LOST;
-
-			if (isHeroCaptured(ogre.getClub()))
+			if (isCaptured(hero,ogre)&& !hero.isArmed())
 				state = GameState.LOST;
 			
+			if(isCaptured(ogre,hero) && hero.isArmed())
+				ogre.getStuned();
+
+			if (isCaptured(hero,ogre.getClub()) )
+				state = GameState.LOST;
 			
 
 			cleanCharacter(ogre);
 			cleanCharacter(ogre.getClub());
 			
 			}
+			
+			// esta função é mesmo necessária nos dois sítio??????
 
 			if (!hero.gotKey())
 				drawCharacter(k);
@@ -330,23 +348,25 @@ public class Game {
 		}
 	}
 	*/
-	
-/*
-	public boolean isHeroCaptured(Character enemy) {
 
-		if(enemy.getChar() == 'g')
+
+/*
+	public boolean isCaptured(Character victim, Character captor) {
+
+
+		if(captor.getChar() == 'g')
 			return false;
 		
-		if (hero.getX() == enemy.getX() + 1 && hero.getY() == enemy.getY())
+		if (victim.getX() == captor.getX() + 1 && victim.getY() == captor.getY())
 			return true;
 
-		if (hero.getX() == enemy.getX() - 1 && hero.getY() == enemy.getY())
+		if (victim.getX() == captor.getX() - 1 && victim.getY() == captor.getY())
 			return true;
 
-		if (hero.getX() == enemy.getX() && hero.getY() == enemy.getY() + 1)
+		if (victim.getX() == captor.getX() && victim.getY() == captor.getY() + 1)
 			return true;
 
-		if (hero.getX() == enemy.getX() && hero.getY() == enemy.getY() - 1)
+		if (victim.getX() == captor.getX() && victim.getY() == captor.getY() - 1)
 			return true;
 
 		return false;
