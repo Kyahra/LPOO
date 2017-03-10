@@ -33,8 +33,10 @@ public class Suspicious extends Guard{
 				guard_y_idx++;
 			}
 			else{
-				guard_x_idx--;
-				guard_y_idx--;
+				if(guard_x_idx > 0){
+					guard_x_idx--;
+					guard_y_idx--;
+				}
 			}
 		}
 

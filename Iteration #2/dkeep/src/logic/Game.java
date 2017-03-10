@@ -5,6 +5,10 @@ import logic.Hero.HeroState;
 import logic.Guard;
 import logic.Ogre;
 import logic.Ogre.OgreState;
+import logic.Level;
+import logic.Level1;
+import logic.Level2;
+import logic.Level.LevelState;
 
 import java.awt.Point;
 
@@ -45,7 +49,10 @@ public class Game {
 	private Character k;
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 
+	private Level lev;
+	
 	public Game() {
+		/*
 		state = GameState.LEVEL_1;
 
 		Random rand = new Random();		
@@ -61,6 +68,7 @@ public class Game {
 		for(int i =0; i <3; i++){
 		Point ogre_init_pos =new Point(7,1);
 		ogres.add(new Ogre(ogre_init_pos, 'O'));
+		}
 
 		Point guard_init_pos = new Point(8, 1);
 		
@@ -76,9 +84,11 @@ public class Game {
 			break;		
 
 		}
-
+*/
+		
+		lev = new Level1();
 	}
-
+/*
 	public char getChar(Point position) {
 
 		char c = 'X';
@@ -96,10 +106,12 @@ public class Game {
 		}
 
 		return c;
+
 	}
+	*/
 
 	public void printMap() {
-
+/*
 		System.out.println();
 
 		for (int i = 0; i < rows; i++) {
@@ -128,9 +140,11 @@ public class Game {
 
 		System.out.println("\n Use the WASD keys to control the Hero.");
 		System.out.print(" Your Move : ");
-
+*/
+		
+		lev.printMap();
 	}
-
+/*
 	public void drawCharacter(Character c) {
 
 		switch (state) {
@@ -143,9 +157,9 @@ public class Game {
 		}
 
 	}
-
+*/
 	public void updateMap() {
-
+/*
 		drawCharacter(hero);
 
 		switch (state) {
@@ -167,19 +181,22 @@ public class Game {
 		default:
 			break;
 		}
-
+*/
+		
+		lev.updateMap();
 	}
 
 	public void readMove() {
-
+/*
 		Scanner keyboard = new Scanner(System.in);
 
 		direction = keyboard.nextLine().toUpperCase();
-
+*/
+		lev.readMove();
 	}
 
 	public void updateGame() {
-		Point new_hero_pos, new_ogre_pos, new_club_pos;
+		/*Point new_hero_pos, new_ogre_pos, new_club_pos;
 
 		new_hero_pos = hero.getNewPosition(direction);
 		hero.updateHero(getChar(new_hero_pos));
@@ -229,9 +246,14 @@ public class Game {
 
 			break;
 		}
-
+*/
+		lev.updateGame();
+		
+		if(lev.getState() == lev.state.LEVEL_2){
+			lev = new Level2();
+		}
 	}
-
+/*
 	public void cleanCharacter(Character c) {
 		switch (state) {
 		case LEVEL_1:
@@ -242,9 +264,9 @@ public class Game {
 			break;
 		}
 	}
-
+*/
 	public void cleanMap() {
-		cleanCharacter(hero);
+		/*cleanCharacter(hero);
 
 		switch (state) {
 		case LEVEL_1:
@@ -283,10 +305,12 @@ public class Game {
 			default:
 				break;
 		}
-
+*/
+		
+		lev.cleanMap();
 	}
 
-	
+/*	
 	public void openDoors() {
 
 		switch (state) {
@@ -305,9 +329,9 @@ public class Game {
 			break;
 		}
 	}
+	*/
 	
-	
-
+/*
 	public boolean isHeroCaptured(Character enemy) {
 
 		if(enemy.getChar() == 'g')
@@ -327,8 +351,10 @@ public class Game {
 
 		return false;
 	}
-
+*/
+	
 	public GameState getState() {
 		return state;
 	}
+	
 }
