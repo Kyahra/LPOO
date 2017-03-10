@@ -3,10 +3,7 @@ package cli;
 import logic.Game;
 import logic.Game.GameState;
 
-import logic.Level;
-import logic.Level1;
-import logic.Level2;
-import logic.Level.LevelState;
+
 
 public class CommandLineInterface {
 
@@ -19,39 +16,20 @@ public class CommandLineInterface {
 
 		g.updateMap();
 		g.printMap();
-		g.cleanMap();
+		g.clean();
 		
-		if(g.getState() == GameState.LOST || g.getState() == GameState.WON)
+		if(g.isOver())
 			break;
 		
 		g.readMove();
 		g.updateGame();
 		
-
-		
 			
 		}
 		
-		if(g.getState() == GameState.LOST){
-			System.out.println();
-			System.out.println();
-			
-			System.out.print("--------------");
-			System.out.print(" GAME OVER ");
-			System.out.print("--------------");
-			
-		}
 		
-		if(g.getState() == GameState.WON){
-			System.out.println();
-			System.out.println();
-			
-			System.out.print("---------------");
-			System.out.print(" VICTORY ");
-			System.out.print("---------------");
-			
-			
-		}
+		g.printEnd();
+		
 	}
 	
 }
