@@ -3,14 +3,14 @@ package logic;
 import java.awt.Point;
 import java.util.ArrayList;
 
-public abstract class GameMap {
+public class GameMap {
 
 	private char[][] map;
 	private int rows;
 	private int cols;
 	
 	
-	GameMap(char[][] map) {
+	public GameMap(char[][] map) {
 		this.map = map;
 		rows = map.length;
 		cols = map[0].length;
@@ -68,8 +68,9 @@ public abstract class GameMap {
 
 	}
 	
-	public abstract void clean(Hero hero, Character guard, Character k, ArrayList<Ogre> ogres);
+	public  void clean(Hero hero, Character guard, Character k, ArrayList<Ogre> ogres){};
 
-	public abstract void update(Hero hero, Guard guard, Character k, Character club, ArrayList<Ogre> ogres);
-
+	public  void update(Hero hero, Guard guard, Character k, Character club, ArrayList<Ogre> ogres){};
+	
+	
 }

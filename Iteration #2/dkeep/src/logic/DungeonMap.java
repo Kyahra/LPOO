@@ -7,7 +7,7 @@ import logic.Hero.HeroState;
 
 public class DungeonMap extends GameMap {
 
-	DungeonMap(char[][] map) {
+	public DungeonMap(char[][] map) {
 		super(map);
 		
 	}
