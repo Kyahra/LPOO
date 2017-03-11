@@ -5,22 +5,24 @@ import java.awt.Point;
 
 public class Hero extends Character {
 
-	Point new_position;
-	public enum HeroState { K, STAIR, MOVE,DOOR, ARMED};
-	
+	public enum HeroState {
+		K, STAIR, MOVE, DOOR, ARMED
+	};
+
 	private HeroState state;
-	private boolean armed= false;
+	private boolean armed = false;
 
 	public Hero(Point position, char c) {
 		super(position, c);
-		new_position = new Point(getX(),getY());
 		state = HeroState.MOVE;
 
 	}
 
-	public Point getNewPosition(String direction) {
+	public void move(String direction, GameMap map) {
 
-		
+		Point new_position = new Point(getX(), getY());
+		char c;
+
 		switch (direction) {
 		case "D":
 			new_position.x = getX() + 1;
@@ -43,11 +45,9 @@ public class Hero extends Character {
 			break;
 
 		}
-	
-		return new_position;
-	}
 
-	void updateHero(char c) {
+		c = map.getChar(new_position);
+
 		switch (c) {
 		case 'X':
 			break;
@@ -62,38 +62,42 @@ public class Hero extends Character {
 		case 'S':
 			setX(new_position.x);
 			setY(new_position.y);
-			state =HeroState.STAIR;
+			state = HeroState.STAIR;
 			break;
 		case 'k':
 			setX(new_position.x);
 			setY(new_position.y);
 			state = HeroState.K;
 			break;
-			
+
 		case '*':
 			setX(new_position.x);
 			setY(new_position.y);
 			armed = true;
 			setChar('A');
-			
+
 		default:
 			break;
 		}
-		
+
 	}
-	
-	public HeroState getState(){
+
+
+
+	public HeroState getState() {
 		return state;
 	}
 
-	public boolean gotKey(){
-		
-		if(getChar() == 'K')
+	public boolean gotKey() {
+
+		if (getChar() == 'K')
 			return true;
-		else return false;
+		else
+			return false;
 	}
-	
+
 	public boolean isArmed(){
 		return armed;
 	}
+	
 }

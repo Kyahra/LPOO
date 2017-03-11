@@ -16,6 +16,14 @@ import java.util.Scanner;
 
 public class Game {
 
+	public Guard getGuard() {
+		return guard;
+	}
+
+	public void setGuard(Guard guard) {
+		this.guard = guard;
+	}
+
 	public enum GameState {
 		WON, RUNNING, LOST
 	};
@@ -34,13 +42,34 @@ public class Game {
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
-	private int rows = 10;
-	private int cols = 10;
-
 	private GameState state;
 	private String direction;
 
-	private GameMap map;
+	private GameMap map; 
+	public GameMap getMap() {
+		return map;
+	}
+
+	public void setMap(GameMap map) {
+		this.map = map;
+	}
+
+	public Hero getHero() {
+		return hero;
+	}
+
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
 	private Hero hero;
 	private Guard guard;
 	private Character k;
@@ -75,8 +104,8 @@ public class Game {
 
 		}
 
-		//map = new DungeonMap(map_1);
-		map = new KeepMap(map_2);
+		map = new DungeonMap(map_1);
+		
 
 	}
 
@@ -103,10 +132,10 @@ public class Game {
 	}
 
 	public void updateGame() {
-		Point new_hero_pos, new_ogre_pos, new_club_pos;
-
-		new_hero_pos = hero.getNewPosition(direction);
-		hero.updateHero(map.getChar(new_hero_pos));
+		Point new_ogre_pos, new_club_pos;
+		
+		hero.move(direction, map);
+		
 
 		if (map instanceof DungeonMap) {
 			guard.updateGuard();
@@ -141,7 +170,7 @@ public class Game {
 		  if (hero.getState() == HeroState.DOOR) 
 			  map.openDoors();
 		  
-		//  if (hero.getState() == HeroState.STAIR) state = GameState.WON;
+		 if (hero.getState() == HeroState.STAIR) state = GameState.WON;
 		  
 		  
 		}
@@ -172,6 +201,8 @@ public class Game {
 	}
 
 	public boolean isOver() {
+		
+		
 
 		if (map instanceof DungeonMap) {
 			if (isCaptured(hero, guard)) {
@@ -197,10 +228,6 @@ public class Game {
 				}
 			}
 			
-			 if (hero.getState() == HeroState.STAIR){
-				 state = GameState.WON;
-				 return true;
-			 }
 		}
 
 		return false;
