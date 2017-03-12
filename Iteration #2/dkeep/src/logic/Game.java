@@ -4,7 +4,6 @@ import logic.Hero;
 import logic.Hero.HeroState;
 import logic.Guard;
 import logic.Ogre;
-import logic.Ogre.OgreState;
 
 import java.awt.Point;
 

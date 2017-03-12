@@ -1,8 +1,6 @@
 package cli;
 
 import logic.Game;
-import logic.Game.GameState;
-
 
 
 public class CommandLineInterface {
