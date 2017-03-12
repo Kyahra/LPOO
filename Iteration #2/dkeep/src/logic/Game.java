@@ -5,10 +5,6 @@ import logic.Hero.HeroState;
 import logic.Guard;
 import logic.Ogre;
 import logic.Ogre.OgreState;
-import logic.Level;
-import logic.Level1;
-import logic.Level2;
-import logic.Level.LevelState;
 
 import java.awt.Point;
 
@@ -20,8 +16,16 @@ import java.util.Scanner;
 
 public class Game {
 
+	public Guard getGuard() {
+		return guard;
+	}
+
+	public void setGuard(Guard guard) {
+		this.guard = guard;
+	}
+
 	public enum GameState {
-		WON, LEVEL_1, LEVEL_2, LOST
+		WON, RUNNING, LOST
 	};
 
 	private char[][] map_1 = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
@@ -31,23 +35,40 @@ public class Game {
 			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, { 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
-	private char[][] map_2 = {
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+	private char[][] map_2 = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
-
-	private int rows = 10;
-	private int cols = 10;
 
 	private GameState state;
 	private String direction;
+
+	private GameMap map; 
+	public GameMap getMap() {
+		return map;
+	}
+
+	public void setMap(GameMap map) {
+		this.map = map;
+	}
+
+	public Hero getHero() {
+		return hero;
+	}
+
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
 
 	private Hero hero;
 	private Guard guard;
@@ -55,34 +76,22 @@ public class Game {
 	private Character club;
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
 
-	private Level lev;
-	
 	public Game() {
-		/*
-		state = GameState.LEVEL_1;
+		state = GameState.RUNNING;
 
-		Random rand = new Random();		
+		Random rand = new Random();
 		int guar = rand.nextInt(3);
-		
-		Point hero_init_pos = new Point(1, 1);
-		hero = new Hero(hero_init_pos, 'H');
 
-		Point lever_init_pos = new Point(7, 8);
-		k = new Character(lever_init_pos, 'k');
-		
-		Point club_init_pos = new Point(3,8);
-		club = new Character(club_init_pos, '*');
+		hero = new Hero(new Point(1, 1), 'H');
+		k = new Character(new Point(7, 8), 'k');
+		club = new Character(new Point(3, 8), '*');
 
-			
-		for(int i =0; i <1; i++){
-		Point ogre_init_pos =new Point(7,1);
-		ogres.add(new Ogre(ogre_init_pos, 'O'));
-
-		}
+		for (int i = 0; i < 1; i++)
+			ogres.add(new Ogre(new Point(7, 1), 'O'));
 
 		Point guard_init_pos = new Point(8, 1);
-		
-		switch(guar){		
+
+		switch (guar) {
 		case 0:
 			guard = new Suspicious(guard_init_pos, 'G');
 			break;
@@ -91,272 +100,88 @@ public class Game {
 			break;
 		case 2:
 			guard = new Drunken(guard_init_pos, 'G');
-			break;		
+			break;
 
 		}
-*/
+
+		map = new DungeonMap(map_1);
 		
-		lev = new Level1();
-	}
-/*
-	public char getChar(Point position) {
-
-		char c = 'X';
-
-		switch (state) {
-
-		case LEVEL_1:
-			c = map_1[position.y][position.x];
-			break;
-		case LEVEL_2:
-			c = map_2[position.y][position.x];
-			break;
-		default:
-			break;
-		}
-
-		return c;
 
 	}
-	*/
 
 	public void printMap() {
-/*
-		System.out.println();
-
-		for (int i = 0; i < rows; i++) {
-			System.out.print("          ");
-			for (int j = 0; j < cols; j++) {
-
-				switch (state) {
-				case LEVEL_1:
-					System.out.print(map_1[i][j] + " ");
-					break;
-
-				case LEVEL_2:
-					System.out.print(map_2[i][j] + " ");
-					break;
-				case WON:
-					System.out.print(map_2[i][j] + " ");
-					break;
-				}
-				
-				
-					
-			}
-
-			System.out.println();
-		}
-
-		System.out.println("\n Use the WASD keys to control the Hero.");
-		System.out.print(" Your Move : ");
-*/
-		
-		lev.printMap();
-	}
-/*
-	public void drawCharacter(Character c) {
-
-		switch (state) {
-		case LEVEL_1:
-			map_1[c.getY()][c.getX()] = c.getChar();
-			break;
-		case LEVEL_2:
-			map_2[c.getY()][c.getX()] = c.getChar();
-			break;
-		}
+		map.printMap();
 
 	}
-*/
+
+	public void clean() {
+		map.clean(hero, guard, k, ogres);
+
+	}
+
 	public void updateMap() {
-/*
-		drawCharacter(hero);
-
-		switch (state) {
-		case LEVEL_1:
-			drawCharacter(guard);
-			break;
-
-		case LEVEL_2:
-			if (!hero.gotKey())
-				drawCharacter(k);
-			
-			if(!hero.isArmed())
-				drawCharacter(club);
-
-			for(Ogre ogre: ogres){
-			drawCharacter(ogre);
-			drawCharacter(ogre.getClub());
-			}
-			
-			break;
-
-		default:
-			break;
-		}
-*/
-		
-		lev.updateMap();
+		map.update(hero, guard, k, club, ogres);
 	}
 
 	public void readMove() {
-/*
+
 		Scanner keyboard = new Scanner(System.in);
 
 		direction = keyboard.nextLine().toUpperCase();
-*/
-		lev.readMove();
+
 	}
 
 	public void updateGame() {
-		/*Point new_hero_pos, new_ogre_pos, new_club_pos;
+		Point new_ogre_pos, new_club_pos;
+		
+		hero.move(direction, map);
+		
 
-		new_hero_pos = hero.getNewPosition(direction);
-		hero.updateHero(getChar(new_hero_pos));
-
-	
-
-		switch (state) {
-		case LEVEL_1:
+		if (map instanceof DungeonMap) {
 			guard.updateGuard();
 
 			if (hero.getState() == HeroState.STAIR) {
-				state = GameState.LEVEL_2;
+				map = new KeepMap(map_2);
 				hero.setPosition(1, 8);
 				k.setPosition(8, 1);
 
 			}
-			
-			if (hero.getState() == HeroState.K)
-				openDoors();
-
-			break;
-
-		case LEVEL_2:
-			
 
 			if (hero.getState() == HeroState.K)
-				hero.setChar('K');
-			
-			for(Ogre ogre: ogres){
-				
-			do {
-				new_ogre_pos = ogre.getNewPosition();
-			} while (!ogre.updateOgre(getChar(new_ogre_pos)));
+				map.openDoors();
 
-			do {
-				new_club_pos = ogre.getNewClubPosition();
-
-			} while (!ogre.updateClub(getChar(new_club_pos)));
-			
-			}
-
-			if (hero.getState() == HeroState.DOOR)
-				openDoors();
-			
-			if (hero.getState() == HeroState.STAIR)
-				state = GameState.WON;
-
-
-			break;
 		}
-*/
-		lev.updateGame();
-		
-		if(lev.getState() == lev.state.LEVEL_2){
-			lev = new Level2();
+		else{
+		 
+		  
+		  if (hero.getState() == HeroState.K) hero.setChar('K');
+		  
+		  for(Ogre ogre: ogres){
+		  
+		  do { new_ogre_pos = ogre.getNewPosition(); } while
+		  (!ogre.updateOgre(map.getChar(new_ogre_pos)));
+		  
+		  do { new_club_pos = ogre.getNewClubPosition();
+		  
+		  } while (!ogre.updateClub(map.getChar(new_club_pos)));
+		  
+		  }
+		  
+		  if (hero.getState() == HeroState.DOOR) 
+			  map.openDoors();
+		  
+		 if (hero.getState() == HeroState.STAIR) state = GameState.WON;
+		  
+		  
 		}
-	}
-/*
-	public void cleanCharacter(Character c) {
-		switch (state) {
-		case LEVEL_1:
-			map_1[c.getY()][c.getX()] = ' ';
-			break;
-		case LEVEL_2:
-			map_2[c.getY()][c.getX()] = ' ';
-			break;
-		}
-	}
-*/
-	public void cleanMap() {
-		/*cleanCharacter(hero);
-
-		switch (state) {
-		case LEVEL_1:
-			if (hero.getState() == HeroState.K)
-				drawCharacter(k);
-
-			if (isCaptured(hero,guard))
-				state = GameState.LOST;
-
-			cleanCharacter(guard);
-
-			break;
-
-		case LEVEL_2:
-			
-			for(Ogre ogre: ogres){
-
-			if (isCaptured(hero,ogre)&& !hero.isArmed())
-				state = GameState.LOST;
-			
-			if(isCaptured(ogre,hero) && hero.isArmed())
-				ogre.getStuned();
-
-			if (isCaptured(hero,ogre.getClub()) )
-				state = GameState.LOST;
-			
-
-			cleanCharacter(ogre);
-			cleanCharacter(ogre.getClub());
-			
-			}
-			
-			// esta função é mesmo necessária nos dois sítio??????
-
-			if (!hero.gotKey())
-				drawCharacter(k);
-
-			break;
-			
-			default:
-				break;
-		}
-*/
-		
-		lev.cleanMap();
+		 
 	}
 
-/*	
-	public void openDoors() {
-
-		switch (state) {
-		case LEVEL_1:
-			for (int i = 0; i < rows; i++) {
-				for (int j = 0; j < cols; j++) {
-					if (map_1[i][j] == 'I')
-						map_1[i][j] = 'S';
-				}
-			}
-			break;
-		case LEVEL_2:
-			map_2[1][0] = 'S';
-			break;
-		default:
-			break;
-		}
-	}
-	*/
-
-
-/*
 	public boolean isCaptured(Character victim, Character captor) {
 
-
-		if(captor.getChar() == 'g')
+		if (captor.getChar() == 'g')
 			return false;
-		
+
 		if (victim.getX() == captor.getX() + 1 && victim.getY() == captor.getY())
 			return true;
 
@@ -369,12 +194,68 @@ public class Game {
 		if (victim.getX() == captor.getX() && victim.getY() == captor.getY() - 1)
 			return true;
 
+		if (victim.getX() == captor.getX() && victim.getY() == captor.getY())
+			return true;
+
 		return false;
 	}
-*/
-	
-	public GameState getState() {
-		return state;
+
+	public boolean isOver() {
+		
+		
+
+		if (map instanceof DungeonMap) {
+			if (isCaptured(hero, guard)) {
+				state = GameState.LOST;
+				return true;
+
+			}
+
+		} else {
+			for (Ogre ogre : ogres) {
+				
+				if (isCaptured(ogre, hero) && hero.isArmed())
+					ogre.getStuned();
+
+				if (isCaptured(hero, ogre) && !hero.isArmed()){
+					state = GameState.LOST;
+					return true;
+				}
+				
+				if (isCaptured(hero, ogre.getClub())){
+					state = GameState.LOST;
+					return true;
+				}
+			}
+			
+		}
+
+		return false;
+
 	}
-	
+
+	public void printEnd() {
+		System.out.println();
+		System.out.println();
+
+		switch (state) {
+		case LOST:
+			System.out.print("--------------");
+			System.out.print(" GAME OVER ");
+			System.out.print("--------------");
+			break;
+		case WON:
+			System.out.println();
+			System.out.println();
+
+			System.out.print("---------------");
+			System.out.print(" VICTORY ");
+			System.out.print("---------------");
+			break;
+		default:
+			break;
+		}
+
+	}
+
 }
