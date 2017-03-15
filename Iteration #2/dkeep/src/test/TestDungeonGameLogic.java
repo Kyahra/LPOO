@@ -8,13 +8,14 @@ import logic.Game;
 import logic.GameMap;
 import logic.Hero;
 import logic.KeepMap;
+import logic.Rookie;
 import logic.Game.GameState;
 
 import java.awt.Point;
 
 
 public class TestDungeonGameLogic {
-	char[][] map ={
+	char[][] map_1 ={
 			{'X','I','X','X','X'},
 			{'X','H',' ','G','X'},
 			{'X',' ',' ',' ','X'},
@@ -22,10 +23,22 @@ public class TestDungeonGameLogic {
 			{'X','X','X','X','X'}
 		};
 	
+	private char[][] map_2 = { 
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'X', ' ', ' ', ' ', 'I', ' ', 'X', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
+			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, 
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, 
+			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
+	
 	@Test
 	public void moveHeroIntoFreeCell(){
 		 Game g = new Game();
-		 g.setMap(new GameMap(map));
+		 g.setMap(new GameMap(map_1));
 		 assertEquals(new Point(1,1),g.getHero().getPosition());
 		 g.getHero().move("S", g.getMap());
 		 assertEquals(new Point(1,2),g.getHero().getPosition());
@@ -35,7 +48,7 @@ public class TestDungeonGameLogic {
 	@Test
 	public void moveHeroIntoWall(){
 		Game g = new Game();
-		 g.setMap(new DungeonMap(map));
+		 g.setMap(new DungeonMap(map_1));
 		 g.getHero().move("A", g.getMap());
 		 assertEquals(new Point(1,1),g.getHero().getPosition());
 	}
@@ -43,7 +56,7 @@ public class TestDungeonGameLogic {
 	@Test
 	public void heroIsCaptured(){
 		Game g = new Game();
-		g.setMap(new DungeonMap(map));
+		g.setMap(new DungeonMap(map_1));
 		g.getGuard().setPosition(new Point(3,1));
 		assertFalse(g.isOver());
 		g.getHero().move("D", g.getMap());
@@ -54,7 +67,7 @@ public class TestDungeonGameLogic {
 	@Test
 	public void moveHeroIntoClosedDoor(){
 		Game g = new Game();
-		 g.setMap(new DungeonMap(map));
+		 g.setMap(new DungeonMap(map_1));
 		 g.getHero().move("W", g.getMap());
 		 assertEquals(new Point(1,1),g.getHero().getPosition());
 	}
@@ -62,7 +75,7 @@ public class TestDungeonGameLogic {
 	@Test
 	public void doorsOpenWhenLeverActivated(){
 		Game g = new Game();
-		 g.setMap(new DungeonMap(map));
+		 g.setMap(new DungeonMap(map_1));
 		 assertEquals('I',g.getMap().getChar(new Point(1,0)));
 		 g.setDirection("S");
 		 g.updateGame();
@@ -74,7 +87,7 @@ public class TestDungeonGameLogic {
 	@Test
 	public void levelUpUponReachingStairs(){
 		Game g = new Game();
-		 g.setMap(new DungeonMap(map));
+		 g.setMap(new DungeonMap(map_1));
 		 g.getGuard().setPosition(new Point(3,1));
 		 
 		 g.clean();
@@ -97,24 +110,42 @@ public class TestDungeonGameLogic {
 		
 	}
 	
-	/*
+
 	@Test
 	public void testUpdateMap(){
 		Game g = new Game();
-		g.setMap(new DungeonMap(map));
+		g.setMap(new DungeonMap(map_1));
 		g.getGuard().setPosition(new Point(3,1));
 		g.getK().setPosition(new Point(1,3));
-		g.getGuard().setPosition(new Point(3,1));
 		
 		
 		 g.clean();
 		 g.setDirection("S");
 		 g.updateGame();
+		 g.getGuard().setPosition(new Point(3,1));
 		 g.updateMap();
 		 g.printMap();
 
+			 
+	}
+	
+	
+	
+	
+	@Test
+	public void testRookkie(){
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_2));
+		g.setGuard(new Rookie(new Point(8, 1), 'G'));
+		
+		assertEquals(g.getGuard().getPosition(),new Point(8, 1));
+		
+		g.setDirection("W");
+		g.updateGame();
+		
+		assertEquals(g.getGuard().getPosition(),new Point(7, 1));
 		
 			 
-	}*/
+	}
 
 }
