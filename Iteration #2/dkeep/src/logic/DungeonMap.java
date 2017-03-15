@@ -2,8 +2,6 @@ package logic;
 
 import java.util.ArrayList;
 
-import logic.Game.GameState;
-import logic.Hero.HeroState;
 
 public class DungeonMap extends GameMap {
 
