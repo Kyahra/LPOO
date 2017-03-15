@@ -5,10 +5,13 @@ import java.util.ArrayList;
 
 public class KeepMap extends GameMap {
 
-	KeepMap(char[][] map) {
+	public KeepMap(char[][] map) {
 		super(map);
 
-	}
+	} 
+	
+	// ao inicializar o map ler as componentes e atualizar variaveis que vai ser do map hero guard k etc
+	// pode dar merda para a parte gráfica
 
 	public void clean(Hero hero, Character guard, Character k, ArrayList<Ogre> ogres) {
 		cleanCharacter(hero);

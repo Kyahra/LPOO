@@ -97,6 +97,24 @@ public class TestDungeonGameLogic {
 		
 	}
 	
+	/*
+	@Test
+	public void testUpdateMap(){
+		Game g = new Game();
+		g.setMap(new DungeonMap(map));
+		g.getGuard().setPosition(new Point(3,1));
+		g.getK().setPosition(new Point(1,3));
+		g.getGuard().setPosition(new Point(3,1));
+		
+		
+		 g.clean();
+		 g.setDirection("S");
+		 g.updateGame();
+		 g.updateMap();
+		 g.printMap();
 
+		
+			 
+	}*/
 
 }
