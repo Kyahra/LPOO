@@ -87,7 +87,7 @@ public class TestKeepGameLogic {
 		g.getOgres().get(0).setPosition(new Point(3, 1));
 		g.getOgres().get(0).getClub().setPosition(new Point(3,2));
 		g.getK().setPosition(new Point(1,3));
-		g.setClub(new Character(new Point(3,2), '*'));
+		g.getClub().setPosition(new Point(3,2));
 		
 		assertEquals('I',g.getMap().getChar(new Point(1,0)));
 		
@@ -127,7 +127,7 @@ public class TestKeepGameLogic {
 		g.getOgres().get(0).setPosition(new Point(3, 1));
 		g.getOgres().get(0).getClub().setPosition(new Point(3,2));
 		g.getK().setPosition(new Point(1,3));
-		g.setClub(new Character(new Point(3,2), '*'));
+		g.getClub().setPosition(new Point(3,2));
 		
 		assertEquals('I',g.getMap().getChar(new Point(1,0)));
 		
@@ -161,6 +161,31 @@ public class TestKeepGameLogic {
 
 	}
 	
+	
+	@Test
+	public void testUpdateMap(){
+		Game g = new Game();
+		g.setMap(new KeepMap(map));
+		
+		g.getOgres().get(0).setPosition(new Point(3, 1));
+		g.getOgres().get(0).getClub().setPosition(new Point(3,2));
+		
+	
+		 g.clean();
+		 g.setDirection("S");
+		 g.updateGame();
+	
+		g.getOgres().get(0).setPosition(new Point(3, 1));
+		g.getOgres().get(0).getClub().setPosition(new Point(3,2));
+		g.getK().setPosition(new Point(1,3));
+		g.getClub().setPosition(new Point(3,2));
+			
+		 g.updateMap();
+		 g.printMap();
+
+			 
+	}
+
 
 	
 	
