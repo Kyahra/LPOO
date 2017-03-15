@@ -11,6 +11,7 @@ public class Hero extends Character {
 
 	private HeroState state;
 	private boolean armed = false;
+	private boolean key = false;
 
 	public Hero(Point position, char c) {
 		super(position, c);
@@ -68,6 +69,7 @@ public class Hero extends Character {
 			setX(new_position.x);
 			setY(new_position.y);
 			state = HeroState.K;
+			key = true;
 			break;
 
 		case '*':
@@ -90,14 +92,15 @@ public class Hero extends Character {
 
 	public boolean gotKey() {
 
-		if (getChar() == 'K')
-			return true;
-		else
-			return false;
+		return key;
 	}
 
 	public boolean isArmed(){
 		return armed;
+	}
+	
+	public void setKey(boolean key){
+		this.key = key;
 	}
 	
 }

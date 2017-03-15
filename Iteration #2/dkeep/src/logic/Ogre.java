@@ -19,7 +19,7 @@ import java.util.Random;
 		
 		new_position = new Point(position);
 		state = OgreState.MOVE;
-		club = new Character(new Point(getX()-1, getY()), '*');
+		club = new Character(new Point(getX(), getY()+1), '*');
 		stuned = false;
 		stun_counter = 0;
 		
@@ -155,6 +155,10 @@ import java.util.Random;
 	public void getStuned(){
 		stuned = true;
 		setChar('8');
+	}
+	
+	public void setClubPosition(Point p){
+		club.setPosition(p);
 	}
 	
 	

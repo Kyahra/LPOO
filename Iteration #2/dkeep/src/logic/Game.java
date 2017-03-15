@@ -15,14 +15,6 @@ import java.util.Scanner;
 
 public class Game {
 
-	public Guard getGuard() {
-		return guard;
-	}
-
-	public void setGuard(Guard guard) {
-		this.guard = guard;
-	}
-
 	public enum GameState {
 		WON, RUNNING, LOST
 	};
@@ -41,40 +33,16 @@ public class Game {
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
-	private GameState state;
-	private String direction;
-
-	private GameMap map; 
-	public GameMap getMap() {
-		return map;
-	}
-
-	public void setMap(GameMap map) {
-		this.map = map;
-	}
-
-	public Hero getHero() {
-		return hero;
-	}
-
-	public void setHero(Hero hero) {
-		this.hero = hero;
-	}
-
-	public String getDirection() {
-		return direction;
-	}
-
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
-
+	
 	private Hero hero;
 	private Guard guard;
 	private Character k;
 	private Character club;
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();
-
+	private GameState state;
+	private String direction;
+	private GameMap map; 
+	
 	public Game() {
 		state = GameState.RUNNING;
 
@@ -104,9 +72,35 @@ public class Game {
 		}
 
 		map = new DungeonMap(map_1);
-		
-
 	}
+
+	public GameMap getMap() {
+		return map;
+	}
+	
+	public Character getK(){
+		return k;
+	}
+	
+	public void setClub(Character club){
+		this.club = club;
+	}
+
+	public void setMap(GameMap map) {
+		this.map = map;
+	}
+
+	public Hero getHero() {
+		return hero;
+	}
+
+	
+	
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
 
 	public void printMap() {
 		map.printMap();
@@ -143,6 +137,7 @@ public class Game {
 				map = new KeepMap(map_2);
 				hero.setPosition(1, 8);
 				k.setPosition(8, 1);
+				hero.setKey(false);
 
 			}
 
@@ -166,7 +161,7 @@ public class Game {
 		  
 		  }
 		  
-		  if (hero.getState() == HeroState.DOOR) 
+		  if (hero.getState() == HeroState.DOOR && hero.gotKey()) 
 			  map.openDoors();
 		  
 		 if (hero.getState() == HeroState.STAIR) state = GameState.WON;
@@ -201,7 +196,7 @@ public class Game {
 
 	public boolean isOver() {
 		
-		
+		if( state == GameState.WON) return true;
 
 		if (map instanceof DungeonMap) {
 			if (isCaptured(hero, guard)) {
@@ -255,6 +250,25 @@ public class Game {
 			break;
 		}
 
+	}
+	
+	public Guard getGuard() {
+		return guard;
+	}
+
+	
+
+	public ArrayList<Ogre> getOgres() {
+		return ogres;
+	}
+	
+	public void setNumberOgres(int n){
+		ogres = new ArrayList<Ogre>();
+				
+		for (int i = 0; i < 1; i++)
+					ogres.add(new Ogre(new Point(7, 1), 'O'));
+		
+		
 	}
 
 }
