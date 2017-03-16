@@ -9,6 +9,8 @@ public abstract class GameMap {
 	private int rows;
 	private int cols;
 	
+	protected Hero hero;
+	
 	
 	public GameMap(char[][] map) {
 		this.map = map;
@@ -56,8 +58,7 @@ public abstract class GameMap {
 	
 		map[c.getY()][c.getX()] = ' ';
 		
-	
-	
+
 
 	}
 
@@ -116,6 +117,11 @@ public abstract class GameMap {
 	public abstract boolean isOver();
 
 	public abstract boolean next();
+
+	public Character getHero() {
+		return hero;
+	}
+
 	
 
 	

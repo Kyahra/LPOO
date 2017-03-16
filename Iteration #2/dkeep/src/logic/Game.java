@@ -147,6 +147,12 @@ public class Game {
 		}
 
 	}
+
+	public Character getHero() {
+		return map.getHero();
+	}
+
+	
 	
 
 

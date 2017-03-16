@@ -7,7 +7,7 @@ import logic.Hero.HeroState;
 
 public class KeepMap extends GameMap {
 
-	private Hero hero;
+	
 	private Character key;
 	private Character club;
 	private ArrayList<Ogre> ogres = new ArrayList<Ogre>();

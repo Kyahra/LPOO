@@ -42,7 +42,7 @@ public class Hero extends Character {
 			break;
 
 		default:
-			break;
+			return;
 		}
 		
 		new_position = super.getNewPosition(getPosition(), direction_int);
@@ -57,24 +57,20 @@ public class Hero extends Character {
 			state = HeroState.DOOR;
 			break;
 		case ' ':
-			this.setX(new_position.x);
-			this.setY(new_position.y);
+			position = new_position;
 			state = HeroState.MOVE;
 			break;
 		case 'S':
-			setX(new_position.x);
-			setY(new_position.y);
+			position = new_position;
 			state = HeroState.STAIR;
 			break;
 		case 'k':
-			setX(new_position.x);
-			setY(new_position.y);
+			position = new_position;
 			key = true;
 			break;
 
 		case '*':
-			setX(new_position.x);
-			setY(new_position.y);
+			position = new_position;
 			armed = true;
 			setChar('A');
 
