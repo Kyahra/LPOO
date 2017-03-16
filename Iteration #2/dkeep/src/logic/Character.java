@@ -6,6 +6,8 @@ public class Character {
 
 	private Point position;
 	private char c;
+	
+	public Character(){}
 
 	public Character(Point position, char c) {
 

@@ -3,7 +3,7 @@ package logic;
 import java.awt.Point;
 import java.util.ArrayList;
 
-public class GameMap {
+public abstract class GameMap {
 
 	private char[][] map;
 	private int rows;
@@ -52,8 +52,12 @@ public class GameMap {
 	}
 
 	public  void cleanCharacter(Character c) {
-
+		
+	
 		map[c.getY()][c.getX()] = ' ';
+		
+	
+	
 
 	}
 
@@ -68,9 +72,51 @@ public class GameMap {
 
 	}
 	
-	public  void clean(Hero hero, Character guard, Character k, ArrayList<Ogre> ogres){};
-
-	public  void update(Hero hero, Guard guard, Character k, Character club, ArrayList<Ogre> ogres){};
+	public Point searchChar(char c){
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				if (map[i][j] == c)
+					return new Point(j,i);
+			}
+		}
+		
+		return new Point(-1,-1);
+	}
 	
+
+	public boolean isCaptured(Character victim, Character captor) {
+
+		if (captor.getChar() == 'g')
+			return false;
+
+		if (victim.getX() == captor.getX() + 1 && victim.getY() == captor.getY())
+			return true;
+
+		if (victim.getX() == captor.getX() - 1 && victim.getY() == captor.getY())
+			return true;
+
+		if (victim.getX() == captor.getX() && victim.getY() == captor.getY() + 1)
+			return true;
+
+		if (victim.getX() == captor.getX() && victim.getY() == captor.getY() - 1)
+			return true;
+
+		if (victim.getX() == captor.getX() && victim.getY() == captor.getY())
+			return true;
+
+		return false;
+	}
+	
+	public abstract void update(String Direction);
+	
+	public abstract void clean();
+
+	public abstract void draw();
+
+	public abstract boolean isOver();
+
+	public abstract boolean next();
+	
+
 	
 }

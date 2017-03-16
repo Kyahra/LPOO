@@ -14,30 +14,16 @@ public abstract class Guard extends Character{
 		ROOKIE, SUSPICIOUS, DRUNKEN
 	};
 	
-	public Guard(Point position, char c){
-		super(position, c);
-
+	public Guard(Point position){
+	
+		setPosition(position);
+		setChar('G');
 		guard_x_idx = 0;
 		guard_y_idx = 0;
 	
 	}
 	
-	void updateGuard(){
-		
-
-		
-		if(guard_x_idx >= 23){
-			guard_x_idx =0;
-			guard_y_idx =0;
-		}else{
-		guard_x_idx++;
-		guard_y_idx++;
-		}
-		
-		this.setX(guard_x[guard_x_idx]);
-		this.setY(guard_y[guard_y_idx]);
-		
-	}
+	public abstract void updateGuard();
 	
 	
 }

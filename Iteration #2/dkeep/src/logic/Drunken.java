@@ -12,15 +12,12 @@ public class Drunken extends Guard{
 	private boolean isSleeping  = false;
 	private int moveNumber = 4;
 	
-	public Drunken (Point position, char c){
-		super(position, c);
+	public Drunken (Point position){
+		super(position);
 
-		guard_x_idx = 0;
-		guard_y_idx = 0;
-	
 	}
 	
-	void updateGuard(){
+	public void updateGuard(){
 
 		Random rand = new Random();		
 		int direction = rand.nextInt(4);
@@ -56,6 +53,10 @@ public class Drunken extends Guard{
 		this.setX(guard_x[guard_x_idx]);
 		this.setY(guard_y[guard_y_idx]);
 
+	}
+	
+	public boolean isSleeping(){
+		return isSleeping;
 	}
 	
 }

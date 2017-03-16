@@ -9,15 +9,13 @@ public class Rookie extends Guard{
 	private int guard_x_idx;
 	private int guard_y_idx;
 	
-	public Rookie(Point position, char c){
-		super(position, c);
+	public Rookie(Point position){
+		super(position);
 
-		guard_x_idx = 0;
-		guard_y_idx = 0;
 	
 	}
 	
-	void updateGuard(){
+	public void updateGuard(){
 
 		if(guard_x_idx >= 23){
 			guard_x_idx = 0;
