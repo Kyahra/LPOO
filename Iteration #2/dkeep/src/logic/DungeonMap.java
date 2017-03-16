@@ -9,7 +9,6 @@ import logic.Hero.HeroState;
 
 public class DungeonMap extends GameMap {
 
-	private Hero hero;
 	private Guard guard;
 	private Character lever;
 
@@ -82,6 +81,14 @@ public class DungeonMap extends GameMap {
 	
 	public boolean next(){
 		return next_map;
+	}
+	
+	public void setGuard(Guard g){
+		guard = g;
+	}
+	
+	public Guard getGuard(){
+		return guard;
 	}
 
 }
