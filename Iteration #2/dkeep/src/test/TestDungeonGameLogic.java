@@ -3,12 +3,14 @@ package test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import logic.Drunken;
 import logic.DungeonMap;
 import logic.Game;
 import logic.GameMap;
 import logic.Hero;
 import logic.KeepMap;
 import logic.Rookie;
+import logic.Suspicious;
 import logic.Game.GameState;
 
 import java.awt.Point;
@@ -38,7 +40,7 @@ public class TestDungeonGameLogic {
 	@Test
 	public void moveHeroIntoFreeCell(){
 		 Game g = new Game();
-		 g.setMap(new GameMap(map_1));
+		 g.setMap(new DungeonMap(map_1));
 		 assertEquals(new Point(1,1),g.getHero().getPosition());
 		 g.getHero().move("S", g.getMap());
 		 assertEquals(new Point(1,2),g.getHero().getPosition());
@@ -54,12 +56,56 @@ public class TestDungeonGameLogic {
 	}
 	
 	@Test
-	public void heroIsCaptured(){
+	public void heroIsCapturedDown(){
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		g.getGuard().setPosition(new Point(3,1));
+		assertFalse(g.isOver());
+		
+		g.getHero().move("S", g.getMap());
+		g.getHero().move("D", g.getMap());
+		g.getHero().move("D", g.getMap());
+		
+		assertTrue(g.isOver());
+		
+	}
+	
+	@Test
+	public void heroIsCapturedLeft(){
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		g.getGuard().setPosition(new Point(2,2));
+		assertFalse(g.isOver());
+		g.getHero().move("D", g.getMap());
+		assertTrue(g.isOver());
+		
+	}
+	
+	@Test
+	public void heroIsCapturedUp(){
 		Game g = new Game();
 		g.setMap(new DungeonMap(map_1));
 		g.getGuard().setPosition(new Point(3,1));
 		assertFalse(g.isOver());
 		g.getHero().move("D", g.getMap());
+		assertTrue(g.isOver());
+		
+	}
+	
+	@Test
+	public void heroIsCapturedRight(){
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		g.getGuard().setPosition(new Point(2,3));
+		
+		assertFalse(g.isOver());
+		
+		g.getHero().move("D", g.getMap());
+		g.getHero().move("D", g.getMap());
+		g.getHero().move("S", g.getMap());
+		g.getHero().move("S", g.getMap());
+		
+		
 		assertTrue(g.isOver());
 		
 	}
@@ -104,7 +150,9 @@ public class TestDungeonGameLogic {
 		 g.updateGame();
 	
 		 g.setDirection("W");
+			 
 		 g.updateGame();
+		
 		
 		 assertTrue(g.getMap() instanceof KeepMap);
 		
@@ -129,6 +177,17 @@ public class TestDungeonGameLogic {
 			 
 	}
 	
+	@Test
+	public void heroNotCapuredByDrunken(){
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		g.getGuard().setPosition(new Point(3,1));
+		g.getGuard().setChar('g'); // Character of Druken while Sleeping
+		
+		assertFalse(g.isOver());
+		g.getHero().move("D", g.getMap());
+		assertFalse(g.isOver());
+	}
 	
 	
 	
@@ -136,16 +195,59 @@ public class TestDungeonGameLogic {
 	public void testRookkie(){
 		Game g = new Game();
 		g.setMap(new DungeonMap(map_2));
-		g.setGuard(new Rookie(new Point(8, 1), 'G'));
+		g.setGuard(new Rookie(new Point(8, 1)));
 		
 		assertEquals(g.getGuard().getPosition(),new Point(8, 1));
 		
-		g.setDirection("W");
-		g.updateGame();
+		for(int i =0; i < 30; i++){
+			g.setDirection("W");
+			g.updateGame();
+			}
 		
-		assertEquals(g.getGuard().getPosition(),new Point(7, 1));
+		assertEquals(g.getGuard().getPosition(),new Point(6, 5));
 		
 			 
+	}
+	
+	@Test
+	public void testSuspicious(){
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_2));
+		g.setGuard(new Suspicious(new Point(8, 1)));
+		
+		assertEquals(g.getGuard().getPosition(),new Point(8, 1));
+		
+
+		for(int i =0; i < 100; i++){
+			g.setDirection("W");
+			g.updateGame();
+			}
+		
+		
+			 
+	}
+	
+	@Test
+	public void testDrunken(){
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_2));
+		g.setGuard(new Drunken(new Point(8, 1)));
+		
+		assertEquals(g.getGuard().getPosition(),new Point(8, 1));
+		
+		for(int i =0; i < 30; i++){
+			g.setDirection("W");
+			g.updateGame();
+			
+			if(((Drunken)g.getGuard()).isSleeping()){
+				assertEquals(g.getGuard().getChar(), 'g');
+			}
+			
+		
+		//assertEquals(g.getGuard().getPosition(),new Point(7, 1));
+		
+			 
+	}
 	}
 
 }

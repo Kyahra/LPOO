@@ -6,15 +6,17 @@ import java.awt.Point;
 public class Hero extends Character {
 
 	public enum HeroState {
-		K, STAIR, MOVE, DOOR, ARMED
+		STAIR, MOVE, DOOR, ARMED
 	};
 
 	private HeroState state;
 	private boolean armed = false;
 	private boolean key = false;
 
-	public Hero(Point position, char c) {
-		super(position, c);
+	public Hero(Point position) {
+	
+		setPosition(position);
+		setChar('H');
 		state = HeroState.MOVE;
 
 	}
@@ -23,29 +25,28 @@ public class Hero extends Character {
 
 		Point new_position = new Point(getX(), getY());
 		char c;
+		int direction_int=4;
 
 		switch (direction) {
 		case "D":
-			new_position.x = getX() + 1;
-			new_position.y = getY();
+			direction_int =0;
 			break;
 		case "A":
-			new_position.x = getX() - 1;
-			new_position.y = getY();
+			direction_int =1;
 			break;
 		case "S":
-			new_position.x = getX();
-			new_position.y = getY() + 1;
+			direction_int =2;
 			break;
 		case "W":
-			new_position.x = getX();
-			new_position.y = getY() - 1;
+			direction_int = 3;
 			break;
 
 		default:
 			break;
-
 		}
+		
+		new_position = super.getNewPosition(getPosition(), direction_int);
+		
 
 		c = map.getChar(new_position);
 
@@ -68,7 +69,6 @@ public class Hero extends Character {
 		case 'k':
 			setX(new_position.x);
 			setY(new_position.y);
-			state = HeroState.K;
 			key = true;
 			break;
 
