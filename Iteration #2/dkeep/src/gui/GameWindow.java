@@ -18,7 +18,7 @@ import javax.swing.DropMode;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-import logic.Game;
+
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
@@ -55,9 +55,9 @@ public class GameWindow {
     private Component horizontalStrut_10;
     private JComboBox comboBox;
 
-    // Class
+   
     
-    private Game g;
+
     
     
     /**
@@ -211,12 +211,32 @@ public class GameWindow {
         btnRigth = new JButton("Rigth");
         horizontalBox_1.add(btnRigth);
         btnRigth.setEnabled(false);
+        
         btnExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+            System.exit(0);
             }
         });
+        
         btnNewGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+            	int idx = comboBox.getSelectedIndex();
+            	char guard;
+            	
+            	switch(idx){
+            	case 0:
+            		guard = 'r';
+            		break;
+            	case 1:
+            		guard = 's';
+            		break;
+            	case 2:
+            		guard  = 'd';
+            		break;
+            	default:
+            			break;
+            	}
+            	
             	
             }
         });
