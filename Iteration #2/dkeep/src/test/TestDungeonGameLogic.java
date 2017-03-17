@@ -9,7 +9,6 @@ import logic.GameMap;
 import logic.Hero;
 import logic.KeepMap;
 import logic.Rookie;
-import logic.Suspicious;
 import logic.Game.GameState;
 
 import java.awt.Point;
@@ -149,33 +148,4 @@ public class TestDungeonGameLogic {
 			 
 	}
 
-	
-	@Test
-	public void testSuspicious(){
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_2));
-		g.setGuard(new Suspicious(new Point(8, 1), 'G'));
-		
-		assertEquals(g.getGuard().getPosition(),new Point(8, 1));
-		
-	
-		for(int i  = 0 ; i < 100; i++){
-		g.setDirection("W");
-		g.updateGame();
-		}
-		//assertEquals(g.getGuard().getPosition(),new Point(7, 1));
-		
-			 
-	}
-	
-	@Test
-	public void testValidLimits(){
-	
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_2));
-		g.setGuard(new Suspicious(new Point(8, 1), 'G'));
-		
-		assertTrue(g.getGuard().isLimitValid(2,1,3));
-	}
-	
 }
