@@ -17,8 +17,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.DropMode;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
+import logic.Game;
+
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.BorderLayout;
 
 public class GameWindow {
 
@@ -51,6 +55,11 @@ public class GameWindow {
     private Component horizontalStrut_10;
     private JComboBox comboBox;
 
+    // Class
+    
+    private Game g;
+    
+    
     /**
      * Launch the application.
      */
@@ -126,6 +135,8 @@ public class GameWindow {
         comboBox.setToolTipText("");
         horizontalBox_2.add(comboBox);
         
+        comboBox.getSelectedItem();
+        
         horizontalStrut_10 = Box.createHorizontalStrut(500);
         horizontalBox_2.add(horizontalStrut_10);
         
@@ -142,7 +153,6 @@ public class GameWindow {
         txtrGame.setRows(25);
         txtrGame.setLineWrap(true);
         txtrGame.setBackground(Color.WHITE);
-        txtrGame.setDropMode(DropMode.INSERT_ROWS);
         txtrGame.setEnabled(false);
         txtrGame.setFont(new Font("Monospaced", Font.PLAIN, 10));
         txtrGame.setTabSize(10);
@@ -207,8 +217,7 @@ public class GameWindow {
         });
         btnNewGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-            
-            
+            	
             }
         });
     }
