@@ -27,25 +27,30 @@ public abstract class GameMap {
 		return c;
 	}
 
-	public  void printMap() {
+	public String printMap() {
+		
+		String printed_map ="";
 
-		System.out.println();
+		//System.out.println();
 
 		for (int i = 0; i < rows; i++) {
-			System.out.print("          ");
+			printed_map += " ";
 			for (int j = 0; j < cols; j++) {
-				System.out.print(map[i][j] + " ");
+				printed_map += map[i][j] + " ";
 
 			}
 
-			System.out.println();
+			printed_map += "\n";
+			//System.out.println();
 		}
 
 		// TENTAR COLOCAR ESTA PARTE NOUTRA FUNÇÂO
 
-		System.out.println("\n Use the WASD keys to control the Hero.");
-		System.out.print(" Your Move : ");
+//		System.out.println("\n Use the WASD keys to control the Hero.");
+//		System.out.print(" Your Move : ");
 
+		
+		return printed_map;
 	}
 
 	public  void drawCharacter(Character c) {

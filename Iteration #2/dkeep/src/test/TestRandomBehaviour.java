@@ -27,7 +27,7 @@ public class TestRandomBehaviour {
 
 	@Test(timeout =1000)
 	public void testOgreRandomPositions() {
-		Game g = new Game();
+		Game g = new Game(1,'R');
 		g.setMap(new KeepMap(map,1));
 		
 		boolean left= false;
@@ -64,7 +64,7 @@ public class TestRandomBehaviour {
 	
 	@Test(timeout =1000)
 	public void testClubRandomPositions() {
-		Game g = new Game();
+		Game g = new Game(1,'R');
 		g.setMap(new KeepMap(map,1));
 		
 		boolean left= false;

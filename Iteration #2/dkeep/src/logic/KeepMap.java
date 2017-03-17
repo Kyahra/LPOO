@@ -88,13 +88,11 @@ public class KeepMap extends GameMap {
 				ogre.getStuned();
 
 			if (isCaptured(hero, ogre) && !hero.isArmed()) {
-				System.out.println("yo");
 				return true;
 				
 			}
 
 			if (isCaptured(hero, ogre.getClub())) {
-				System.out.println("yo1");
 				return true;
 			}
 		}

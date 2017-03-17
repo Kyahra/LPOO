@@ -14,12 +14,8 @@ public class DungeonMap extends GameMap {
 
 	boolean next_map = false;
 
-	public DungeonMap(char[][] map) {
+	public DungeonMap(char[][] map, char g) {
 		super(map);
-
-		Random rand = new Random();
-		int guar = rand.nextInt(3);
-
 		Point hero_pos = super.searchChar('H');
 		Point guard_pos = super.searchChar('G');
 		Point lever_pos = super.searchChar('k');
@@ -27,14 +23,14 @@ public class DungeonMap extends GameMap {
 		hero = new Hero(hero_pos);
 		lever = new Character(lever_pos, 'k');
 
-		switch (guar) {
-		case 0:
+		switch (g) {
+		case 'S':
 			guard = new Suspicious(guard_pos);
 			break;
-		case 1:
+		case 'R':
 			guard = new Rookie(guard_pos);
 			break;
-		case 2:
+		case 'D':
 			guard = new Drunken(guard_pos);
 			break;
 
