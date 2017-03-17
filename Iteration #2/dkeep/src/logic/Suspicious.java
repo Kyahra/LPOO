@@ -18,17 +18,20 @@ public class Suspicious extends Guard{
 	
 	}
 		
+	
+	
 	void updateGuard(){
 
 		Random rand = new Random();		
 		int direction = rand.nextInt(4);
 		
-		if(guard_x_idx >= 23){
+		
+		if(guard_x_idx >= guard_y.length -1 ){
 			guard_x_idx = 0;
 			guard_y_idx = 0;
 		}else{
 
-			if(direction < 3){
+			if(isLimitValid(direction,0,2)){
 				guard_x_idx++;
 				guard_y_idx++;
 			}
@@ -40,6 +43,9 @@ public class Suspicious extends Guard{
 			}
 		}
 
+
+		
+		
 		this.setX(guard_x[guard_x_idx]);
 		this.setY(guard_y[guard_y_idx]);
 

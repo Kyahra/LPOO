@@ -40,4 +40,12 @@ public abstract class Guard extends Character{
 	}
 	
 	
+	public boolean isLimitValid(int dir, int i, int j){
+		
+		if(dir >= i && dir <= j)
+			return true;
+		return false;
+	}
+	
+	
 }
