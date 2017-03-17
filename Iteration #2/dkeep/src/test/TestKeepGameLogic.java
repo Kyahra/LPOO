@@ -23,18 +23,26 @@ public class TestKeepGameLogic {
 			{ 'X', 'k', ' ', ' ', 'X' }, 
 			{ 'X', 'X', 'X', 'X', 'X' } 
 			};
+	
+	void normalizePositions(Game g){
+		((KeepMap) g.getMap()).getOgres().get(0).setPosition(3, 1);
+		((KeepMap) g.getMap()).getOgres().get(0).getClub().setPosition(3, 1);
+	}
+
 
 	@Test
-	public void heroIsCaptured() {
+	public void heroIsCapturedByOgre() {
 		Game g = new Game();
-		g.setMap(new KeepMap(map));
-		g.setNumberOgres(1);
-		
-		for(int i =0; i <g.getOgres().size(); i++)
-		g.getOgres().get(i).setPosition(new Point(3, 1));
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
 		
 		assertFalse(g.isOver());
-		g.getHero().move("D", g.getMap());
+	
+		g.setDirection("D");
+		g.updateGame();
+		normalizePositions(g);
+		
+		
 		assertTrue(g.isOver());
 
 	}
@@ -42,11 +50,8 @@ public class TestKeepGameLogic {
 	@Test
 	public void heroHoldingKey(){
 		Game g = new Game();
-		g.setMap(new KeepMap(map));
-		 
-		g.setNumberOgres(1);
-		 for(int i =0; i <g.getOgres().size(); i++)
-				g.getOgres().get(i).setPosition(new Point(3, 1));
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
 		 
 		 g.setDirection("S");
 		 g.updateGame();
@@ -57,15 +62,12 @@ public class TestKeepGameLogic {
 			 
 	}
 	
+	
 	@Test
 	public void heroMovesIntoClosedDoor() {
 		Game g = new Game();
-		g.setMap(new KeepMap(map));
-		g.setNumberOgres(1);
-	
-		
-		for(int i =0; i <g.getOgres().size(); i++)
-		g.getOgres().get(i).setPosition(new Point(3, 1));
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
 		
 		assertEquals('I',g.getMap().getChar(new Point(1,0)));
 		
@@ -77,17 +79,12 @@ public class TestKeepGameLogic {
 
 	}
 	
+	
 	@Test
 	public void heroMovesIntoDoor() {
 		Game g = new Game();
-		g.setMap(new KeepMap(map));
-		g.setNumberOgres(1);
-	
-		
-		g.getOgres().get(0).setPosition(new Point(3, 1));
-		g.getOgres().get(0).getClub().setPosition(new Point(3,2));
-		g.getK().setPosition(new Point(1,3));
-		g.getClub().setPosition(new Point(3,2));
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
 		
 		assertEquals('I',g.getMap().getChar(new Point(1,0)));
 		
@@ -120,14 +117,8 @@ public class TestKeepGameLogic {
 	@Test
 	public void heroWins() {
 		Game g = new Game();
-		g.setMap(new KeepMap(map));
-		g.setNumberOgres(1);
-	
-		
-		g.getOgres().get(0).setPosition(new Point(3, 1));
-		g.getOgres().get(0).getClub().setPosition(new Point(3,2));
-		g.getK().setPosition(new Point(1,3));
-		g.getClub().setPosition(new Point(3,2));
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
 		
 		assertEquals('I',g.getMap().getChar(new Point(1,0)));
 		
@@ -160,35 +151,6 @@ public class TestKeepGameLogic {
 		assertTrue(g.isOver());
 
 	}
-	
-	
-	@Test
-	public void testUpdateMap(){
-		Game g = new Game();
-		g.setMap(new KeepMap(map));
-		
-		g.getOgres().get(0).setPosition(new Point(3, 1));
-		g.getOgres().get(0).getClub().setPosition(new Point(3,2));
-		
-	
-		 g.clean();
-		 g.setDirection("S");
-		 g.updateGame();
-	
-		g.getOgres().get(0).setPosition(new Point(3, 1));
-		g.getOgres().get(0).getClub().setPosition(new Point(3,2));
-		g.getK().setPosition(new Point(1,3));
-		g.getClub().setPosition(new Point(3,2));
-			
-		 g.updateMap();
-		 g.printMap();
-
-			 
-	}
-
-
-	
-	
 	
 	
 	

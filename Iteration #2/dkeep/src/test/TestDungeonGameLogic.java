@@ -3,149 +3,340 @@ package test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import logic.Drunken;
 import logic.DungeonMap;
 import logic.Game;
 import logic.GameMap;
+import logic.Guard;
 import logic.Hero;
 import logic.KeepMap;
 import logic.Rookie;
+import logic.Suspicious;
 import logic.Game.GameState;
 
 import java.awt.Point;
 
-
 public class TestDungeonGameLogic {
-	char[][] map_1 ={
-			{'X','I','X','X','X'},
-			{'X','H',' ','G','X'},
-			{'X',' ',' ',' ','X'},
-			{'X','k',' ',' ','X'},
-			{'X','X','X','X','X'}
-		};
-	
+	char[][] map_1 = { { 'X', 'I', 'X', 'X', 'X' }, { 'X', 'H', ' ', 'G', 'X' }, { 'X', ' ', ' ', ' ', 'X' },
+			{ 'X', 'k', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X' } };
+
 	private char[][] map_2 = { 
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'X', ' ', ' ', ' ', 'I', ' ', 'X', ' ', ' ', 'X' },
+			{ 'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X' }, 
 			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, 
+			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
 			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
 			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, 
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' },
 			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
-	
+
 	@Test
-	public void moveHeroIntoFreeCell(){
-		 Game g = new Game();
-		 g.setMap(new GameMap(map_1));
-		 assertEquals(new Point(1,1),g.getHero().getPosition());
-		 g.getHero().move("S", g.getMap());
-		 assertEquals(new Point(1,2),g.getHero().getPosition());
-	}
-	
-	
-	@Test
-	public void moveHeroIntoWall(){
-		Game g = new Game();
-		 g.setMap(new DungeonMap(map_1));
-		 g.getHero().move("A", g.getMap());
-		 assertEquals(new Point(1,1),g.getHero().getPosition());
-	}
-	
-	@Test
-	public void heroIsCaptured(){
+	public void moveHeroIntoFreeCell() {
 		Game g = new Game();
 		g.setMap(new DungeonMap(map_1));
-		g.getGuard().setPosition(new Point(3,1));
+		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
+
+		assertEquals(new Point(1, 1), g.getHero().getPosition());
+
+		g.setDirection("S");
+		g.updateGame();
+		g.updateMap();
+
+		assertEquals(new Point(1, 2), g.getHero().getPosition());
+		assertEquals(g.getMap().getChar(new Point(1, 2)), 'H');
+	}
+
+	@Test
+	public void moveHeroIntoWall() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+
+		g.setDirection("A");
+		g.updateGame();
+
+		assertEquals(new Point(1, 1), g.getHero().getPosition());
+	}
+	
+	@Test
+	public void testInvalidDirection() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+
+		g.setDirection("X");
+		g.updateGame();
+
+		assertEquals(new Point(1, 1), g.getHero().getPosition());
+	}
+	
+	
+
+	@Test
+	public void heroIsCapturedLeft() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
+
 		assertFalse(g.isOver());
-		g.getHero().move("D", g.getMap());
+
+		g.setDirection("D");
+		g.updateGame();
+
 		assertTrue(g.isOver());
-		
+
 	}
-	
-	@Test
-	public void moveHeroIntoClosedDoor(){
-		Game g = new Game();
-		 g.setMap(new DungeonMap(map_1));
-		 g.getHero().move("W", g.getMap());
-		 assertEquals(new Point(1,1),g.getHero().getPosition());
-	}
-	
-	@Test
-	public void doorsOpenWhenLeverActivated(){
-		Game g = new Game();
-		 g.setMap(new DungeonMap(map_1));
-		 assertEquals('I',g.getMap().getChar(new Point(1,0)));
-		 g.setDirection("S");
-		 g.updateGame();
-		 g.setDirection("S");
-		 g.updateGame();
-		 assertEquals('S',g.getMap().getChar(new Point(1,0)));
-	}
-	
-	@Test
-	public void levelUpUponReachingStairs(){
-		Game g = new Game();
-		 g.setMap(new DungeonMap(map_1));
-		 g.getGuard().setPosition(new Point(3,1));
-		 
-		 g.clean();
-		 g.setDirection("S");
-		 g.updateGame();
-		 
-		 g.setDirection("S");
-		 g.updateGame();
-	
-		 g.setDirection("W");
-		 g.updateGame();
-	
-		 g.setDirection("W");
-		 g.updateGame();
-	
-		 g.setDirection("W");
-		 g.updateGame();
-		
-		 assertTrue(g.getMap() instanceof KeepMap);
-		
-	}
-	
 
 	@Test
-	public void testUpdateMap(){
+	public void heroIsCapturedDown() {
 		Game g = new Game();
 		g.setMap(new DungeonMap(map_1));
-		g.getGuard().setPosition(new Point(3,1));
-		g.getK().setPosition(new Point(1,3));
-		
-		
-		 g.clean();
-		 g.setDirection("S");
-		 g.updateGame();
-		 g.getGuard().setPosition(new Point(3,1));
-		 g.updateMap();
-		 g.printMap();
+		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
 
-			 
+		assertEquals(g.getMap().getChar(new Point(3, 1)), 'G');
+
+		assertFalse(g.isOver());
+
+		g.setDirection("S");
+		g.updateGame();
+		g.setDirection("D");
+		g.updateGame();
+		g.setDirection("D");
+		g.updateGame();
+
+		assertTrue(g.isOver());
+
 	}
-	
-	
-	
-	
+
 	@Test
-	public void testRookkie(){
+	public void heroIsCapturedUp() {
 		Game g = new Game();
-		g.setMap(new DungeonMap(map_2));
-		g.setGuard(new Rookie(new Point(8, 1), 'G'));
-		
-		assertEquals(g.getGuard().getPosition(),new Point(8, 1));
-		
+		g.setMap(new DungeonMap(map_1));
+		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(2, 2)));
+
+		g.clean();
+		g.updateMap();
+
+		assertFalse(g.isOver());
+
+		g.setDirection("D");
+		g.updateGame();
+
+		assertTrue(g.isOver());
+
+	}
+
+	@Test
+	public void heroIsCapturedRight() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(2, 3)));
+
+		g.clean();
+		g.updateMap();
+
+		assertFalse(g.isOver());
+
+		g.setDirection("D");
+		g.updateGame();
+		g.setDirection("D");
+		g.updateGame();
+		g.setDirection("S");
+		g.updateGame();
+		g.setDirection("S");
+		g.updateGame();
+
+		assertTrue(g.isOver());
+
+	}
+
+	@Test
+	public void moveHeroIntoClosedDoor() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+
 		g.setDirection("W");
 		g.updateGame();
-		
-		assertEquals(g.getGuard().getPosition(),new Point(7, 1));
-		
-			 
+
+		assertEquals(new Point(1, 1), g.getHero().getPosition());
+		assertFalse(g.isOver());
+
 	}
 
+	@Test
+	public void doorsOpenWhenLeverActivated() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		assertEquals('I', g.getMap().getChar(new Point(1, 0)));
+
+		g.setDirection("S");
+		g.updateGame();
+		g.setDirection("S");
+		g.updateGame();
+
+		assertEquals('S', g.getMap().getChar(new Point(1, 0)));
+	}
+
+	@Test
+	public void testDoors() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		assertEquals('I', g.getMap().getChar(new Point(1, 0)));
+
+		g.setDirection("S");
+		g.updateGame();
+
+		assertEquals('I', g.getMap().getChar(new Point(1, 0)));
+	}
+
+	@Test
+	public void levelUpUponReachingStairs() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
+
+		g.clean();
+		g.setDirection("S");
+		g.updateGame();
+
+		g.clean();
+		g.setDirection("S");
+		g.updateGame();
+
+		g.clean();
+		g.setDirection("W");
+		g.updateGame();
+
+		g.clean();
+		g.setDirection("W");
+		g.updateGame();
+
+		g.clean();
+		g.setDirection("W");
+		g.updateGame();
+
+		assertTrue(g.getMap() instanceof KeepMap);
+
+	}
+
+
+	@Test
+	public void heroNotCapuredByDrunken() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_1));
+
+		Guard guard = new Drunken(new Point(3, 1));
+		guard.setChar('g');
+		((DungeonMap) g.getMap()).setGuard(guard);
+
+		assertFalse(g.isOver());
+
+		g.clean();
+		g.updateMap();
+		g.setDirection("S");
+		g.updateGame();
+
+		((DungeonMap) g.getMap()).getGuard().setPosition(3, 1);
+
+		assertFalse(g.isOver());
+	}
+	
+	@Test
+	public void testRookie() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_2));
+
+		((DungeonMap) g.getMap()).setGuard(new Rookie(new Point(8, 1)));
+		assertEquals(((DungeonMap) g.getMap()).getGuard().getPosition(), new Point(8, 1));
+
+		for (int i = 0; i < 30; i++) {
+			g.clean();
+			g.setDirection("W");
+			g.updateGame();
+			g.updateMap();
+		}
+
+		assertEquals(((DungeonMap) g.getMap()).getGuard().getPosition(), new Point(6, 5));
+
+	}
+
+	@Test
+	public void testSuspicious() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_2));
+
+		((DungeonMap) g.getMap()).setGuard(new Suspicious(new Point(8, 1)));
+		
+		Point oldp;
+		Point newp;
+
+		for (int i = 0; i < 100; i++) {
+			
+			oldp = ((DungeonMap) g.getMap()).getGuard().getPosition();
+
+			g.clean();
+			g.setDirection("W");
+			g.updateGame();
+			g.updateMap();
+			
+			newp = ((DungeonMap) g.getMap()).getGuard().getPosition();
+			
+			assertTrue(adjacent(oldp,newp));
+			
+		}
+
+	}
+
+	
+
+	@Test
+	public void testDrunken() {
+		Game g = new Game();
+		g.setMap(new DungeonMap(map_2));
+		((DungeonMap) g.getMap()).setGuard(new Drunken(new Point(8, 1)));
+
+		Point oldp;
+		Point newp;
+
+		for (int i = 0; i < 100; i++) {
+			oldp = ((DungeonMap) g.getMap()).getGuard().getPosition();
+
+			g.clean();
+			g.setDirection("W");
+			g.updateGame();
+			g.updateMap();
+			
+			newp = ((DungeonMap) g.getMap()).getGuard().getPosition();
+			
+			assertTrue(adjacent(oldp,newp));
+
+			if (((Drunken) ((DungeonMap) g.getMap()).getGuard()).isSleeping()){
+				assertEquals(((DungeonMap) g.getMap()).getGuard().getChar(), 'g');
+				assertEquals(newp,oldp);
+			}
+
+			
+
+		}
+	}
+	
+	private boolean adjacent(Point oldp, Point newp) {
+
+		if (oldp.getX() == newp.getX() + 1 && oldp.getY() == newp.getY())
+			return true;
+
+		if (oldp.getX() == newp.getX() - 1 && oldp.getY() == newp.getY())
+			return true;
+
+		if (oldp.getX() == newp.getX() && oldp.getY() == newp.getY() + 1)
+			return true;
+
+		if (oldp.getX() == newp.getX() && oldp.getY() == newp.getY() - 1)
+			return true;
+
+		if (oldp.getX() == newp.getX() && oldp.getY() == newp.getY())
+			return true;
+
+		return false;
+	}
 }
