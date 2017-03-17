@@ -19,14 +19,15 @@ public class TestKeepGameLogic {
 			
 			{ 'X', 'I', 'X', 'X', 'X' },
 			{ 'X', 'H', ' ', 'O', 'X' }, 
-			{ 'X', ' ', ' ', '*', 'X' },
+			{ 'X', '*', ' ', '*', 'X' },
 			{ 'X', 'k', ' ', ' ', 'X' }, 
 			{ 'X', 'X', 'X', 'X', 'X' } 
 			};
 	
+	
 	void normalizePositions(Game g){
 		((KeepMap) g.getMap()).getOgres().get(0).setPosition(3, 1);
-		((KeepMap) g.getMap()).getOgres().get(0).getClub().setPosition(3, 1);
+		((KeepMap) g.getMap()).getOgres().get(0).getClub().setPosition(3, 2);
 	}
 
 
@@ -42,6 +43,26 @@ public class TestKeepGameLogic {
 		g.updateGame();
 		normalizePositions(g);
 		
+		
+		assertTrue(g.isOver());
+
+	}
+	
+	@Test
+	public void heroIsCapturedByClub() {
+		Game g = new Game();
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
+		
+		assertFalse(g.isOver());
+		
+		g.setDirection("S");
+		g.updateGame();
+		normalizePositions(g);
+	
+		g.setDirection("D");
+		g.updateGame();
+		normalizePositions(g);
 		
 		assertTrue(g.isOver());
 
@@ -149,6 +170,75 @@ public class TestKeepGameLogic {
 		g.updateGame();
 		
 		assertTrue(g.isOver());
+
+	}
+	
+
+	@Test
+	public void heroPicksUpClub() {
+		Game g = new Game();
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
+		
+		assertFalse(g.getHero().isArmed());
+		
+		g.setDirection("S");
+		g.updateGame();
+		normalizePositions(g);
+
+
+		g.setDirection("W");
+		g.updateGame();
+		normalizePositions(g);
+		
+		assertTrue(g.getHero().isArmed());
+		assertEquals(g.getHero().getChar(), 'A');
+		
+	
+	}
+	
+	
+	
+	@Test
+	public void ogreGetsStuned() {
+		
+		System.out.println("stuned");
+		Game g = new Game();
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
+		
+		assertFalse(g.getHero().isArmed());
+		
+		g.clean();
+		g.setDirection("S");
+		g.updateGame();
+		normalizePositions(g);
+
+		g.clean();
+		g.setDirection("W");
+		g.updateGame();
+		normalizePositions(g);
+		
+		g.clean();
+		g.setDirection("D");
+		g.updateGame();
+		normalizePositions(g);
+
+		assertFalse(g.isOver());
+		assertTrue(((KeepMap) g.getMap()).getOgres().get(0).isStuned());
+		assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getChar(), '8');
+		
+		
+		g.setDirection("A");
+		g.updateGame();
+
+		
+		g.setDirection("A");
+		g.updateGame();
+		
+		assertFalse(((KeepMap) g.getMap()).getOgres().get(0).isStuned());
+		assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getChar(), 'O');
+	
 
 	}
 	
