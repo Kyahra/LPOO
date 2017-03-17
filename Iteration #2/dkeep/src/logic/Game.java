@@ -47,11 +47,13 @@ public class Game {
 	private GameState state;
 	private String direction;
 	private GameMap map; 
+	private int num_ogres;
+	private char guard;
 	
-	public Game() {
+	public Game(int num_ogres,char guard) {
 		state = GameState.RUNNING;
 
-		map = new DungeonMap(map_1);
+		map = new DungeonMap(map_1, guard);
 	}
 
 	public GameMap getMap() {
@@ -69,8 +71,8 @@ public class Game {
 	}
 
 
-	public void printMap() {
-		map.printMap();
+	public String printMap() {
+		 return map.printMap();
 
 	}
 
@@ -97,7 +99,7 @@ public class Game {
 		map.update(direction);
 		
 		if (map instanceof DungeonMap && map.next()){
-			map = new KeepMap(map_2,1);
+			map = new KeepMap(map_2,num_ogres);
 		}
 		
 		if (map instanceof KeepMap && map.next()){
