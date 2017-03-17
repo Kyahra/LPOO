@@ -20,11 +20,16 @@ public class TestDungeonGameLogic {
 	char[][] map_1 = { { 'X', 'I', 'X', 'X', 'X' }, { 'X', 'H', ' ', 'G', 'X' }, { 'X', ' ', ' ', ' ', 'X' },
 			{ 'X', 'k', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X' } };
 
-	private char[][] map_2 = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, { 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
+	private char[][] map_2 = { 
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
+			{ 'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X' }, 
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
+			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' },
+			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
 	@Test
@@ -214,20 +219,6 @@ public class TestDungeonGameLogic {
 
 	}
 
-	@Test
-	public void testUpdateMap() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
-		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
-
-		g.clean();
-		g.setDirection("S");
-		g.updateGame();
-
-		g.updateMap();
-		g.printMap();
-
-	}
 
 	@Test
 	public void heroNotCapuredByDrunken() {
@@ -279,7 +270,7 @@ public class TestDungeonGameLogic {
 		Point oldp;
 		Point newp;
 
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 100; i++) {
 			
 			oldp = ((DungeonMap) g.getMap()).getGuard().getPosition();
 
@@ -307,7 +298,7 @@ public class TestDungeonGameLogic {
 		Point oldp;
 		Point newp;
 
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 100; i++) {
 			oldp = ((DungeonMap) g.getMap()).getGuard().getPosition();
 
 			g.clean();

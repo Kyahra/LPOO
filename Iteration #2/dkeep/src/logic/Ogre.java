@@ -113,7 +113,7 @@ import logic.Hero.HeroState;
 	
 	public void getStuned(){
 		stuned = true;
-		setChar('8');
+		c= '8';
 	}
 	
 	
