@@ -26,14 +26,12 @@ public class KeepMap extends GameMap {
 		club = new Character(club_pos, '*');
 
 		for (int i = 0; i < num_ogres; i++)
-			ogres.add(new Ogre(new Point(7, 1), 'O'));
+			ogres.add(new Ogre(new Point(7, 1)));
 
 	}
 
 	@Override
 	public void update(String direction) {
-		Point new_ogre_pos;
-		Point new_club_pos;
 
 		hero.move(direction, this);
 
@@ -41,16 +39,8 @@ public class KeepMap extends GameMap {
 			hero.setChar('K');
 
 		for (Ogre ogre : ogres) {
-
-			do {
-				new_ogre_pos = ogre.getNewPosition();
-			} while (!ogre.updateOgre(getChar(new_ogre_pos)));
-
-			do {
-				new_club_pos = ogre.getNewClubPosition();
-
-			} while (!ogre.updateClub(getChar(new_club_pos)));
-
+			ogre.move(this);
+			ogre.swingClub(this);
 		}
 
 		if (hero.getState() == HeroState.DOOR && hero.gotKey())
@@ -83,8 +73,9 @@ public class KeepMap extends GameMap {
 			drawCharacter(club);
 
 		for (Ogre ogre : ogres) {
-			drawCharacter(ogre);
+			
 			drawCharacter(ogre.getClub());
+			drawCharacter(ogre);
 		}
 
 	}
@@ -111,6 +102,10 @@ public class KeepMap extends GameMap {
 	@Override
 	public boolean next() {
 		return won;
+	}
+	
+	public ArrayList<Ogre> getOgres(){
+		return ogres;
 	}
 
 

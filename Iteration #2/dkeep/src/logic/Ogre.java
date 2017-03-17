@@ -3,130 +3,89 @@ package logic;
 import java.awt.Point;
 import java.util.Random;
 
+import logic.Hero.HeroState;
+
 
 	public class Ogre extends Character{
 		
-	public enum OgreState { KEY, MOVE};
-
-	private Point new_position;
-	private OgreState state;
 	private Character club;
 	private boolean stuned ;
 	private int stun_counter;
 	
-	public Ogre(Point position, char c) {
-		super(position, c);
-		
-		new_position = new Point(position);
-		state = OgreState.MOVE;
+	public Ogre(Point position) {
+		setPosition(position);
+		setChar('O');
 		club = new Character(new Point(getX(), getY()+1), '*');
 		stuned = false;
 		stun_counter = 0;
-		
 
 	}
-	
-	private int[] move = {0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,1};
-	
-	int i = 0;
-	public Point getNewPosition() {
 
+
+	public void move(GameMap map){
 		Random rand = new Random();		
 		int direction = rand.nextInt(4);
-
 		Point new_pos = new Point();
+		char c;
+		
+		
+		new_pos= super.getNewPosition(getPosition(), direction);
 
-		/*
-		int direction = move[i];
-		i++;
-		switch(direction){
-		case 0:
-			new_position.x = getX()+ 1;
-			new_position.y = getY();
-			break;
-		case 1:
-			new_position.x = getX()- 1;
-			new_position.y = getY();
-			break;
-		case 2:
-			new_position.x = getX();
-			new_position.y = getY() + 1;
-			break;
-		case 3:
-			new_position.x = getX();
-			new_position.y = getY()- 1;
-			break;
-		default:
-			break;
-		}
-		
-		return new_position;
-		*/
-
-		new_position = super.getNewPosition(getPosition(), direction);
-		
-		return new_position;
-		
-		
-		
-		
-	}
-
-
-	public boolean updateOgre(char c) {
-		
 		if(stuned){
 			stun_counter++;
 			
-			if(stun_counter == 2)
+			if(stun_counter == 2){
 				stuned = false;
-				
-
-			return true;
+				return;
+			}
 		}
 		
-
+		c = map.getChar(new_pos);
+		
+		setChar('O');
+		
 		switch (c) {
 		case 'X':
-			return false;
+			break;
 		case 'I':
 			break;
 		case ' ':
-			setPosition(new_position);
-			state = OgreState.MOVE;
-			setChar('O');
-			return true;
+			position = new_pos;
+			break;
 		case 'S':
-			return false;
+			break;
 		case 'k':
-			setPosition(new_position);
-			state = OgreState.KEY;
-			setChar('$');	
-			return true;
+			position = new_pos;
+			this.c = '$';	
+			break;
 		default:
 			break;
 		}
 		
-		return false;
+		
 	}
 	
-	
-	public OgreState getState(){
-		return state;
-	}
-	
-	public Point getNewClubPosition(){
+	public void swingClub(GameMap map) {
 		Random rand = new Random();	
+		int direction;
+		Point new_pos = new Point();
+		char c;
 		
-		int direction = rand.nextInt(4);
+		do{
 		
-		club.setPosition(super.getNewPosition(getPosition(), direction));
+		direction = rand.nextInt(4);
+			
+		new_pos = super.getNewPosition(position, direction);
 		
-		return club.getPosition();
+		c = map.getChar(new_pos);
+		
+		}while(!validPosition(c));
+		
+		club.setPosition(new_pos);
 		
 	}
 	
-	public boolean updateClub(char c){
+	public boolean validPosition(char c){
 		switch (c) {
 		case 'X':
 			return false;
@@ -157,9 +116,11 @@ import java.util.Random;
 		setChar('8');
 	}
 	
-	public void setClubPosition(Point p){
-		club.setPosition(p);
-	}
+	
+
+
+	
+
 	
 	
 }

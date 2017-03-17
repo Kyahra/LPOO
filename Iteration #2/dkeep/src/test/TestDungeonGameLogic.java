@@ -249,7 +249,7 @@ public class TestDungeonGameLogic {
 
 		assertFalse(g.isOver());
 	}
-
+	
 	@Test
 	public void testRookie() {
 		Game g = new Game();

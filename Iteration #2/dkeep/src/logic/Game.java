@@ -118,7 +118,7 @@ public class Game {
 		
 		
 		if( state == GameState.WON) return true;
-		
+
 		
 		return false;
 	
@@ -148,7 +148,7 @@ public class Game {
 
 	}
 
-	public Character getHero() {
+	public Hero getHero() {
 		return map.getHero();
 	}
 

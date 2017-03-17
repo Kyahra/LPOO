@@ -118,7 +118,7 @@ public abstract class GameMap {
 
 	public abstract boolean next();
 
-	public Character getHero() {
+	public Hero getHero() {
 		return hero;
 	}
 
