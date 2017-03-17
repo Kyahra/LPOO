@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Color;
@@ -19,18 +20,34 @@ import javax.swing.DropMode;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+
 import logic.Game;
 
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 
+
+
+import javax.swing.Box;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.BorderLayout;
+
+
 public class GameWindow {
 
     private JFrame frmGame;
+
     private JTextField fldOgresNumber;
     private JLabel lblNewLabel;
     private JButton btnNewGame;
     private JButton btnExit;
+
+    private JTextField textField;
+    private JLabel lblNewLabel;
+    private JButton btnNewGame;
+    private JButton btnExit;
+    private JTextArea txtrGame;
+
     private JButton btnUp;
     private JButton btnDown;
     private JButton btnRigth;
@@ -53,9 +70,16 @@ public class GameWindow {
     private Component horizontalStrut_8;
     private Component horizontalStrut_10;
     private JComboBox comboBox;
+
     private JTextArea textAreaMap;
     private Component verticalStrut_2;
 
+
+
+   
+    
+
+  
     /**
      * Launch the application.
      */
@@ -85,7 +109,9 @@ public class GameWindow {
     private void initialize() {
         frmGame = new JFrame();
         frmGame.setBackground(UIManager.getColor("CheckBox.darkShadow"));
+
         frmGame.setTitle("Maze Game");
+
         frmGame.setBounds(100, 100, 816, 607);
         frmGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmGame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -105,9 +131,11 @@ public class GameWindow {
         horizontalStrut_3 = Box.createHorizontalStrut(20);
         horizontalBox.add(horizontalStrut_3);
         
+
         fldOgresNumber = new JTextField();
         horizontalBox.add(fldOgresNumber);
         fldOgresNumber.setColumns(1);
+
         
         horizontalStrut_1 = Box.createHorizontalStrut(500);
         horizontalBox.add(horizontalStrut_1);
@@ -131,15 +159,18 @@ public class GameWindow {
         comboBox.setToolTipText("");
         horizontalBox_2.add(comboBox);
         
+
         horizontalStrut_10 = Box.createHorizontalStrut(500);
         horizontalBox_2.add(horizontalStrut_10);
         
         verticalStrut_6 = Box.createVerticalStrut(60);
+
         verticalBox_2.add(verticalStrut_6);
         
         horizontalBox_1 = Box.createHorizontalBox();
         verticalBox_2.add(horizontalBox_1);
         
+
         textAreaMap = new JTextArea();
         textAreaMap.setWrapStyleWord(true);
         textAreaMap.setTabSize(10);
@@ -157,6 +188,7 @@ public class GameWindow {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
+
         horizontalBox_1.add(btnLeft);
         btnLeft.setEnabled(false);
         btnLeft.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -207,6 +239,7 @@ public class GameWindow {
         horizontalBox_1.add(btnRigth);
         btnRigth.setEnabled(false);
         
+
         verticalStrut_2 = Box.createVerticalStrut(40);
         frmGame.getContentPane().add(verticalStrut_2);
         btnExit.addActionListener(new ActionListener() {
@@ -227,7 +260,7 @@ public class GameWindow {
            			throw new NumberFormatException();
         
             	}catch(NumberFormatException ex){
-            		JOptionPane.showMessageDialog(frmGame,"Número de Ogres inválido");
+            		JOptionPane.showMessageDialog(frmGame,"Nï¿½mero de Ogres invï¿½lido");
             	}
             	
             	idx = comboBox.getSelectedIndex();
