@@ -14,7 +14,7 @@ import logic.Hero.HeroState;
 	
 	public Ogre(Point position) {
 		setPosition(position);
-		setChar('O');
+		c= 'O';
 		club = new Character(new Point(getX(), getY()+1), '*');
 		stuned = false;
 		stun_counter = 0;
@@ -42,7 +42,7 @@ import logic.Hero.HeroState;
 		
 		c = map.getChar(new_pos);
 		
-		setChar('O');
+		this.c= 'O';
 		
 		switch (c) {
 		case 'X':
@@ -116,6 +116,10 @@ import logic.Hero.HeroState;
 		c= '8';
 	}
 	
+	
+	public boolean isStuned(){
+		return stuned;
+	}
 	
 
 
