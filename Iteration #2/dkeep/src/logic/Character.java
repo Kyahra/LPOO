@@ -4,8 +4,10 @@ import java.awt.Point;
 
 public class Character {
 
-	private Point position;
-	private char c;
+	protected Point position;
+	protected char c;
+	
+	public Character(){}
 
 	public Character(Point position, char c) {
 
