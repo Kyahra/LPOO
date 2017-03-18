@@ -4,21 +4,29 @@ import logic.Game;
 
 
 public class CommandLineInterface {
-
 	public static void main(String[] args){
-		Game g = new Game();
+	
+		
+		Game g = new Game(1,'R');
 	
 		while(true){
 
-
 		g.updateMap();
 		g.printMap();
-		g.cleanMap();
+		g.clean();
+		
+		if(g.isOver())
+			break;
+		
 		g.readMove();
 		g.updateGame();
 		
-		
+			
 		}
+		
+		
+		g.printEnd();
+		
 	}
 	
 }

@@ -1,164 +1,162 @@
 package logic;
 
 import logic.Hero;
+import logic.Hero.HeroState;
 import logic.Guard;
+import logic.Ogre;
+
 import java.awt.Point;
+
+import java.util.ArrayList;
+
+import java.util.Random;
+
 import java.util.Scanner;
 
 public class Game {
-	
-	public enum GameState { WON, LEVEL_1, LEVEL_2, LOST };
 
+	public enum GameState {
+		WON, RUNNING, LOST
+	};
 
 	private char[][] map_1 = { 
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'X', ' ', ' ', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, 
+			{ 'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X' },
 			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' },
+			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' }, 
 			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
 			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
 			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' },
+			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, 
 			{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			};
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
-	private char[][] map_2 = { 
+	private char[][] map_2 = {
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-			{ 'I', ' ', ' ', ' ', 'O', ' ', ' ', ' ', 'k', 'X' }, 
+			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'k', 'X' }, 
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, 
-			};
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
+			{ 'X', 'H', ' ', '*', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
 
-	private int rows = 10;
-	private int cols = 10;
 
 	private GameState state;
-	private char direction;
+	private String direction;
+	private GameMap map; 
+	private int num_ogres;
+	private char guard;
+	
+	public Game(int num_ogres,char guard) {
+		state = GameState.RUNNING;
 
-	private Hero hero;
-	private Guard guard;
-
-	public Game() {
-		state = GameState.LEVEL_1;
-
-
-		Point hero_init_pos = new Point(1, 1);
-		hero = new Hero(hero_init_pos, 'H');
-
-		Point guard_init_pos = new Point(8, 1);
-		guard = new Guard(guard_init_pos, 'G');
-
+		map = new DungeonMap(map_1, guard);
 	}
 
-	public char getChar(Point position) {
+	public GameMap getMap() {
+		return map;
+	}
+	
 
-		char c = '0';
-
-		switch (state) {
-
-		case LEVEL_1:
-			c = map_1[position.y][position.x];
-			break;
-		case LEVEL_2:
-			c = map_2[position.y][position.x];
-			break;
-		default:
-			break;
-		}
-
-		return c;
+	public void setMap(GameMap map) {
+		this.map = map;
 	}
 
-	public void printMap() {
-
-		System.out.println();
-
-		for (int i = 0; i < rows; i++) {
-			System.out.print("          ");
-			for (int j = 0; j < cols; j++) {
-
-				switch (state) {
-				case LEVEL_1:
-					System.out.print(map_1[i][j] + " ");
-					break;
-
-				case LEVEL_2:
-					System.out.print(map_2[i][j] + " ");
-					break;
-				}
-			}
-
-			System.out.println();
-		}
-
-		System.out.println("\n Use the WASD keys to control the Hero.");
-		System.out.print(" Your Move : ");
-
+	
+	public void setDirection(String direction) {
+		this.direction = direction;
 	}
 
 
-	public void drawCharacter(Character c) {
+	public String printMap() {
+		 return map.printMap();
 
-		switch (state) {
-		case LEVEL_1:
-			map_1[c.getY()][c.getX()] = c.getCharacter();
-			break;
-		case LEVEL_2:
-			map_2[c.getY()][c.getX()] = c.getCharacter();
-			break;
-		}
+	}
 
+	public void clean() {
+		map.clean();
+	
 	}
 
 	public void updateMap() {
-
-		drawCharacter(hero);
-		drawCharacter(guard);
-		// atualizar a posição do ogre
-		// atualizar a moca
-
+		map.draw();
+	
 	}
 
 	public void readMove() {
 
 		Scanner keyboard = new Scanner(System.in);
 
-		String input = keyboard.nextLine().toUpperCase();
+		direction = keyboard.nextLine().toUpperCase();
+
+	}
+
+	public void updateGame() {
 		
-		direction = input.charAt(0);
+		map.update(direction);
+		
+		if (map instanceof DungeonMap && map.next()){
+			map = new KeepMap(map_2,num_ogres);
+		}
+		
+		if (map instanceof KeepMap && map.next()){
+			state = GameState.WON;
+		}
+		
+		 
+	}
+
+
+	public boolean isOver() {
+		
+		
+		if(map.isOver()){
+			state = GameState.LOST;
+			return true;
+		}
+		
+		
+		if( state == GameState.WON) return true;
 
 		
-	}
+		return false;
 	
-	public void updateGame(){
-		Point new_hero_pos;
-		
-		new_hero_pos = hero.getNewPosition(direction);
-		hero.updateHero(getChar(new_hero_pos));
-		
-		
 	}
-	
-	public void cleanCharacter(Character c){
+
+	public void printEnd() {
+		System.out.println();
+		System.out.println();
+
 		switch (state) {
-		case LEVEL_1:
-			map_1[c.getY()][c.getX()] = ' ';
+		case LOST:
+			System.out.print("--------------");
+			System.out.print(" GAME OVER ");
+			System.out.print("--------------");
 			break;
-		case LEVEL_2:
-			map_2[c.getY()][c.getX()] = ' ';
+		case WON:
+			System.out.println();
+			System.out.println();
+
+			System.out.print("---------------");
+			System.out.print(" VICTORY ");
+			System.out.print("---------------");
+			break;
+		default:
 			break;
 		}
+
 	}
+
+	public Hero getHero() {
+		return map.getHero();
+	}
+
 	
-	public void cleanMap(){
-		cleanCharacter(hero);
-		cleanCharacter(guard);
-	}
+	
+
+
+
 }

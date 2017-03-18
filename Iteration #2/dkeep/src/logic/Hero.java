@@ -5,70 +5,98 @@ import java.awt.Point;
 
 public class Hero extends Character {
 
-	Point new_position;
+	public enum HeroState {
+		STAIR, MOVE, DOOR, ARMED
+	};
 
-	public Hero(Point position, char c) {
-		super(position, c);
-		new_position = new Point(getX(), getY());
+	private HeroState state;
+	private boolean armed = false;
+	private boolean key = false;
+
+	public Hero(Point position) {
+	
+		setPosition(position);
+		setChar('H');
+		state = HeroState.MOVE;
 
 	}
 
-	public Point getNewPosition(char direction) {
+	public void move(String direction, GameMap map) {
 
-		
+		Point new_position = new Point(getX(), getY());
+		char c;
+		int direction_int=4;
+
 		switch (direction) {
-		case 'D':
-			new_position.x = getX() + 1;
-			new_position.y = getY();
-			System.out.println("yo");
+		case "D":
+			direction_int =0;
 			break;
-		case 'A':
-			new_position.x = getX() - 1;
-			new_position.y = getY();
+		case "A":
+			direction_int =1;
 			break;
-		case 'S':
-			new_position.x = getX();
-			new_position.y = getY() + 1;
+		case "S":
+			direction_int =2;
 			break;
-		case 'W':
-			new_position.x = getX();
-			new_position.y = getY() - 1;
+		case "W":
+			direction_int = 3;
 			break;
 
 		default:
-			break;
-
+			return;
 		}
 		
-		System.out.println(new_position.x);
-		System.out.println(new_position.y);
+		new_position = super.getNewPosition(getPosition(), direction_int);
+		
 
-		return new_position;
-	}
+		c = map.getChar(new_position);
 
-	void updateHero(char c) {
 		switch (c) {
 		case 'X':
 			break;
 		case 'I':
+			state = HeroState.DOOR;
 			break;
 		case ' ':
-			this.setX(new_position.x);
-			this.setY(new_position.y);
+			position = new_position;
+			state = HeroState.MOVE;
 			break;
 		case 'S':
-			setX(new_position.x);
-			setY(new_position.y);
+			position = new_position;
+			state = HeroState.STAIR;
 			break;
 		case 'k':
-			setX(new_position.x);
-			setY(new_position.y);
+			position = new_position;
+			key = true;
 			break;
+
+		case '*':
+			position = new_position;
+			armed = true;
+			setChar('A');
+
 		default:
 			break;
 		}
-		
-	
+
 	}
 
+
+
+	public HeroState getState() {
+		return state;
+	}
+
+	public boolean gotKey() {
+
+		return key;
+	}
+
+	public boolean isArmed(){
+		return armed;
+	}
+	
+	public void setKey(boolean key){
+		this.key = key;
+	}
+	
 }
