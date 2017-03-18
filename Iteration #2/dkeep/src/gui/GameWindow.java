@@ -43,9 +43,6 @@ public class GameWindow {
     private JButton btnExit;
 
     private JTextField textField;
-    private JLabel lblNewLabel;
-    private JButton btnNewGame;
-    private JButton btnExit;
     private JTextArea txtrGame;
 
     private JButton btnUp;
