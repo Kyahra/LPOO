@@ -34,8 +34,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void moveHeroIntoFreeCell() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
 
 		assertEquals(new Point(1, 1), g.getHero().getPosition());
@@ -50,8 +50,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void moveHeroIntoWall() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 
 		g.setDirection("A");
 		g.updateGame();
@@ -61,8 +61,8 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testInvalidDirection() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 
 		g.setDirection("X");
 		g.updateGame();
@@ -74,8 +74,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void heroIsCapturedLeft() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
 
 		assertFalse(g.isOver());
@@ -89,8 +89,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void heroIsCapturedDown() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
 
 		assertEquals(g.getMap().getChar(new Point(3, 1)), 'G');
@@ -110,8 +110,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void heroIsCapturedUp() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(2, 2)));
 
 		g.clean();
@@ -128,8 +128,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void heroIsCapturedRight() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(2, 3)));
 
 		g.clean();
@@ -152,8 +152,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void moveHeroIntoClosedDoor() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 
 		g.setDirection("W");
 		g.updateGame();
@@ -165,8 +165,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void doorsOpenWhenLeverActivated() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 		assertEquals('I', g.getMap().getChar(new Point(1, 0)));
 
 		g.setDirection("S");
@@ -179,8 +179,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void testDoors() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));;
 		assertEquals('I', g.getMap().getChar(new Point(1, 0)));
 
 		g.setDirection("S");
@@ -191,8 +191,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void levelUpUponReachingStairs() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
 		((DungeonMap) g.getMap()).setGuard(new Guard(new Point(3, 1)));
 
 		g.clean();
@@ -222,12 +222,10 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void heroNotCapuredByDrunken() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_1));
+		Game g = new Game(1,'D');
+		g.setMap(new DungeonMap(map_1,'D'));
 
-		Guard guard = new Drunken(new Point(3, 1));
-		guard.setChar('g');
-		((DungeonMap) g.getMap()).setGuard(guard);
+		((DungeonMap) g.getMap()).setGuard(new Drunken(new Point(3, 1)));
 
 		assertFalse(g.isOver());
 
@@ -243,17 +241,17 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testRookie() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_2));
-
+		Game g = new Game(1,'R');
+		g.setMap(new DungeonMap(map_1,'R'));
+		
 		((DungeonMap) g.getMap()).setGuard(new Rookie(new Point(8, 1)));
 		assertEquals(((DungeonMap) g.getMap()).getGuard().getPosition(), new Point(8, 1));
 
 		for (int i = 0; i < 30; i++) {
-			g.clean();
+
 			g.setDirection("W");
 			g.updateGame();
-			g.updateMap();
+	
 		}
 
 		assertEquals(((DungeonMap) g.getMap()).getGuard().getPosition(), new Point(6, 5));
@@ -262,8 +260,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void testSuspicious() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_2));
+		Game g = new Game(1,'S');
+		g.setMap(new DungeonMap(map_1,'S'));
 
 		((DungeonMap) g.getMap()).setGuard(new Suspicious(new Point(8, 1)));
 		
@@ -274,10 +272,10 @@ public class TestDungeonGameLogic {
 			
 			oldp = ((DungeonMap) g.getMap()).getGuard().getPosition();
 
-			g.clean();
+		
 			g.setDirection("W");
 			g.updateGame();
-			g.updateMap();
+	
 			
 			newp = ((DungeonMap) g.getMap()).getGuard().getPosition();
 			
@@ -291,8 +289,8 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void testDrunken() {
-		Game g = new Game();
-		g.setMap(new DungeonMap(map_2));
+		Game g = new Game(1,'S');
+		g.setMap(new DungeonMap(map_1,'S'));
 		((DungeonMap) g.getMap()).setGuard(new Drunken(new Point(8, 1)));
 
 		Point oldp;
@@ -301,10 +299,10 @@ public class TestDungeonGameLogic {
 		for (int i = 0; i < 100; i++) {
 			oldp = ((DungeonMap) g.getMap()).getGuard().getPosition();
 
-			g.clean();
+	
 			g.setDirection("W");
 			g.updateGame();
-			g.updateMap();
+
 			
 			newp = ((DungeonMap) g.getMap()).getGuard().getPosition();
 			

@@ -19,20 +19,21 @@ public class TestKeepGameLogic {
 			
 			{ 'X', 'I', 'X', 'X', 'X' },
 			{ 'X', 'H', ' ', 'O', 'X' }, 
-			{ 'X', ' ', ' ', '*', 'X' },
+			{ 'X', '*', ' ', '*', 'X' },
 			{ 'X', 'k', ' ', ' ', 'X' }, 
 			{ 'X', 'X', 'X', 'X', 'X' } 
 			};
 	
+	
 	void normalizePositions(Game g){
 		((KeepMap) g.getMap()).getOgres().get(0).setPosition(3, 1);
-		((KeepMap) g.getMap()).getOgres().get(0).getClub().setPosition(3, 1);
+		((KeepMap) g.getMap()).getOgres().get(0).getClub().setPosition(3, 2);
 	}
 
 
 	@Test
 	public void heroIsCapturedByOgre() {
-		Game g = new Game();
+		Game g = new Game(1,'R');
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -48,8 +49,28 @@ public class TestKeepGameLogic {
 	}
 	
 	@Test
+	public void heroIsCapturedByClub() {
+		Game g = new Game(1,'R');
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
+		
+		assertFalse(g.isOver());
+		
+		g.setDirection("S");
+		g.updateGame();
+		normalizePositions(g);
+	
+		g.setDirection("D");
+		g.updateGame();
+		normalizePositions(g);
+		
+		assertTrue(g.isOver());
+
+	}
+	
+	@Test
 	public void heroHoldingKey(){
-		Game g = new Game();
+		Game g = new Game(1,'R');
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		 
@@ -65,7 +86,7 @@ public class TestKeepGameLogic {
 	
 	@Test
 	public void heroMovesIntoClosedDoor() {
-		Game g = new Game();
+		Game g = new Game(1,'R');
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -82,7 +103,7 @@ public class TestKeepGameLogic {
 	
 	@Test
 	public void heroMovesIntoDoor() {
-		Game g = new Game();
+		Game g = new Game(1,'R');
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -116,7 +137,7 @@ public class TestKeepGameLogic {
 
 	@Test
 	public void heroWins() {
-		Game g = new Game();
+		Game g = new Game(1,'R');
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -149,6 +170,74 @@ public class TestKeepGameLogic {
 		g.updateGame();
 		
 		assertTrue(g.isOver());
+
+	}
+	
+
+	@Test
+	public void heroPicksUpClub() {
+		Game g = new Game(1,'R');
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
+		
+		assertFalse(g.getHero().isArmed());
+		
+		g.setDirection("S");
+		g.updateGame();
+		normalizePositions(g);
+
+
+		g.setDirection("W");
+		g.updateGame();
+		normalizePositions(g);
+		
+		assertTrue(g.getHero().isArmed());
+		assertEquals(g.getHero().getChar(), 'A');
+		
+	
+	}
+	
+	
+	
+	@Test
+	public void ogreGetsStuned() {
+		
+		Game g = new Game(1,'R');
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
+		
+		assertFalse(g.getHero().isArmed());
+		
+		g.clean();
+		g.setDirection("S");
+		g.updateGame();
+		normalizePositions(g);
+
+		g.clean();
+		g.setDirection("W");
+		g.updateGame();
+		normalizePositions(g);
+		
+		g.clean();
+		g.setDirection("D");
+		g.updateGame();
+		normalizePositions(g);
+
+		assertFalse(g.isOver());
+		assertTrue(((KeepMap) g.getMap()).getOgres().get(0).isStuned());
+		assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getChar(), '8');
+		
+		
+		g.setDirection("A");
+		g.updateGame();
+
+		
+		g.setDirection("A");
+		g.updateGame();
+		
+		assertFalse(((KeepMap) g.getMap()).getOgres().get(0).isStuned());
+		assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getChar(), 'O');
+	
 
 	}
 	

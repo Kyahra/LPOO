@@ -7,7 +7,7 @@ public class CommandLineInterface {
 	public static void main(String[] args){
 	
 		
-		Game g = new Game();
+		Game g = new Game(1,'R');
 	
 		while(true){
 

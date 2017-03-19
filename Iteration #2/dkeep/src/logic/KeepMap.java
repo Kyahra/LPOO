@@ -89,6 +89,7 @@ public class KeepMap extends GameMap {
 
 			if (isCaptured(hero, ogre) && !hero.isArmed()) {
 				return true;
+				
 			}
 
 			if (isCaptured(hero, ogre.getClub())) {

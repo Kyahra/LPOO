@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.Color;
@@ -17,17 +19,32 @@ import java.awt.event.ActionEvent;
 import javax.swing.DropMode;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
+
+import logic.Game;
+
 import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
+
+
+
+import javax.swing.Box;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.BorderLayout;
+
 
 public class GameWindow {
 
     private JFrame frmGame;
-    private JTextField textField;
+
+    private JTextField fldOgresNumber;
     private JLabel lblNewLabel;
     private JButton btnNewGame;
     private JButton btnExit;
+
+    private JTextField textField;
     private JTextArea txtrGame;
+
     private JButton btnUp;
     private JButton btnDown;
     private JButton btnRigth;
@@ -51,6 +68,15 @@ public class GameWindow {
     private Component horizontalStrut_10;
     private JComboBox comboBox;
 
+    private JTextArea textAreaMap;
+    private Component verticalStrut_2;
+
+
+
+   
+    
+
+  
     /**
      * Launch the application.
      */
@@ -80,7 +106,9 @@ public class GameWindow {
     private void initialize() {
         frmGame = new JFrame();
         frmGame.setBackground(UIManager.getColor("CheckBox.darkShadow"));
-        frmGame.setTitle("Game");
+
+        frmGame.setTitle("Maze Game");
+
         frmGame.setBounds(100, 100, 816, 607);
         frmGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmGame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -100,9 +128,11 @@ public class GameWindow {
         horizontalStrut_3 = Box.createHorizontalStrut(20);
         horizontalBox.add(horizontalStrut_3);
         
-        textField = new JTextField();
-        horizontalBox.add(textField);
-        textField.setColumns(1);
+
+        fldOgresNumber = new JTextField();
+        horizontalBox.add(fldOgresNumber);
+        fldOgresNumber.setColumns(1);
+
         
         horizontalStrut_1 = Box.createHorizontalStrut(500);
         horizontalBox.add(horizontalStrut_1);
@@ -126,32 +156,36 @@ public class GameWindow {
         comboBox.setToolTipText("");
         horizontalBox_2.add(comboBox);
         
+
         horizontalStrut_10 = Box.createHorizontalStrut(500);
         horizontalBox_2.add(horizontalStrut_10);
         
-        verticalStrut_6 = Box.createVerticalStrut(40);
+        verticalStrut_6 = Box.createVerticalStrut(60);
+
         verticalBox_2.add(verticalStrut_6);
         
         horizontalBox_1 = Box.createHorizontalBox();
         verticalBox_2.add(horizontalBox_1);
         
-        txtrGame = new JTextArea();
-        txtrGame.setToolTipText("");
-        txtrGame.setColumns(70);
-        horizontalBox_1.add(txtrGame);
-        txtrGame.setRows(25);
-        txtrGame.setLineWrap(true);
-        txtrGame.setBackground(Color.WHITE);
-        txtrGame.setDropMode(DropMode.INSERT_ROWS);
-        txtrGame.setEnabled(false);
-        txtrGame.setFont(new Font("Monospaced", Font.PLAIN, 10));
-        txtrGame.setTabSize(10);
-        txtrGame.setForeground(Color.WHITE);
+
+        textAreaMap = new JTextArea();
+        textAreaMap.setWrapStyleWord(true);
+        textAreaMap.setTabSize(10);
+        textAreaMap.setEditable(false);
+        textAreaMap.setFont(new Font("Courier New", Font.PLAIN, 28));
+        textAreaMap.setColumns(5);
+        textAreaMap.setRows(5);
+        horizontalBox_1.add(textAreaMap);
         
-        horizontalStrut_2 = Box.createHorizontalStrut(40);
+        horizontalStrut_2 = Box.createHorizontalStrut(160);
         horizontalBox_1.add(horizontalStrut_2);
         
         btnLeft = new JButton("  Left ");
+        btnLeft.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+
         horizontalBox_1.add(btnLeft);
         btnLeft.setEnabled(false);
         btnLeft.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -201,13 +235,53 @@ public class GameWindow {
         btnRigth = new JButton("Rigth");
         horizontalBox_1.add(btnRigth);
         btnRigth.setEnabled(false);
+        
+
+        verticalStrut_2 = Box.createVerticalStrut(40);
+        frmGame.getContentPane().add(verticalStrut_2);
         btnExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
+            	System.exit(0);
             }
         });
         btnNewGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             
+            	int ogres_number=1;
+                char guard_type='R';
+            	int idx;
+            	
+            	try{
+           		ogres_number = Integer.parseInt(fldOgresNumber.getText());
+           		if(ogres_number <=0 || ogres_number >5)
+           			throw new NumberFormatException();
+        
+            	}catch(NumberFormatException ex){
+            		JOptionPane.showMessageDialog(frmGame,"N�mero de Ogres inv�lido");
+            	}
+            	
+            	idx = comboBox.getSelectedIndex();
+                
+                switch(idx){
+                case 0:
+                    guard_type = 'r';
+                    break;
+                case 1:
+                    guard_type  = 's';
+                    break;
+                case 2:
+                    guard_type = 'd';
+                    break;
+                default:
+                        break;
+                } 
+                
+                Game g = new Game(ogres_number, guard_type);
+                
+                textAreaMap.append(g.printMap());
+           		
+            	
+            	
             
             }
         });
