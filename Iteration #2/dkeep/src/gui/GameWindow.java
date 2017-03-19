@@ -212,6 +212,8 @@ public class GameWindow {
         verticalBox.add(btnUp);
         btnUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            
+            //direction  = "W";
             }
         });
         
@@ -239,6 +241,7 @@ public class GameWindow {
 
         verticalStrut_2 = Box.createVerticalStrut(40);
         frmGame.getContentPane().add(verticalStrut_2);
+        
         btnExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
             	System.exit(0);
@@ -277,6 +280,11 @@ public class GameWindow {
                 } 
                 
                 Game g = new Game(ogres_number, guard_type);
+                
+                btnDown.setEnabled(true);
+                btnUp.setEnabled(true);
+                btnLeft.setEnabled(true);
+                btnRigth.setEnabled(true);
                 
                 textAreaMap.append(g.printMap());
            		
