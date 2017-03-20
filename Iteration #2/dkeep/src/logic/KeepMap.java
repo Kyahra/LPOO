@@ -73,7 +73,7 @@ public class KeepMap extends GameMap {
 			drawCharacter(club);
 
 		for (Ogre ogre : ogres) {
-			
+			System.out.println("yo");
 			drawCharacter(ogre.getClub());
 			drawCharacter(ogre);
 		}
