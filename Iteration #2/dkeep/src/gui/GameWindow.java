@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/sofia
 package gui;
 
 import java.awt.EventQueue;
@@ -196,7 +200,7 @@ public class GameWindow {
 						throw new NumberFormatException();
 
 				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(frmMazeGame, "Número de Ogres inválido");
+					JOptionPane.showMessageDialog(frmMazeGame, "Nï¿½mero de Ogres invï¿½lido");
 					return;
 				}
 
@@ -278,3 +282,7 @@ public class GameWindow {
 	}
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/sofia
