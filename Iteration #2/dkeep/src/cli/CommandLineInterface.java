@@ -6,13 +6,18 @@ import logic.Game;
 public class CommandLineInterface {
 	public static void main(String[] args){
 	
-		
+
 		Game g = new Game(1,'R');
 	
 		while(true){
 
 		g.updateMap();
-		g.printMap();
+		
+		System.out.println();
+		System.out.println(g.printMap());
+		System.out.println("\n Use the WASD keys to control the Hero.");
+		System.out.print(" Your Move : ");
+		
 		g.clean();
 		
 		if(g.isOver())

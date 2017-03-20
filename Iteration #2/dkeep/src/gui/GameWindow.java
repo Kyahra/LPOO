@@ -6,289 +6,275 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JPanel;
+import java.awt.Window.Type;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
-import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.DropMode;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-
 
 import logic.Game;
-
-import javax.swing.Box;
-import javax.swing.DefaultComboBoxModel;
-
-
-
-import javax.swing.Box;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.BorderLayout;
-
+import logic.Game.GameState;
 
 public class GameWindow {
 
-    private JFrame frmGame;
+	private JFrame frmMazeGame;
+	private JTextField OgresTxtField;
+	private Game g;
+	private JLabel lblGameStatus;
+	private JButton btnRight;
+	private JButton btnUp;
+	private JButton btnLeft;
+	private JButton btnDown;
+	private JTextArea GameTxtArea;
 
-    private JTextField fldOgresNumber;
-    private JLabel lblNewLabel;
-    private JButton btnNewGame;
-    private JButton btnExit;
+	// Launch the application.
 
-    private JTextField textField;
-    private JLabel lblNewLabel;
-    private JButton btnNewGame;
-    private JButton btnExit;
-    private JTextArea txtrGame;
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GameWindow window = new GameWindow();
+					window.frmMazeGame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-    private JButton btnUp;
-    private JButton btnDown;
-    private JButton btnRigth;
-    private JButton btnLeft;
-    private Box verticalBox;
-    private Component verticalStrut;
-    private Box verticalBox_1;
-    private Component verticalStrut_3;
-    private Component verticalStrut_4;
-    private Box horizontalBox;
-    private Box horizontalBox_1;
-    private Box verticalBox_2;
-    private Component verticalStrut_6;
-    private Component verticalStrut_7;
-    private Component horizontalStrut_1;
-    private Component horizontalStrut_2;
-    private Component horizontalStrut_3;
-    private Component verticalStrut_8;
-    private Box horizontalBox_2;
-    private Component horizontalStrut_8;
-    private Component horizontalStrut_10;
-    private JComboBox comboBox;
+	// Create the application.
 
-    private JTextArea textAreaMap;
-    private Component verticalStrut_2;
+	public GameWindow() {
+		initialize();
+	}
 
+	// Initialize the contents of the frame.
 
+	private void initialize() {
+		frmMazeGame = new JFrame();
+		frmMazeGame.setResizable(false);
+		frmMazeGame.setTitle("Maze Game");
+		frmMazeGame.setBounds(100, 100, 549, 394);
+		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-   
-    
+		JLabel lblNewLabel = new JLabel("Number of Ogres");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel.setBounds(29, 23, 93, 18);
 
-  
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    GameWindow window = new GameWindow();
-                    window.frmGame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+		OgresTxtField = new JTextField();
+		OgresTxtField.setBounds(132, 21, 34, 20);
+		OgresTxtField.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		OgresTxtField.setColumns(10);
 
-    /**
-     * Create the application.
-     */
-    public GameWindow() {
-        initialize();
-    }
+		JLabel lblGuardPersonality = new JLabel("Guard Personality");
+		lblGuardPersonality.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblGuardPersonality.setBounds(29, 55, 93, 17);
 
-    /**
-     * Initialize the contents of the frame.
-     */
-    private void initialize() {
-        frmGame = new JFrame();
-        frmGame.setBackground(UIManager.getColor("CheckBox.darkShadow"));
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(132, 52, 87, 20);
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		comboBox.setEditable(true);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { " Rookie", " Drunken", " Suspicious" }));
+		comboBox.setToolTipText("");
+		comboBox.setMaximumRowCount(3);
 
-        frmGame.setTitle("Maze Game");
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 
-        frmGame.setBounds(100, 100, 816, 607);
-        frmGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frmGame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        
-        verticalBox_2 = Box.createVerticalBox();
-        frmGame.getContentPane().add(verticalBox_2);
-        
-        verticalStrut_7 = Box.createVerticalStrut(40);
-        verticalBox_2.add(verticalStrut_7);
-        
-        horizontalBox = Box.createHorizontalBox();
-        verticalBox_2.add(horizontalBox);
-        
-        JLabel lblNumberOfOgres = new JLabel("Number of Ogres");
-        horizontalBox.add(lblNumberOfOgres);
-        
-        horizontalStrut_3 = Box.createHorizontalStrut(20);
-        horizontalBox.add(horizontalStrut_3);
-        
+				System.exit(0);
+			}
+		});
+		btnExit.setBounds(401, 294, 66, 23);
 
-        fldOgresNumber = new JTextField();
-        horizontalBox.add(fldOgresNumber);
-        fldOgresNumber.setColumns(1);
+		GameTxtArea = new JTextArea();
+		GameTxtArea.setEditable(false);
+		GameTxtArea.setBounds(29, 90, 251, 228);
+		GameTxtArea.setFont(new Font("Courier New", Font.PLAIN, 20));
 
-        
-        horizontalStrut_1 = Box.createHorizontalStrut(500);
-        horizontalBox.add(horizontalStrut_1);
-        
-        verticalStrut_8 = Box.createVerticalStrut(20);
-        verticalBox_2.add(verticalStrut_8);
-        
-        horizontalBox_2 = Box.createHorizontalBox();
-        verticalBox_2.add(horizontalBox_2);
-        
-        lblNewLabel = new JLabel("Guard Personality");
-        horizontalBox_2.add(lblNewLabel);
-        lblNewLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        
-        horizontalStrut_8 = Box.createHorizontalStrut(20);
-        horizontalBox_2.add(horizontalStrut_8);
-        //frmGame.getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{textField, lblNumberOfOgres, lblNewLabel, comboBox, txtrGame, btnNewGame, btnExit}));
-        
-        comboBox = new JComboBox();
-        comboBox.setModel(new DefaultComboBoxModel(new String[] {"Rookie", "Suspicious", "Drunken"}));
-        comboBox.setToolTipText("");
-        horizontalBox_2.add(comboBox);
-        
+		JLabel label = new JLabel("");
+		label.setBounds(29, 368, 46, 14);
 
-        horizontalStrut_10 = Box.createHorizontalStrut(500);
-        horizontalBox_2.add(horizontalStrut_10);
-        
-        verticalStrut_6 = Box.createVerticalStrut(60);
+		lblGameStatus = new JLabel("You can start a new game.");
+		lblGameStatus.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblGameStatus.setBounds(29, 329, 281, 14);
 
-        verticalBox_2.add(verticalStrut_6);
-        
-        horizontalBox_1 = Box.createHorizontalBox();
-        verticalBox_2.add(horizontalBox_1);
-        
+		btnUp = new JButton("Up");
+		btnUp.setBounds(391, 154, 83, 23);
+		btnUp.setEnabled(false);
+		btnUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lblGameStatus.setText("Moved Up.");
+				g.setDirection("W");
+				g.update();
+				GameTxtArea.setText(g.printMap());
+				if (g.isOver())
+					EndGame();
+			}
+		});
 
-        textAreaMap = new JTextArea();
-        textAreaMap.setWrapStyleWord(true);
-        textAreaMap.setTabSize(10);
-        textAreaMap.setEditable(false);
-        textAreaMap.setFont(new Font("Courier New", Font.PLAIN, 28));
-        textAreaMap.setColumns(5);
-        textAreaMap.setRows(5);
-        horizontalBox_1.add(textAreaMap);
-        
-        horizontalStrut_2 = Box.createHorizontalStrut(160);
-        horizontalBox_1.add(horizontalStrut_2);
-        
-        btnLeft = new JButton("  Left ");
-        btnLeft.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
+		btnDown = new JButton("Down");
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblGameStatus.setText("Moved Down.");
+				
+				g.setDirection("S");
+				g.update();
+				GameTxtArea.setText(g.printMap());
+				
+				if (g.isOver())
+					EndGame();
 
-        horizontalBox_1.add(btnLeft);
-        btnLeft.setEnabled(false);
-        btnLeft.setVerticalAlignment(SwingConstants.BOTTOM);
-        
-        verticalBox_1 = Box.createVerticalBox();
-        horizontalBox_1.add(verticalBox_1);
-        
-        btnNewGame = new JButton("New Game");
-        btnNewGame.setAlignmentX(Component.CENTER_ALIGNMENT);
-        verticalBox_1.add(btnNewGame);
-        btnNewGame.setVerticalAlignment(SwingConstants.TOP);
-        
-        verticalStrut_3 = Box.createVerticalStrut(100);
-        verticalBox_1.add(verticalStrut_3);
-        
-        verticalBox = Box.createVerticalBox();
-        verticalBox.setAlignmentX(Component.CENTER_ALIGNMENT);
-        verticalBox_1.add(verticalBox);
-        
-        btnUp = new JButton("  Up  ");
-        btnUp.setHorizontalAlignment(SwingConstants.LEADING);
-        btnUp.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnUp.setEnabled(false);
-        verticalBox.add(btnUp);
-        btnUp.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        
-        verticalStrut = Box.createVerticalStrut(20);
-        verticalBox.add(verticalStrut);
-        
-        btnDown = new JButton("Down");
-        btnDown.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnDown.setEnabled(false);
-        verticalBox.add(btnDown);
-        
-        verticalStrut_4 = Box.createVerticalStrut(100);
-        verticalBox_1.add(verticalStrut_4);
-        
-        btnExit = new JButton("Exit Game");
-        btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
-        verticalBox_1.add(btnExit);
-        btnExit.setVerticalAlignment(SwingConstants.BOTTOM);
-        btnExit.setForeground(new Color(0, 0, 0));
-        
-        btnRigth = new JButton("Rigth");
-        horizontalBox_1.add(btnRigth);
-        btnRigth.setEnabled(false);
-        
+				
+			}
+		});
+		btnDown.setBounds(391, 222, 83, 23);
+		btnDown.setEnabled(false);
 
-        verticalStrut_2 = Box.createVerticalStrut(40);
-        frmGame.getContentPane().add(verticalStrut_2);
-        btnExit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-            	System.exit(0);
-            }
-        });
-        btnNewGame.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-            
-            	int ogres_number=1;
-                char guard_type='R';
-            	int idx;
-            	
-            	try{
-           		ogres_number = Integer.parseInt(fldOgresNumber.getText());
-           		if(ogres_number <=0 || ogres_number >5)
-           			throw new NumberFormatException();
-        
-            	}catch(NumberFormatException ex){
-            		JOptionPane.showMessageDialog(frmGame,"Nï¿½mero de Ogres invï¿½lido");
-            	}
-            	
-            	idx = comboBox.getSelectedIndex();
-                
-                switch(idx){
-                case 0:
-                    guard_type = 'r';
-                    break;
-                case 1:
-                    guard_type  = 's';
-                    break;
-                case 2:
-                    guard_type = 'd';
-                    break;
-                default:
-                        break;
-                } 
-                
-                Game g = new Game(ogres_number, guard_type);
-                
-                textAreaMap.append(g.printMap());
-           		
-            	
-            	
-            
-            }
-        });
-    }
+		btnLeft = new JButton("Left");
+		btnLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblGameStatus.setText("Moved Left");
+				
+				g.setDirection("A");
+				g.update();
+				GameTxtArea.setText(g.printMap());
+				
+
+				if (g.isOver())
+					EndGame();
+				
+
+			}
+		});
+		btnLeft.setBounds(343, 188, 85, 23);
+		btnLeft.setEnabled(false);
+
+		btnRight = new JButton("Right");
+		btnRight.setBounds(441, 188, 83, 23);
+		btnRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				lblGameStatus.setText("Moved Right");
+
+				g.setDirection("D");
+				g.update();
+				GameTxtArea.setText(g.printMap());
+				
+
+				if (g.isOver())
+					EndGame();
+		
+
+			}
+		});
+		btnRight.setEnabled(false);
+
+		JButton btnNewButton = new JButton("New Game");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int ogres_number = 1;
+				char guard_type = 'R';
+				int idx;
+
+				try {
+					ogres_number = Integer.parseInt(OgresTxtField.getText());
+					if (ogres_number <= 0 || ogres_number > 5)
+						throw new NumberFormatException();
+
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(frmMazeGame, "Número de Ogres inválido");
+					return;
+				}
+
+				idx = comboBox.getSelectedIndex();
+
+				switch (idx) {
+				case 0:
+					guard_type = 'R';
+					break;
+				case 1:
+					guard_type = 'S';
+					break;
+				case 2:
+					guard_type = 'D';
+					break;
+				default:
+					break;
+				}
+				
+				ogres_number = 1;
+
+				g = new Game(ogres_number, guard_type);
+
+				GameTxtArea.setText(g.printMap());
+
+				btnsSetEnable(true);
+
+				lblGameStatus.setText("You can play now.");
+
+			}
+		});
+		btnNewButton.setBounds(381, 90, 101, 23);
+
+		frmMazeGame.getContentPane().setLayout(null);
+		frmMazeGame.getContentPane().add(lblNewLabel);
+		frmMazeGame.getContentPane().add(OgresTxtField);
+		frmMazeGame.getContentPane().add(lblGuardPersonality);
+		frmMazeGame.getContentPane().add(comboBox);
+		frmMazeGame.getContentPane().add(GameTxtArea);
+		frmMazeGame.getContentPane().add(btnRight);
+		frmMazeGame.getContentPane().add(btnUp);
+		frmMazeGame.getContentPane().add(btnNewButton);
+		frmMazeGame.getContentPane().add(btnDown);
+		frmMazeGame.getContentPane().add(btnExit);
+		frmMazeGame.getContentPane().add(btnLeft);
+		frmMazeGame.getContentPane().add(label);
+		frmMazeGame.getContentPane().add(lblGameStatus);
+
+	}
+
+	public void EndGame() {
+
+		GameState state = g.getState();
+		g.printMap();
+
+		switch (state) {
+		case LOST:
+			lblGameStatus.setText("DEFEAT.");
+			break;
+		case WON:
+			lblGameStatus.setText("VICTORY.");
+
+		default:
+			break;
+		}
+		
+	
+		btnsSetEnable(false);
+		
+
+	}
+	
+	public void btnsSetEnable(boolean value){
+		btnUp.setEnabled(value);
+		btnDown.setEnabled(value);
+		btnLeft.setEnabled(value);
+		btnRight.setEnabled(value);
+		
+	}
 
 }
-
