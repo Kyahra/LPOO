@@ -87,4 +87,9 @@ public class DungeonMap extends GameMap {
 		return guard;
 	}
 
+	@Override
+	public Point getKPos() {
+		return lever.getPosition();
+	}
+
 }

@@ -54,8 +54,10 @@ public class Game {
 		state = GameState.RUNNING;
 
 		map = new DungeonMap(map_1, guard);
+		this.num_ogres = num_ogres;
 		
-		map = new KeepMap(map_2, 1);
+		map = new KeepMap(map_2,num_ogres);
+
 	}
 
 	public GameMap getMap() {

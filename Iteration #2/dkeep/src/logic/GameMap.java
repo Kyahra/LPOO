@@ -121,7 +121,8 @@ public abstract class GameMap {
 		return hero;
 	}
 
-	
+	public abstract Point getKPos();
+
 
 	
 }
