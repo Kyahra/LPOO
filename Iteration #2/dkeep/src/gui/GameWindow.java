@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/sofia
 package gui;
 
 import java.awt.EventQueue;
@@ -200,7 +197,7 @@ public class GameWindow {
 						throw new NumberFormatException();
 
 				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(frmMazeGame, "N�mero de Ogres inv�lido");
+					JOptionPane.showMessageDialog(frmMazeGame, "Invalid Number of Ogres");
 					return;
 				}
 
@@ -220,7 +217,7 @@ public class GameWindow {
 					break;
 				}
 				
-				ogres_number = 1;
+				
 
 				g = new Game(ogres_number, guard_type);
 
@@ -282,7 +279,3 @@ public class GameWindow {
 	}
 
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/sofia
