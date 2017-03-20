@@ -123,6 +123,17 @@ public abstract class GameMap {
 
 	public abstract Point getKPos();
 
+	public int getRows() {
+		return rows;
+		
+	}
+	
+	public int getCols() {
+		return cols;
+		
+	}
+
+
 
 	
 }
