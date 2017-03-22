@@ -35,31 +35,8 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 	
 	private Game g;
 	private JLabel lblGameStatus;
-/*
-	public void keyPressed(KeyEvent e, Game g) {
-		
-		int key = e.getKeyCode();
-		
-		switch( key ) { 
-		case KeyEvent.VK_UP:
-			g.setDirection("W");
 
-			break;
-		case KeyEvent.VK_DOWN:
-			g.setDirection("S");
-
-			break;
-		case KeyEvent.VK_LEFT:
-			g.setDirection("A");
-
-			break;
-		case KeyEvent.VK_RIGHT :
-			g.setDirection("D");
-
-			break;
-		}
-}
-*/
+	
 	public GamePanel(Game g) {
 		
 		this.g = g;
@@ -70,13 +47,7 @@ public class GamePanel extends JPanel implements MouseListener, MouseMotionListe
 		
 	} 
 
-	public void paintComponent(Graphics graph) {
-		
-		super.paintComponent(graph);
-		
-		
-	
-	}
+ 
 	
 
 	@Override
