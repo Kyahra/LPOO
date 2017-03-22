@@ -33,7 +33,7 @@ import logic.Game.GameState;
 import logic.GameMap;
 import java.awt.Panel;
 
-public class GameWindow {
+public class GameWindow extends GamePanel{
 
 	private JFrame frmMazeGame;
 	private JTextField OgresTxtField;
@@ -235,7 +235,7 @@ public class GameWindow {
 				
 				while(true){
 					
-					//keyPressed(e,g);
+					keyPressed(e,g);
 					g.update();
 					if (g.isOver())
 						EndGame();
