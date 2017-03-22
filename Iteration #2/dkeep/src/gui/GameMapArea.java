@@ -71,7 +71,7 @@ public class GameMapArea extends JPanel {
 		return new ImageIcon(newimg);
 	}
 
-	public void insertContent() {
+	public void paintComponent () {
 		Point p = new Point();
 		char c;
 
@@ -118,6 +118,9 @@ public class GameMapArea extends JPanel {
 				case '8':
 					this.add(new JLabel(stuned_ogre));
 					break;
+				case 'g':
+					this.add(new JLabel(stuned_ogre));
+					break;
 				default:
 					this.add(new JLabel(black_cell));
 					break;
@@ -133,7 +136,7 @@ public class GameMapArea extends JPanel {
 
 		repaint();
 		
-		insertContent();
+		paintComponent();
 		
 		revalidate();
 	}

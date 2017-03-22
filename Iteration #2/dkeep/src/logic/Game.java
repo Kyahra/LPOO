@@ -50,10 +50,10 @@ public class Game {
 	private int num_ogres;
 	private char guard;
 	
-	public Game(int num_ogres,char guard) {
+	public Game(int num_ogres,String guard2) {
 		state = GameState.RUNNING;
 
-		map = new DungeonMap(map_1, guard);
+		map = new DungeonMap(map_1, guard2);
 		this.num_ogres = num_ogres;
 		
 	
