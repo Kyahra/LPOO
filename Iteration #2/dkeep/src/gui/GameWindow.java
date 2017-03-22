@@ -37,7 +37,7 @@ public class GameWindow extends GamePanel{
 
 	private JFrame frmMazeGame;
 	private JTextField OgresTxtField;
-	private static Game g;
+	private static Game g = new Game(0, 'R');
 	private JLabel lblGameStatus;
 	private JButton btnRight;
 	private JButton btnUp;
@@ -106,10 +106,8 @@ public class GameWindow extends GamePanel{
 		});
 		btnExit.setBounds(401, 294, 66, 23);
 
-		
-		GameMap = new GameMapArea();
+		GameMap = new GameMapArea( 251, 228);
 		GameMap.setBounds(29, 90, 251, 228);
-		
 
 		JLabel label = new JLabel("");
 		label.setBounds(29, 368, 46, 14);
@@ -126,7 +124,7 @@ public class GameWindow extends GamePanel{
 				lblGameStatus.setText("Moved Up.");
 				g.setDirection("W");
 				g.update();
-				//GameTxtArea.setText(g.printMap());
+				// GameTxtArea.setText(g.printMap());
 				if (g.isOver())
 					EndGame();
 			}
@@ -136,15 +134,14 @@ public class GameWindow extends GamePanel{
 		btnDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lblGameStatus.setText("Moved Down.");
-				
+
 				g.setDirection("S");
 				g.update();
-				//GameTxtArea.setText(g.printMap());
-				
+				// GameTxtArea.setText(g.printMap());
+
 				if (g.isOver())
 					EndGame();
 
-				
 			}
 		});
 		btnDown.setBounds(391, 222, 83, 23);
@@ -154,15 +151,13 @@ public class GameWindow extends GamePanel{
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lblGameStatus.setText("Moved Left");
-				
+
 				g.setDirection("A");
 				g.update();
-				//GameTxtArea.setText(g.printMap());
-				
+				// GameTxtArea.setText(g.printMap());
 
 				if (g.isOver())
 					EndGame();
-				
 
 			}
 		});
@@ -178,12 +173,10 @@ public class GameWindow extends GamePanel{
 
 				g.setDirection("D");
 				g.update();
-				//GameTxtArea.setText(g.printMap());
-				
+				// GameTxtArea.setText(g.printMap());
 
 				if (g.isOver())
 					EndGame();
-		
 
 			}
 		});
@@ -222,12 +215,10 @@ public class GameWindow extends GamePanel{
 				default:
 					break;
 				}
-				
-				
 
 				g = new Game(ogres_number, guard_type);
 
-				//GameTxtArea.setText(g.printMap());
+				// GameTxtArea.setText(g.printMap());
 
 				btnsSetEnable(true);
 
@@ -280,24 +271,23 @@ public class GameWindow extends GamePanel{
 		default:
 			break;
 		}
-		
-	
+
 		btnsSetEnable(false);
-		
 
 	}
-	
-	public void btnsSetEnable(boolean value){
+
+	public void btnsSetEnable(boolean value) {
 		btnUp.setEnabled(value);
 		btnDown.setEnabled(value);
 		btnLeft.setEnabled(value);
 		btnRight.setEnabled(value);
-		
+
 	}
 
-
-	public static  GameMap getMap() {
+	public static GameMap getMap() {
 		return g.getMap();
+	}
+
 	}
 
 }
