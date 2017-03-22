@@ -1,33 +1,50 @@
 package gui;
 
 import java.awt.GridLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Image;
+
+
 
 import com.sun.prism.paint.Color;
 
 public class GameMapArea extends JPanel {
 
-	private ImageIcon grass;
+	private ImageIcon wall;
 	
-	public GameMapArea() {
+	public GameMapArea(int width, int height) {
 		super();
 		
-//		int rows = 	GameWindow.getMap().getRows();
-//		int cols = 	GameWindow.getMap().getCols();
-		
-	
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBackground(java.awt.Color.BLACK);
+		this.setSize(width, height);
 		this.setLayout(new GridLayout(10, 10));
-		this.setBackground(java.awt.Color.LIGHT_GRAY);
 		
-		grass = new ImageIcon(this.getClass().getResource("Resources/grass.png"));
+		wall = new ImageIcon(this.getClass().getResource("res/wall.png"));
+	
+		ImageIcon scaled_wall= scaleImage(wall);
 		
-		add(new JLabel(grass));
+			for (int i = 0; i < GameWindow.getMap().getRows(); i++)
+				
+				//for (int j = 0; j <GameWindow.getMap().getCols(); j++)
+					this.add(new JLabel(scaled_wall));
+			
+			repaint();	
 		
 		 }
+	
+	
+	private ImageIcon scaleImage(ImageIcon im) {
+		
+		Image img = im.getImage();
+		Image newimg = img.getScaledInstance(this.getWidth()/10,this.getHeight()/10, Image.SCALE_FAST);
+		
+		return new ImageIcon(newimg);
+	}
+	
+
+	
 
 }
