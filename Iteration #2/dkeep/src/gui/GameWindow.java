@@ -283,7 +283,8 @@ public class GameWindow {
 		
 	}
 
+
 	public static  GameMap getMap() {
 		return g.getMap();
-	}
+
 }
