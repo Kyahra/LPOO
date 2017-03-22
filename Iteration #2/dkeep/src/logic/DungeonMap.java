@@ -14,7 +14,7 @@ public class DungeonMap extends GameMap {
 
 	boolean next_map = false;
 
-	public DungeonMap(char[][] map, char g) {
+	public DungeonMap(char[][] map, String guard2) {
 		super(map);
 		Point hero_pos = super.searchChar('H');
 		Point guard_pos = super.searchChar('G');
@@ -23,14 +23,14 @@ public class DungeonMap extends GameMap {
 		hero = new Hero(hero_pos);
 		lever = new Character(lever_pos, 'k');
 
-		switch (g) {
-		case 'S':
+		switch (guard2) {
+		case "Suspicious":
 			guard = new Suspicious(guard_pos);
 			break;
-		case 'R':
+		case "Rookie":
 			guard = new Rookie(guard_pos);
 			break;
-		case 'D':
+		case "Druken":
 			guard = new Drunken(guard_pos);
 			break;
 

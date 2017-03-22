@@ -33,17 +33,18 @@ import logic.Game.GameState;
 import logic.GameMap;
 import java.awt.Panel;
 
-public class GameWindow extends GamePanel{
+public class GameWindow {
 
 	private JFrame frmMazeGame;
-	private JTextField OgresTxtField;
-	private static Game g = new Game(0, 'R');
+	private static Game g = new Game(0, "Rookie");
 	private JButton btnRight;
 	private JButton btnUp;
 	private JButton btnLeft;
 	private JButton btnDown;
 	private JTextArea GameTxtArea;
 	private GameMapArea GameMap;
+
+	private GamePanel gameP;
 
 	// Launch the application.
 
@@ -75,27 +76,6 @@ public class GameWindow extends GamePanel{
 		frmMazeGame.setBounds(100, 100, 587, 489);
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JLabel lblNewLabel = new JLabel("Number of Ogres");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(29, 23, 93, 18);
-
-		OgresTxtField = new JTextField();
-		OgresTxtField.setBounds(132, 21, 34, 20);
-		OgresTxtField.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		OgresTxtField.setColumns(10);
-
-		JLabel lblGuardPersonality = new JLabel("Guard Personality");
-		lblGuardPersonality.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGuardPersonality.setBounds(280, 24, 93, 17);
-
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(132, 52, 87, 20);
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboBox.setEditable(true);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { " Rookie", " Drunken", " Suspicious" }));
-		comboBox.setToolTipText("");
-		comboBox.setMaximumRowCount(3);
-
 		JButton btnExit = new JButton("Exit");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -103,16 +83,16 @@ public class GameWindow extends GamePanel{
 				System.exit(0);
 			}
 		});
-		btnExit.setBounds(419, 321, 66, 23);
+		btnExit.setBounds(496, 23, 66, 23);
 
 		GameMap = new GameMapArea( 251, 251);
-		GameMap.setBounds(29, 83, 314, 330);
+		GameMap.setBounds(115, 81, 368, 368);
 
 		JLabel label = new JLabel("");
 		label.setBounds(29, 368, 46, 14);
 
 		btnUp = new JButton("Up");
-		btnUp.setBounds(402, 171, 83, 23);
+		btnUp.setBounds(310, 11, 83, 23);
 		btnUp.setEnabled(false);
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -138,7 +118,7 @@ public class GameWindow extends GamePanel{
 
 			}
 		});
-		btnDown.setBounds(402, 239, 83, 23);
+		btnDown.setBounds(310, 45, 83, 23);
 		btnDown.setEnabled(false);
 
 		btnLeft = new JButton("Left");
@@ -155,11 +135,11 @@ public class GameWindow extends GamePanel{
 
 			}
 		});
-		btnLeft.setBounds(355, 205, 85, 23);
+		btnLeft.setBounds(215, 23, 85, 23);
 		btnLeft.setEnabled(false);
 
 		btnRight = new JButton("Right");
-		btnRight.setBounds(450, 205, 83, 23);
+		btnRight.setBounds(403, 23, 83, 23);
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -179,63 +159,60 @@ public class GameWindow extends GamePanel{
 		JButton btnNewButton = new JButton("New Game");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			String guard;
+			String ogres_number;
+				
+			Object[] g_options = {"Rookie",
+	                    "Druken",
+	                    "Suspicious"};
+			
+			 Object[] o_options = {"1",
+	                    "2",
+	                    "3",
+	                    "4",
+	                    "5"};
+			
+			guard = (String)JOptionPane.showInputDialog(
+					frmMazeGame,
+					"                Chose Guard's Personality.",
+					"",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    g_options,
+                    "Rookie");
+			
+			 ogres_number =(String)JOptionPane.showInputDialog(
+						frmMazeGame,
+						"             Chose the Number of Ogres",
+						"",
+	                    JOptionPane.PLAIN_MESSAGE,
+	                    null,
+	                    o_options,
+	                    "1");
 
-				int ogres_number = 1;
-				char guard_type = 'R';
-				int idx;
+				
 
-				try {
-					ogres_number = Integer.parseInt(OgresTxtField.getText());
-					if (ogres_number <= 0 || ogres_number > 5)
-						throw new NumberFormatException();
-
-				} catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(frmMazeGame, "Invalid Number of Ogres");
-					return;
-				}
-
-				idx = comboBox.getSelectedIndex();
-
-				switch (idx) {
-				case 0:
-					guard_type = 'R';
-					break;
-				case 1:
-					guard_type = 'S';
-					break;
-				case 2:
-					guard_type = 'D';
-					break;
-				default:
-					break;
-				}
-
-				g = new Game(ogres_number, guard_type);
+				g = new Game(Integer.parseInt(ogres_number), guard);
 
 				// GameTxtArea.setText(g.printMap());
 
 				btnsSetEnable(true);
+				
+				setGame();
+
 
 
 				GameMap.update();
 				
-				while(true){
-					
-					//keyPressed(e,g);
-					g.update();
-					if (g.isOver())
-						EndGame();
-				}
+			
+				
+
 				
 			}
 		});
-		btnNewButton.setBounds(391, 101, 101, 23);
+		btnNewButton.setBounds(76, 23, 101, 23);
 
 		frmMazeGame.getContentPane().setLayout(null);
-		frmMazeGame.getContentPane().add(lblNewLabel);
-		frmMazeGame.getContentPane().add(OgresTxtField);
-		frmMazeGame.getContentPane().add(lblGuardPersonality);
-		frmMazeGame.getContentPane().add(comboBox);
 		frmMazeGame.getContentPane().add(btnRight);
 		frmMazeGame.getContentPane().add(btnUp);
 		frmMazeGame.getContentPane().add(btnNewButton);
@@ -247,8 +224,15 @@ public class GameWindow extends GamePanel{
 
 	}
 
+	public void setGame() {
+/*
+		gameP.setEnabled(true);
+		gameP.setVisible(true);
+		gameP.setFocusable(true);
+		gameP.requestFocus();
+	//	gameP.setG(g);*/
 
-	
+	}
 
 	public void EndGame() {
 
@@ -279,5 +263,4 @@ public class GameWindow extends GamePanel{
 		return g.getMap();
 	}
 
-	}
-
+}

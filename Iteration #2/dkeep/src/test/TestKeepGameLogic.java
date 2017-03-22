@@ -33,7 +33,7 @@ public class TestKeepGameLogic {
 
 	@Test
 	public void heroIsCapturedByOgre() {
-		Game g = new Game(1,'R');
+		Game g = new Game(1,"Rookie");
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -50,7 +50,7 @@ public class TestKeepGameLogic {
 	
 	@Test
 	public void heroIsCapturedByClub() {
-		Game g = new Game(1,'R');
+		Game g = new Game(1,"Rookie");
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -70,7 +70,7 @@ public class TestKeepGameLogic {
 	
 	@Test
 	public void heroHoldingKey(){
-		Game g = new Game(1,'R');
+		Game g = new Game(1,"Rookie");
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		 
@@ -86,7 +86,7 @@ public class TestKeepGameLogic {
 	
 	@Test
 	public void heroMovesIntoClosedDoor() {
-		Game g = new Game(1,'R');
+		Game g = new Game(1,"Rookie");
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -103,7 +103,7 @@ public class TestKeepGameLogic {
 	
 	@Test
 	public void heroMovesIntoDoor() {
-		Game g = new Game(1,'R');
+		Game g = new Game(1,"Rookie");
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -137,7 +137,7 @@ public class TestKeepGameLogic {
 
 	@Test
 	public void heroWins() {
-		Game g = new Game(1,'R');
+		Game g = new Game(1,"Rookie");
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -176,7 +176,7 @@ public class TestKeepGameLogic {
 
 	@Test
 	public void heroPicksUpClub() {
-		Game g = new Game(1,'R');
+		Game g = new Game(1,"Rookie");
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
@@ -202,7 +202,7 @@ public class TestKeepGameLogic {
 	@Test
 	public void ogreGetsStuned() {
 		
-		Game g = new Game(1,'R');
+		Game g = new Game(1,"Rookie");
 		g.setMap(new KeepMap(map,1));
 		normalizePositions(g);
 		
