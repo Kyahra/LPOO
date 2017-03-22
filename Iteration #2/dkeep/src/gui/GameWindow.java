@@ -1,4 +1,3 @@
-
 package gui;
 
 import java.awt.EventQueue;
@@ -46,6 +45,8 @@ public class GameWindow {
 
 	private GamePanel gameP;
 
+	private int ogres_number;
+	private char guard_type;
 	// Launch the application.
 
 	public static void main(String[] args) {
@@ -190,11 +191,11 @@ public class GameWindow {
 	                    o_options,
 	                    "1");
 
-				
 
 				g = new Game(Integer.parseInt(ogres_number), guard);
 
-				// GameTxtArea.setText(g.printMap());
+
+				GameMap.update();
 
 				btnsSetEnable(true);
 				
@@ -224,13 +225,17 @@ public class GameWindow {
 
 	}
 
-	public void setGame() {
-/*
+
+
+	public void setGame(){
+
+		g = new Game(ogres_number, guard_type);	
+		gameP = new GamePanel(g);		
+
 		gameP.setEnabled(true);
-		gameP.setVisible(true);
 		gameP.setFocusable(true);
 		gameP.requestFocus();
-	//	gameP.setG(g);*/
+		gameP.setG(g);
 
 	}
 
@@ -263,4 +268,9 @@ public class GameWindow {
 		return g.getMap();
 	}
 
+
+
 }
+
+}
+
