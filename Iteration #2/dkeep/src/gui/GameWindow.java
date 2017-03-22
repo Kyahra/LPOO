@@ -277,5 +277,7 @@ public class GameWindow {
 		btnRight.setEnabled(value);
 		
 	}
+	
+	
 
 }
