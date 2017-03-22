@@ -27,9 +27,7 @@ import logic.Hero.HeroState;
 		int direction = rand.nextInt(4);
 		Point new_pos = new Point();
 		char c;
-		
-		
-		new_pos= super.getNewPosition(getPosition(), direction);
+	
 
 		if(stuned){
 			stun_counter++;
@@ -38,30 +36,33 @@ import logic.Hero.HeroState;
 				stuned = false;
 				return;
 			}
+			
+			return;
 		}
 		
-		c = map.getChar(new_pos);
+		do{
+			
+			direction = rand.nextInt(4);
+				
+			new_pos= super.getNewPosition(position, direction);
+			
+			
+			c = map.getChar(new_pos);
+			
+			if(new_pos.getX() == map.getKPos().getX() && new_pos.getY() == map.getKPos().getY()){
+				position= new_pos;
+				setChar('$');
+				return;
+				
+			}
+			
+			}while(!validPosition(c, 'O',this));
+			
+		position= new_pos;
+			
 		
-		this.c= 'O';
 		
-		switch (c) {
-		case 'X':
-			break;
-		case 'I':
-			break;
-		case ' ':
-			position = new_pos;
-			break;
-		case 'S':
-			break;
-		case 'k':
-			position = new_pos;
-			this.c = '$';	
-			break;
-		default:
-			break;
-		}
-		
+
 		
 	}
 	
@@ -77,28 +78,37 @@ import logic.Hero.HeroState;
 			
 		new_pos = super.getNewPosition(position, direction);
 		
+	
+		
 		c = map.getChar(new_pos);
 		
-		}while(!validPosition(c));
+
+		
+		if(new_pos.getX() == map.getKPos().getX() && new_pos.getY() == map.getKPos().getY()){
+			club.setPosition(new_pos);
+			club.setChar('$');
+			return;
+			
+		}
+		
+		
+		}while(!validPosition(c,'*',club));
 		
 		club.setPosition(new_pos);
 		
 	}
 	
-	public boolean validPosition(char c){
+	public boolean validPosition(char c, char normal, Character x){
 		switch (c) {
 		case 'X':
 			return false;
 		case 'I':
 			return false;
 		case ' ':
-			club.setChar('*');
+			x.setChar(normal);
 			return true;
 		case 'S':
 			return false;
-		case 'k':
-			club.setChar('$');
-			return true;
 		default:
 			break;
 		}

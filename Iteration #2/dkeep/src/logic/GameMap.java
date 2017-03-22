@@ -31,7 +31,6 @@ public abstract class GameMap {
 		
 		String printed_map ="";
 
-		//System.out.println();
 
 		for (int i = 0; i < rows; i++) {
 			printed_map += " ";
@@ -41,13 +40,8 @@ public abstract class GameMap {
 			}
 
 			printed_map += "\n";
-			//System.out.println();
 		}
 
-		// TENTAR COLOCAR ESTA PARTE NOUTRA FUNÇÂO
-
-//		System.out.println("\n Use the WASD keys to control the Hero.");
-//		System.out.print(" Your Move : ");
 
 		
 		return printed_map;
@@ -127,7 +121,8 @@ public abstract class GameMap {
 		return hero;
 	}
 
-	
+	public abstract Point getKPos();
+
 
 	
 }

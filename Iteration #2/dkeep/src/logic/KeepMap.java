@@ -20,6 +20,7 @@ public class KeepMap extends GameMap {
 		Point hero_pos = super.searchChar('H');
 		Point club_pos = super.searchChar('*');
 		Point key_pos = super.searchChar('k');
+	
 
 		hero = new Hero(hero_pos);
 		key = new Character(key_pos, 'k');
@@ -73,7 +74,6 @@ public class KeepMap extends GameMap {
 			drawCharacter(club);
 
 		for (Ogre ogre : ogres) {
-			
 			drawCharacter(ogre.getClub());
 			drawCharacter(ogre);
 		}
@@ -108,6 +108,12 @@ public class KeepMap extends GameMap {
 	public ArrayList<Ogre> getOgres(){
 		return ogres;
 	}
+
+	@Override
+	public Point getKPos() {
+		return new Point(8,1);
+	}
+	
 
 
 }

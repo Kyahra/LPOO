@@ -54,6 +54,10 @@ public class Game {
 		state = GameState.RUNNING;
 
 		map = new DungeonMap(map_1, guard);
+		this.num_ogres = num_ogres;
+		
+		map = new KeepMap(map_2,num_ogres);
+
 	}
 
 	public GameMap getMap() {
@@ -72,6 +76,7 @@ public class Game {
 
 
 	public String printMap() {
+
 		 return map.printMap();
 
 	}
@@ -154,6 +159,19 @@ public class Game {
 		return map.getHero();
 	}
 
+	public void update(){
+		
+		clean();
+		updateGame();
+		updateMap();
+		
+
+	
+	}
+	
+	public GameState getState(){
+		return state;
+	}
 	
 	
 
