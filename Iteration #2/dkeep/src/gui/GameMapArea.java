@@ -41,6 +41,7 @@ public class GameMapArea extends JPanel {
 	private void loadImages() {
 
 		wall = new ImageIcon(this.getClass().getResource("res/wall.png"));
+
 		guard = new ImageIcon(this.getClass().getResource("res/guard.png"));
 		black_cell = new ImageIcon(this.getClass().getResource("res/black.png"));
 		hero = new ImageIcon(this.getClass().getResource("res/hero.png"));

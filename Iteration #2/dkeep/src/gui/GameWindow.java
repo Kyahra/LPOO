@@ -33,7 +33,7 @@ import logic.Game.GameState;
 import logic.GameMap;
 import java.awt.Panel;
 
-public class GameWindow extends GamePanel{
+public class GameWindow {
 
 	private JFrame frmMazeGame;
 	private JTextField OgresTxtField;
@@ -45,6 +45,8 @@ public class GameWindow extends GamePanel{
 	private JButton btnDown;
 	private JTextArea GameTxtArea;
 	private GameMapArea GameMap;
+	
+	private GamePanel gameP;
 
 	// Launch the application.
 
@@ -220,18 +222,12 @@ public class GameWindow extends GamePanel{
 				// GameTxtArea.setText(g.printMap());
 
 				btnsSetEnable(true);
+				
+				setGame();
 
 				lblGameStatus.setText("You can play now.");
 				
-				GameMap.update();
-				
-				while(true){
-					
-					//keyPressed(e,g);
-					g.update();
-					if (g.isOver())
-						EndGame();
-				}
+
 				
 			}
 		});
@@ -255,7 +251,15 @@ public class GameWindow extends GamePanel{
 	}
 
 
+	public void setGame(){
+
+		gameP.setEnabled(true);
+		gameP.setVisible(true);
+		gameP.setFocusable(true);
+		gameP.requestFocus();
+		gameP.setG(g);
 	
+	}
 
 	public void EndGame() {
 
@@ -290,4 +294,5 @@ public class GameWindow extends GamePanel{
 	}
 
 	}
+
 
