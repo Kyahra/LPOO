@@ -75,7 +75,7 @@ public class GameWindow {
 		frmMazeGame = new JFrame();
 		frmMazeGame.setResizable(false);
 		frmMazeGame.setTitle("Maze Game");
-		frmMazeGame.setBounds(100, 100, 549, 394);
+		frmMazeGame.setBounds(100, 100, 587, 489);
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JLabel lblNewLabel = new JLabel("Number of Ogres");
@@ -106,27 +106,27 @@ public class GameWindow {
 				System.exit(0);
 			}
 		});
-		btnExit.setBounds(401, 294, 66, 23);
+		btnExit.setBounds(419, 321, 66, 23);
 
-		GameMap = new GameMapArea( 251, 228);
-		GameMap.setBounds(29, 90, 251, 228);
+		GameMap = new GameMapArea( 251, 251);
+		GameMap.setBounds(29, 83, 314, 330);
 
 		JLabel label = new JLabel("");
 		label.setBounds(29, 368, 46, 14);
 
 		lblGameStatus = new JLabel("You can start a new game.");
 		lblGameStatus.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGameStatus.setBounds(29, 329, 281, 14);
+		lblGameStatus.setBounds(42, 424, 281, 14);
 
 		btnUp = new JButton("Up");
-		btnUp.setBounds(391, 154, 83, 23);
+		btnUp.setBounds(402, 171, 83, 23);
 		btnUp.setEnabled(false);
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lblGameStatus.setText("Moved Up.");
 				g.setDirection("W");
 				g.update();
-				// GameTxtArea.setText(g.printMap());
+				GameMap.update();
 				if (g.isOver())
 					EndGame();
 			}
@@ -139,14 +139,13 @@ public class GameWindow {
 
 				g.setDirection("S");
 				g.update();
-				// GameTxtArea.setText(g.printMap());
-
+				GameMap.update();
 				if (g.isOver())
 					EndGame();
 
 			}
 		});
-		btnDown.setBounds(391, 222, 83, 23);
+		btnDown.setBounds(402, 239, 83, 23);
 		btnDown.setEnabled(false);
 
 		btnLeft = new JButton("Left");
@@ -156,18 +155,18 @@ public class GameWindow {
 
 				g.setDirection("A");
 				g.update();
-				// GameTxtArea.setText(g.printMap());
+				GameMap.update();
 
 				if (g.isOver())
 					EndGame();
 
 			}
 		});
-		btnLeft.setBounds(343, 188, 85, 23);
+		btnLeft.setBounds(355, 205, 85, 23);
 		btnLeft.setEnabled(false);
 
 		btnRight = new JButton("Right");
-		btnRight.setBounds(441, 188, 83, 23);
+		btnRight.setBounds(450, 205, 83, 23);
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -175,7 +174,7 @@ public class GameWindow {
 
 				g.setDirection("D");
 				g.update();
-				// GameTxtArea.setText(g.printMap());
+				GameMap.update();
 
 				if (g.isOver())
 					EndGame();
@@ -228,11 +227,11 @@ public class GameWindow {
 
 				lblGameStatus.setText("You can play now.");
 				
-				
+
 				
 			}
 		});
-		btnNewButton.setBounds(381, 90, 101, 23);
+		btnNewButton.setBounds(391, 101, 101, 23);
 
 		frmMazeGame.getContentPane().setLayout(null);
 		frmMazeGame.getContentPane().add(lblNewLabel);
