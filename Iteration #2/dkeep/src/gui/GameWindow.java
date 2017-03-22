@@ -235,12 +235,12 @@ public class GameWindow extends GamePanel{
 				
 				while(true){
 					
-					keyPressed(e,g);
+					//keyPressed(e,g);
 					g.update();
 					if (g.isOver())
 						EndGame();
 				}
-
+				
 			}
 		});
 		btnNewButton.setBounds(381, 90, 101, 23);
@@ -265,33 +265,6 @@ public class GameWindow extends GamePanel{
 
 	
 
-	public void keyPressed(KeyEvent e) {
-		
-			int key = e.getKeyCode();
-			
-			switch( key ) { 
-			case KeyEvent.VK_UP:
-				g.setDirection("W");
-
-				break;
-			case KeyEvent.VK_DOWN:
-				g.setDirection("S");
-
-				break;
-			case KeyEvent.VK_LEFT:
-				g.setDirection("A");
-
-				break;
-			case KeyEvent.VK_RIGHT :
-				g.setDirection("D");
-
-				break;
-			}
-	} 
-
-
-	
-	
 	public void EndGame() {
 
 		GameState state = g.getState();
