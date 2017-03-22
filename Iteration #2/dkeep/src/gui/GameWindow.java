@@ -38,7 +38,6 @@ public class GameWindow extends GamePanel{
 	private JFrame frmMazeGame;
 	private JTextField OgresTxtField;
 	private static Game g = new Game(0, 'R');
-	private JLabel lblGameStatus;
 	private JButton btnRight;
 	private JButton btnUp;
 	private JButton btnLeft;
@@ -87,7 +86,7 @@ public class GameWindow extends GamePanel{
 
 		JLabel lblGuardPersonality = new JLabel("Guard Personality");
 		lblGuardPersonality.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGuardPersonality.setBounds(29, 55, 93, 17);
+		lblGuardPersonality.setBounds(280, 24, 93, 17);
 
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(132, 52, 87, 20);
@@ -112,16 +111,12 @@ public class GameWindow extends GamePanel{
 		JLabel label = new JLabel("");
 		label.setBounds(29, 368, 46, 14);
 
-		lblGameStatus = new JLabel("You can start a new game.");
-		lblGameStatus.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGameStatus.setBounds(42, 424, 281, 14);
-
 		btnUp = new JButton("Up");
 		btnUp.setBounds(402, 171, 83, 23);
 		btnUp.setEnabled(false);
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lblGameStatus.setText("Moved Up.");
+			
 				g.setDirection("W");
 				g.update();
 				GameMap.update();
@@ -133,7 +128,7 @@ public class GameWindow extends GamePanel{
 		btnDown = new JButton("Down");
 		btnDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblGameStatus.setText("Moved Down.");
+			
 
 				g.setDirection("S");
 				g.update();
@@ -149,7 +144,7 @@ public class GameWindow extends GamePanel{
 		btnLeft = new JButton("Left");
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblGameStatus.setText("Moved Left");
+				
 
 				g.setDirection("A");
 				g.update();
@@ -168,7 +163,7 @@ public class GameWindow extends GamePanel{
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				lblGameStatus.setText("Moved Right");
+		
 
 				g.setDirection("D");
 				g.update();
@@ -221,8 +216,7 @@ public class GameWindow extends GamePanel{
 
 				btnsSetEnable(true);
 
-				lblGameStatus.setText("You can play now.");
-				
+
 				GameMap.update();
 				
 				while(true){
@@ -249,7 +243,6 @@ public class GameWindow extends GamePanel{
 		frmMazeGame.getContentPane().add(btnExit);
 		frmMazeGame.getContentPane().add(btnLeft);
 		frmMazeGame.getContentPane().add(label);
-		frmMazeGame.getContentPane().add(lblGameStatus);
 		frmMazeGame.getContentPane().add(GameMap);
 
 	}
@@ -264,11 +257,8 @@ public class GameWindow extends GamePanel{
 
 		switch (state) {
 		case LOST:
-			lblGameStatus.setText("DEFEAT.");
 			break;
 		case WON:
-			lblGameStatus.setText("VICTORY.");
-
 		default:
 			break;
 		}

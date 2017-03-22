@@ -70,7 +70,7 @@ public class GameMapArea extends JPanel {
 		return new ImageIcon(newimg);
 	}
 
-	public void insertContent() {
+	public void paintComponent () {
 		Point p = new Point();
 		char c;
 
@@ -132,7 +132,7 @@ public class GameMapArea extends JPanel {
 
 		repaint();
 		
-		insertContent();
+		paintComponent();
 		
 		revalidate();
 	}
