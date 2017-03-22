@@ -28,7 +28,7 @@ public class GameMapArea extends JPanel {
 		
 			for (int i = 0; i < GameWindow.getMap().getRows(); i++)
 				
-				//for (int j = 0; j <GameWindow.getMap().getCols(); j++)
+				for (int j = 0; j <GameWindow.getMap().getCols(); j++)
 					this.add(new JLabel(scaled_wall));
 			
 			repaint();	
