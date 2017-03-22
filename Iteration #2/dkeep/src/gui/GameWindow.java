@@ -19,26 +19,32 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
+import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 import logic.Game;
 import logic.Game.GameState;
+import logic.GameMap;
+import java.awt.Panel;
 
-public class GameWindow {
+public class GameWindow extends GamePanel{
 
 	private JFrame frmMazeGame;
 	private JTextField OgresTxtField;
-	private Game g;
+	private static Game g;
 	private JLabel lblGameStatus;
 	private JButton btnRight;
 	private JButton btnUp;
 	private JButton btnLeft;
 	private JButton btnDown;
 	private JTextArea GameTxtArea;
+	private GameMapArea GameMap;
 
 	// Launch the application.
 
@@ -100,10 +106,10 @@ public class GameWindow {
 		});
 		btnExit.setBounds(401, 294, 66, 23);
 
-		GameTxtArea = new JTextArea();
-		GameTxtArea.setEditable(false);
-		GameTxtArea.setBounds(29, 90, 251, 228);
-		GameTxtArea.setFont(new Font("Courier New", Font.PLAIN, 20));
+		
+		GameMap = new GameMapArea();
+		GameMap.setBounds(29, 90, 251, 228);
+		
 
 		JLabel label = new JLabel("");
 		label.setBounds(29, 368, 46, 14);
@@ -120,7 +126,7 @@ public class GameWindow {
 				lblGameStatus.setText("Moved Up.");
 				g.setDirection("W");
 				g.update();
-				GameTxtArea.setText(g.printMap());
+				//GameTxtArea.setText(g.printMap());
 				if (g.isOver())
 					EndGame();
 			}
@@ -133,7 +139,7 @@ public class GameWindow {
 				
 				g.setDirection("S");
 				g.update();
-				GameTxtArea.setText(g.printMap());
+				//GameTxtArea.setText(g.printMap());
 				
 				if (g.isOver())
 					EndGame();
@@ -151,7 +157,7 @@ public class GameWindow {
 				
 				g.setDirection("A");
 				g.update();
-				GameTxtArea.setText(g.printMap());
+				//GameTxtArea.setText(g.printMap());
 				
 
 				if (g.isOver())
@@ -172,7 +178,7 @@ public class GameWindow {
 
 				g.setDirection("D");
 				g.update();
-				GameTxtArea.setText(g.printMap());
+				//GameTxtArea.setText(g.printMap());
 				
 
 				if (g.isOver())
@@ -221,11 +227,19 @@ public class GameWindow {
 
 				g = new Game(ogres_number, guard_type);
 
-				GameTxtArea.setText(g.printMap());
+				//GameTxtArea.setText(g.printMap());
 
 				btnsSetEnable(true);
 
 				lblGameStatus.setText("You can play now.");
+				
+				while(true){
+					
+					keyPressed(e,g);
+					g.update();
+					if (g.isOver())
+						EndGame();
+				}
 
 			}
 		});
@@ -236,7 +250,6 @@ public class GameWindow {
 		frmMazeGame.getContentPane().add(OgresTxtField);
 		frmMazeGame.getContentPane().add(lblGuardPersonality);
 		frmMazeGame.getContentPane().add(comboBox);
-		frmMazeGame.getContentPane().add(GameTxtArea);
 		frmMazeGame.getContentPane().add(btnRight);
 		frmMazeGame.getContentPane().add(btnUp);
 		frmMazeGame.getContentPane().add(btnNewButton);
@@ -245,9 +258,40 @@ public class GameWindow {
 		frmMazeGame.getContentPane().add(btnLeft);
 		frmMazeGame.getContentPane().add(label);
 		frmMazeGame.getContentPane().add(lblGameStatus);
+		frmMazeGame.getContentPane().add(GameMap);
 
 	}
 
+
+	
+
+	public void keyPressed(KeyEvent e) {
+		
+			int key = e.getKeyCode();
+			
+			switch( key ) { 
+			case KeyEvent.VK_UP:
+				g.setDirection("W");
+
+				break;
+			case KeyEvent.VK_DOWN:
+				g.setDirection("S");
+
+				break;
+			case KeyEvent.VK_LEFT:
+				g.setDirection("A");
+
+				break;
+			case KeyEvent.VK_RIGHT :
+				g.setDirection("D");
+
+				break;
+			}
+	} 
+
+
+	
+	
 	public void EndGame() {
 
 		GameState state = g.getState();
@@ -277,7 +321,10 @@ public class GameWindow {
 		btnRight.setEnabled(value);
 		
 	}
-	
-	
+
+
+	public static  GameMap getMap() {
+		return g.getMap();
+	}
 
 }

@@ -56,7 +56,7 @@ public class Game {
 		map = new DungeonMap(map_1, guard);
 		this.num_ogres = num_ogres;
 		
-		map = new KeepMap(map_2,num_ogres);
+	
 
 	}
 
