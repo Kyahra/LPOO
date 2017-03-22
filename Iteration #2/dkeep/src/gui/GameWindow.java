@@ -24,6 +24,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -231,6 +232,14 @@ public class GameWindow {
 				btnsSetEnable(true);
 
 				lblGameStatus.setText("You can play now.");
+				
+				while(true){
+					
+					//keyPressed(e,g);
+					g.update();
+					if (g.isOver())
+						EndGame();
+				}
 
 			}
 		});
@@ -253,6 +262,36 @@ public class GameWindow {
 
 	}
 
+
+	
+
+	public void keyPressed(KeyEvent e) {
+		
+			int key = e.getKeyCode();
+			
+			switch( key ) { 
+			case KeyEvent.VK_UP:
+				g.setDirection("W");
+
+				break;
+			case KeyEvent.VK_DOWN:
+				g.setDirection("S");
+
+				break;
+			case KeyEvent.VK_LEFT:
+				g.setDirection("A");
+
+				break;
+			case KeyEvent.VK_RIGHT :
+				g.setDirection("D");
+
+				break;
+			}
+	} 
+
+
+	
+	
 	public void EndGame() {
 
 		GameState state = g.getState();
@@ -286,5 +325,6 @@ public class GameWindow {
 
 	public static  GameMap getMap() {
 		return g.getMap();
+	}
 
 }
