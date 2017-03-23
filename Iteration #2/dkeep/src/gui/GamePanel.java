@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
 
 import com.sun.prism.paint.Color;
 
-public class GameMapArea extends JPanel implements KeyListener{
+public class GamePanel extends JPanel implements KeyListener{
 
 	private ImageIcon wall;
 	private ImageIcon guard;
@@ -28,24 +28,20 @@ public class GameMapArea extends JPanel implements KeyListener{
 	private ImageIcon end;
 	
 	
-	public GameMapArea(int width, int height) {
+	public GamePanel(int width, int height) {
 		super();
 
-		this.setBorder(new EmptyBorder(4, 4, 4, 4));
+		//this.setBorder(new EmptyBorder(4, 4, 4, 4));
 
 		setBackground(java.awt.Color.BLACK);
 		this.setSize(width, height);
 		this.setLayout(new GridLayout(10, 10));
+		this.setVisible(true);
 
 		loadImages();
 		
-		
 		addKeyListener(this);
 		
-		//requestFocus();
-
-
-
 	}
 
 	private void loadImages() {

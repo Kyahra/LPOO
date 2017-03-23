@@ -53,7 +53,7 @@ public class GameWindow {
 	private static JButton btnLeft;
 	private static JButton btnDown;
 	private JTextArea GameTxtArea;
-	private GameMapArea GameMap;
+	private GamePanel Map;
 
 	private ImageIcon background;
 	private JPanel menuImage;
@@ -88,7 +88,7 @@ public class GameWindow {
 		frmMazeGame = new JFrame();
 		frmMazeGame.setResizable(false);
 		frmMazeGame.setTitle("Maze Game");
-		frmMazeGame.setBounds(100, 100, 587, 489);
+		frmMazeGame.setBounds(100, 100, 546, 566);
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		background = new ImageIcon(this.getClass().getResource("res/keep.png"));
@@ -97,95 +97,102 @@ public class GameWindow {
 
 		menuImage = new JPanel();
 		menuImage.setBackground(Color.BLACK);
-		menuImage.setBounds(122, 81, 368, 368);
+		menuImage.setBounds(0, 0, 540, 540);
 		menuImage.setForeground(Color.BLACK);
 
-		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				System.exit(0);
-			}
-		});
-		btnExit.setBounds(496, 23, 66, 23);
-
-		GameMap = new GameMapArea(251, 251);
-		GameMap.setBounds(115, 81, 368, 368);
-
-		JButton btnNewButton = new JButton("New Game");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String guard;
-				String ogres_number;
-
-				GameMap = new GameMapArea(251, 251);
-				GameMap.setBounds(115, 81, 368, 368);
-
-				frmMazeGame.getContentPane().add(GameMap);
-
-				Object[] g_options = { "Rookie", "Druken", "Suspicious" };
-
-				Object[] o_options = { "1", "2", "3", "4", "5" };
-
-				guard = (String) JOptionPane.showInputDialog(frmMazeGame, "                Chose Guard's Personality.",
-						"", JOptionPane.PLAIN_MESSAGE, null, g_options, "Rookie");
-
-				ogres_number = (String) JOptionPane.showInputDialog(frmMazeGame,
-						"             Chose the Number of Ogres", "", JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
-
-				g = new Game(Integer.parseInt(ogres_number), guard);
-
-				GameMap.update();
-
-				GameMap.update();
-				GameMap.requestFocus();
-
-			}
-		});
-		btnNewButton.setBounds(76, 23, 101, 23);
-
-		JButton btnCustomMap = new JButton("Custom Map");
-		btnCustomMap.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				String cols_str;
-				String rows_str;
-
-				Object[] options = { "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
-						"19", "20" };
-
-				cols_str = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
-						JOptionPane.PLAIN_MESSAGE, null, options, "5");
-
-				rows_str = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
-						JOptionPane.PLAIN_MESSAGE, null, options, "5");
-
-			}
-		});
-
-		btnCustomMap.setBounds(248, 23, 124, 23);
-		frmMazeGame.getContentPane().add(btnCustomMap);
+		Map= new GamePanel(545, 545);
+		
+		Map.setBounds(0, 0, 545, 545);
 
 		frmMazeGame.getContentPane().setLayout(null);
-		frmMazeGame.getContentPane().add(btnNewButton);
-		frmMazeGame.getContentPane().add(btnExit);
 		frmMazeGame.getContentPane().add(menuImage);
+		
+				JButton btnCustomMap = new JButton("Custom Map");
+				btnCustomMap.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
 
-		JLabel label = new JLabel(new ImageIcon(newimg));
-		label.setBounds(new Rectangle(400, 400, 251, 251));
-		label.setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
-		label.setMaximumSize(new Dimension(400, 400));
-		label.setFocusTraversalPolicyProvider(true);
-		label.setDoubleBuffered(true);
-		label.setFocusCycleRoot(true);
-		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+						String cols_str;
+						String rows_str;
+
+						Object[] options = { "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
+								"19", "20" };
+
+						cols_str = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
+								JOptionPane.PLAIN_MESSAGE, null, options, "5");
+
+						rows_str = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
+								JOptionPane.PLAIN_MESSAGE, null, options, "5");
+
+					}
+				});
+		
+				JButton btnExit = new JButton("Exit");
+				btnExit.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+
+						System.exit(0);
+					}
+				});
+		
+				JButton btnNewButton = new JButton("New Game");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String guard;
+						String ogres_number;
+
+						Map = new GamePanel(540, 540);
+						Map.setBounds(0, 0, 540, 540);
+
+						frmMazeGame.getContentPane().add(Map);
+
+						Object[] g_options = { "Rookie", "Druken", "Suspicious" };
+
+						Object[] o_options = { "1", "2", "3", "4", "5" };
+
+						guard = (String) JOptionPane.showInputDialog(frmMazeGame, "                Chose Guard's Personality.",
+								"", JOptionPane.PLAIN_MESSAGE, null, g_options, "Rookie");
+
+						ogres_number = (String) JOptionPane.showInputDialog(frmMazeGame,
+								"             Chose the Number of Ogres", "", JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
+
+						g = new Game(Integer.parseInt(ogres_number), guard);
+
+						Map.update();
+						
+						btnNewButton.setVisible(false);
+						btnExit.setVisible(false);
+						btnCustomMap.setVisible(false);
+						
+						Map.update();
+						Map.revalidate();
+						Map.requestFocus();
+						
+					}
+				});
+				
+				
 		GroupLayout gl_menuImage = new GroupLayout(menuImage);
-		gl_menuImage.setHorizontalGroup(gl_menuImage.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_menuImage.createSequentialGroup().addContainerGap()
-						.addComponent(label, GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE).addContainerGap()));
-		gl_menuImage.setVerticalGroup(gl_menuImage.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
-				gl_menuImage.createSequentialGroup().addContainerGap()
-						.addComponent(label, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE).addContainerGap()));
+		gl_menuImage.setHorizontalGroup(
+			gl_menuImage.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_menuImage.createSequentialGroup()
+					.addGap(56)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addGap(40)
+					.addComponent(btnCustomMap, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+					.addGap(64)
+					.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(103, Short.MAX_VALUE))
+		);
+		gl_menuImage.setVerticalGroup(
+			gl_menuImage.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_menuImage.createSequentialGroup()
+					.addContainerGap(473, Short.MAX_VALUE)
+					.addGroup(gl_menuImage.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton)
+						.addComponent(btnCustomMap)
+						.addComponent(btnExit))
+					.addGap(33))
+		);
 		menuImage.setLayout(gl_menuImage);
 
 	}
@@ -212,5 +219,4 @@ public class GameWindow {
 	public static Game getGame() {
 		return g;
 	}
-
 }
