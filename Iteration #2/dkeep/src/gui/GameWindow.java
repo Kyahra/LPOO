@@ -38,10 +38,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Cursor;
 import java.awt.Rectangle;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.FlowLayout;
 
 import java.awt.event.ActionListener;
@@ -117,83 +113,10 @@ public class GameWindow{
 		});
 		btnExit.setBounds(496, 23, 66, 23);
 
-<<<<<<< HEAD
-=======
+
 		GameMap = new GameMapArea( 251, 251);
 		GameMap.setBounds(115, 81, 368, 368);
 	
-	
-
-		JLabel label = new JLabel("");
-		label.setBounds(29, 368, 46, 14);
->>>>>>> origin/master
-
-		
-		
-		btnUp = new JButton("Up");
-		btnUp.setBounds(310, 11, 83, 23);
-		btnUp.setEnabled(false);
-		btnUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			
-				g.setDirection("W");
-				g.update();
-				GameMap.update();
-				if (g.isOver())
-					EndGame();
-			}
-		});
-
-		btnDown = new JButton("Down");
-		btnDown.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-
-				g.setDirection("S");
-				g.update();
-				GameMap.update();
-				if (g.isOver())
-					EndGame();
-
-			}
-		});
-		btnDown.setBounds(310, 45, 83, 23);
-		btnDown.setEnabled(false);
-
-		btnLeft = new JButton("Left");
-		btnLeft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-
-				g.setDirection("A");
-				g.update();
-				GameMap.update();
-
-				if (g.isOver())
-					EndGame();
-
-			}
-		});
-		btnLeft.setBounds(215, 23, 85, 23);
-		btnLeft.setEnabled(false);
-
-		btnRight = new JButton("Right");
-		btnRight.setBounds(403, 23, 83, 23);
-		btnRight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-		
-
-				g.setDirection("D");
-				g.update();
-				GameMap.update();
-
-				if (g.isOver())
-					EndGame();
-
-			}
-		});
-		btnRight.setEnabled(false);
 
 		JButton btnNewButton = new JButton("New Game");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -240,14 +163,7 @@ public class GameWindow{
 				
 				GameMap.update();
 
-				btnsSetEnable(true);
-				
-<<<<<<< HEAD
-				setGame();
-=======
-				//setGame();
 
->>>>>>> origin/master
 
 				GameMap.update();
 				GameMap.requestFocus();
@@ -257,12 +173,11 @@ public class GameWindow{
 		btnNewButton.setBounds(76, 23, 101, 23);
 
 		frmMazeGame.getContentPane().setLayout(null);
-		frmMazeGame.getContentPane().add(btnRight);
-		frmMazeGame.getContentPane().add(btnUp);
+		
 		frmMazeGame.getContentPane().add(btnNewButton);
-		frmMazeGame.getContentPane().add(btnDown);
-		frmMazeGame.getContentPane().add(btnExit);
-		frmMazeGame.getContentPane().add(btnLeft);
+	
+	frmMazeGame.getContentPane().add(btnExit);
+	
 		frmMazeGame.getContentPane().add(menuImage);
 		
 		
@@ -291,8 +206,7 @@ public class GameWindow{
 		);
 		menuImage.setLayout(gl_menuImage);
 				
-		//GameMap.paintEnd();
-
+		
 	}
 
 
@@ -309,46 +223,23 @@ public class GameWindow{
 			break;
 		}
 
-		//GameMap.paintEnd();
 		
-		btnsSetEnable(false);
-		
-
-	}
-
-	public static void btnsSetEnable(boolean value) {
-		btnUp.setEnabled(value);
-		btnDown.setEnabled(value);
-		btnLeft.setEnabled(value);
-		btnRight.setEnabled(value);
-
-	}
 	
-	private void playGameRound(String direction){
+		
 
-		g.setDirection(direction);
-		g.update();
-		GameMap.update();
-		if (g.isOver())
-			EndGame();
-			
 	}
+
+	
 
 	public static GameMap getMap() {
 		return g.getMap();
 	}
-<<<<<<< HEAD
-=======
-	
+
 	public static Game getGame() {
 		return g;
 	}
 
-	
 
-
-
->>>>>>> origin/master
 }
 
 
