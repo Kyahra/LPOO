@@ -214,7 +214,7 @@ public class GameWindow {
 		frmMazeGame.getContentPane().add(btnExit);
 		frmMazeGame.getContentPane().add(btnLeft);
 		frmMazeGame.getContentPane().add(GameMap);
-		
+				
 		GameMap.paintEnd();
 
 	}
