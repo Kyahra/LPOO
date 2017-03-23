@@ -54,13 +54,12 @@ public class GameMapArea extends JPanel implements KeyListener{
 
 		guard = new ImageIcon(this.getClass().getResource("res/guard.png"));
 		black_cell = new ImageIcon(this.getClass().getResource("res/black.png"));
-		hero = new ImageIcon(this.getClass().getResource("res/heroWing.png"));
+		hero = new ImageIcon(this.getClass().getResource("res/hero.png"));
 		key = new ImageIcon(this.getClass().getResource("res/key.png"));
 		door = new ImageIcon(this.getClass().getResource("res/door.png"));
 		ogre = new ImageIcon(this.getClass().getResource("res/ogre.png"));
 		club = new ImageIcon(this.getClass().getResource("res/club.png"));
 		stuned_ogre = new ImageIcon(this.getClass().getResource("res/stuned_ogre.png"));
-		armed_hero = new ImageIcon(this.getClass().getResource("res/heroSuperWing.png"));
 		end = new ImageIcon(this.getClass().getResource("res/end.png"));
 
 		wall = scaleImage(wall);
@@ -72,8 +71,7 @@ public class GameMapArea extends JPanel implements KeyListener{
 		ogre = scaleImage(ogre);
 		club = scaleImage(club);
 		stuned_ogre= scaleImage(stuned_ogre);
-		armed_hero = scaleImage(armed_hero);
-		//end = scaleEnd(end);
+	
 
 	}
 
@@ -132,7 +130,7 @@ public class GameMapArea extends JPanel implements KeyListener{
 					this.add(new JLabel(club));
 					break;
 				case 'A':
-					this.add(new JLabel(armed_hero));
+					this.add(new JLabel(hero));
 					break;
 				case 'K':
 					this.add(new JLabel(hero));
