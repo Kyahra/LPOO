@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -33,14 +34,18 @@ import logic.Game.GameState;
 import logic.GameMap;
 import java.awt.Panel;
 
-public class GameWindow {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+
+public class GameWindow{
 
 	private JFrame frmMazeGame;
 	private static Game g = new Game(0, "Rookie");
-	private JButton btnRight;
-	private JButton btnUp;
-	private JButton btnLeft;
-	private JButton btnDown;
+	private static JButton btnRight;
+	private static JButton btnUp;
+	private static JButton btnLeft;
+	private static JButton btnDown;
 	private JTextArea GameTxtArea;
 	private GameMapArea GameMap;
 
@@ -70,6 +75,7 @@ public class GameWindow {
 	// Initialize the contents of the frame.
 
 	private void initialize() {
+		
 		frmMazeGame = new JFrame();
 		frmMazeGame.setResizable(false);
 		frmMazeGame.setTitle("Maze Game");
@@ -87,6 +93,8 @@ public class GameWindow {
 
 		GameMap = new GameMapArea( 251, 251);
 		GameMap.setBounds(115, 81, 368, 368);
+	
+	
 
 		JLabel label = new JLabel("");
 		label.setBounds(29, 368, 46, 14);
@@ -198,11 +206,11 @@ public class GameWindow {
 
 				btnsSetEnable(true);
 				
-				setGame();
-
+				//setGame();
 
 
 				GameMap.update();
+				GameMap.requestFocus();
 				
 			
 				
@@ -224,17 +232,17 @@ public class GameWindow {
 
 	}
 
-	public void setGame() {
-/*
-		gameP.setEnabled(true);
-		gameP.setVisible(true);
-		gameP.setFocusable(true);
-		gameP.requestFocus();
-	//	gameP.setG(g);*/
+//	public void setGame() {
+///*
+//		gameP.setEnabled(true);
+//		gameP.setVisible(true);
+//		gameP.setFocusable(true);
+//		gameP.requestFocus();
+//	//	gameP.setG(g);*/
+//
+//	}
 
-	}
-
-	public void EndGame() {
+	public static void EndGame() {
 
 		GameState state = g.getState();
 		g.printMap();
@@ -251,16 +259,32 @@ public class GameWindow {
 
 	}
 
-	public void btnsSetEnable(boolean value) {
+	public static void btnsSetEnable(boolean value) {
 		btnUp.setEnabled(value);
 		btnDown.setEnabled(value);
 		btnLeft.setEnabled(value);
 		btnRight.setEnabled(value);
 
 	}
+	
+	private void playGameRound(String direction){
+
+		g.setDirection(direction);
+		g.update();
+		GameMap.update();
+		if (g.isOver())
+			EndGame();
+			
+	}
 
 	public static GameMap getMap() {
 		return g.getMap();
 	}
+	
+	public static Game getGame() {
+		return g;
+	}
+
+	
 
 }
