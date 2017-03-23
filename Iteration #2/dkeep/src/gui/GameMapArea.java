@@ -7,10 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 
 import com.sun.prism.paint.Color;
 
-public class GameMapArea extends JPanel {
+public class GameMapArea extends JPanel implements KeyListener{
 
 	private ImageIcon wall;
 	private ImageIcon guard;
@@ -21,6 +24,8 @@ public class GameMapArea extends JPanel {
 	private ImageIcon ogre;
 	private ImageIcon club;
 	private ImageIcon stuned_ogre;
+	private ImageIcon armed_hero;
+	private ImageIcon end;
 	
 	
 	public GameMapArea(int width, int height) {
@@ -33,6 +38,11 @@ public class GameMapArea extends JPanel {
 		this.setLayout(new GridLayout(10, 10));
 
 		loadImages();
+		
+		
+		addKeyListener(this);
+		
+		//requestFocus();
 
 
 
@@ -44,12 +54,14 @@ public class GameMapArea extends JPanel {
 
 		guard = new ImageIcon(this.getClass().getResource("res/guard.png"));
 		black_cell = new ImageIcon(this.getClass().getResource("res/black.png"));
-		hero = new ImageIcon(this.getClass().getResource("res/hero.png"));
+		hero = new ImageIcon(this.getClass().getResource("res/heroWing.png"));
 		key = new ImageIcon(this.getClass().getResource("res/key.png"));
 		door = new ImageIcon(this.getClass().getResource("res/door.png"));
 		ogre = new ImageIcon(this.getClass().getResource("res/ogre.png"));
 		club = new ImageIcon(this.getClass().getResource("res/club.png"));
 		stuned_ogre = new ImageIcon(this.getClass().getResource("res/stuned_ogre.png"));
+		armed_hero = new ImageIcon(this.getClass().getResource("res/heroSuperWing.png"));
+		end = new ImageIcon(this.getClass().getResource("res/end.png"));
 
 		wall = scaleImage(wall);
 		guard = scaleImage(guard);
@@ -60,6 +72,8 @@ public class GameMapArea extends JPanel {
 		ogre = scaleImage(ogre);
 		club = scaleImage(club);
 		stuned_ogre= scaleImage(stuned_ogre);
+		armed_hero = scaleImage(armed_hero);
+		//end = scaleEnd(end);
 
 	}
 
@@ -71,6 +85,14 @@ public class GameMapArea extends JPanel {
 		return new ImageIcon(newimg);
 	}
 
+	private ImageIcon scaleEnd(ImageIcon im) {
+
+		Image img = im.getImage();
+		Image newimg = img.getScaledInstance(this.getWidth() / 2, this.getHeight() * 2, Image.SCALE_FAST);
+
+		return new ImageIcon(newimg);
+	}
+	
 	public void paintComponent () {
 		Point p = new Point();
 		char c;
@@ -110,7 +132,7 @@ public class GameMapArea extends JPanel {
 					this.add(new JLabel(club));
 					break;
 				case 'A':
-					this.add(new JLabel(hero));
+					this.add(new JLabel(armed_hero));
 					break;
 				case 'K':
 					this.add(new JLabel(hero));
@@ -131,6 +153,11 @@ public class GameMapArea extends JPanel {
 
 	}
 	
+	public void paintEnd(){
+		
+		this.add(new JLabel(end));
+	}
+	
 	public void update(){
 		removeAll();
 
@@ -140,5 +167,51 @@ public class GameMapArea extends JPanel {
 		
 		revalidate();
 	}
+	
+	private void playGameRound(String direction){
+
+		GameWindow.getGame().setDirection(direction);
+		GameWindow.getGame().update();
+		update();
+		
+		if (GameWindow.getGame().isOver())
+			GameWindow.EndGame();
+			
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+		
+		switch(e.getKeyCode()){
+		case KeyEvent.VK_LEFT: 
+			playGameRound("A");  
+			break;
+		case KeyEvent.VK_RIGHT:
+			playGameRound("D");  
+			break;
+		case KeyEvent.VK_UP: 
+			playGameRound("W");   
+			break;
+		case KeyEvent.VK_DOWN: 
+			playGameRound("S");  
+			break;
+		 }	
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }
