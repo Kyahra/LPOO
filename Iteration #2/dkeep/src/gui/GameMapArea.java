@@ -7,10 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 
 import com.sun.prism.paint.Color;
 
-public class GameMapArea extends JPanel {
+public class GameMapArea extends JPanel implements KeyListener{
 
 	private ImageIcon wall;
 	private ImageIcon guard;
@@ -33,6 +36,11 @@ public class GameMapArea extends JPanel {
 		this.setLayout(new GridLayout(10, 10));
 
 		loadImages();
+		
+		
+		addKeyListener(this);
+		
+		//requestFocus();
 
 
 
@@ -140,5 +148,51 @@ public class GameMapArea extends JPanel {
 		
 		revalidate();
 	}
+	
+	private void playGameRound(String direction){
+
+		GameWindow.getGame().setDirection(direction);
+		GameWindow.getGame().update();
+		update();
+		
+		if (GameWindow.getGame().isOver())
+			GameWindow.EndGame();
+			
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+		
+		switch(e.getKeyCode()){
+		case KeyEvent.VK_LEFT: 
+			playGameRound("A");  
+			break;
+		case KeyEvent.VK_RIGHT:
+			playGameRound("D");  
+			break;
+		case KeyEvent.VK_UP: 
+			playGameRound("W");   
+			break;
+		case KeyEvent.VK_DOWN: 
+			playGameRound("S");  
+			break;
+		 }	
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }
