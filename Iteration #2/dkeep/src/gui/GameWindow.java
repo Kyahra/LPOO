@@ -46,7 +46,7 @@ public class GameWindow {
 	private GamePanel gameP;
 
 	private int ogres_number;
-	private char guard_type;
+	private String guard_type;
 	// Launch the application.
 
 	public static void main(String[] args) {
@@ -88,10 +88,8 @@ public class GameWindow {
 
 		GameMap = new GameMapArea( 251, 251);
 		GameMap.setBounds(115, 81, 368, 368);
-
-		JLabel label = new JLabel("");
-		label.setBounds(29, 368, 46, 14);
-
+		
+		
 		btnUp = new JButton("Up");
 		btnUp.setBounds(310, 11, 83, 23);
 		btnUp.setEnabled(false);
@@ -163,6 +161,7 @@ public class GameWindow {
 			String guard;
 			String ogres_number;
 				
+					
 			Object[] g_options = {"Rookie",
 	                    "Druken",
 	                    "Suspicious"};
@@ -194,20 +193,14 @@ public class GameWindow {
 
 				g = new Game(Integer.parseInt(ogres_number), guard);
 
-
+				
 				GameMap.update();
 
 				btnsSetEnable(true);
 				
 				setGame();
 
-
-
 				GameMap.update();
-				
-			
-				
-
 				
 			}
 		});
@@ -220,8 +213,9 @@ public class GameWindow {
 		frmMazeGame.getContentPane().add(btnDown);
 		frmMazeGame.getContentPane().add(btnExit);
 		frmMazeGame.getContentPane().add(btnLeft);
-		frmMazeGame.getContentPane().add(label);
 		frmMazeGame.getContentPane().add(GameMap);
+		
+		GameMap.paintEnd();
 
 	}
 
@@ -252,7 +246,10 @@ public class GameWindow {
 			break;
 		}
 
+		//GameMap.paintEnd();
+		
 		btnsSetEnable(false);
+		
 
 	}
 
@@ -267,10 +264,7 @@ public class GameWindow {
 	public static GameMap getMap() {
 		return g.getMap();
 	}
-
-
-
 }
 
-}
+
 

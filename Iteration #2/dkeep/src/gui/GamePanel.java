@@ -4,7 +4,7 @@ import logic.Character;
 import logic.Drunken;
 import logic.DungeonMap;
 import logic.Game;
-//more...
+
 import logic.Game.GameState;
 
 import javax.swing.ImageIcon;
