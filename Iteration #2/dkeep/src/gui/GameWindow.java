@@ -3,6 +3,7 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 import java.awt.Image;
@@ -10,9 +11,13 @@ import java.awt.Image;
 import logic.Game;
 import logic.Game.GameState;
 import logic.GameMap;
+
+
 import javax.swing.JLayeredPane;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+
+
 
 public class GameWindow {
 
@@ -57,6 +62,7 @@ public class GameWindow {
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazeGame.getContentPane().setLayout(null);
 
+
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, 549, 620);
 		frmMazeGame.getContentPane().add(layeredPane);
@@ -64,6 +70,20 @@ public class GameWindow {
 
 	
 		pnlGame = new GamePanel(400, 400, 10, 10);
+
+		
+		
+		JPanel iniPanel = new JPanel();	
+		iniPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		iniPanel.setBackground(Color.BLACK);
+		iniPanel.setBounds(0, 0, 550, 545);	
+		ImageIcon init = new ImageIcon(this.getClass().getResource("res/keep.png"));
+		iniPanel.add(new JLabel(init));
+		frmMazeGame.getContentPane().add(iniPanel);
+
+				
+		pnlGame= new GamePanel(400, 400);
+
 		pnlGame.setBounds(0, 0, 550, 545);
 		layeredPane.add(pnlGame);
 
