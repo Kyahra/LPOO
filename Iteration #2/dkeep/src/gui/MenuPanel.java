@@ -23,7 +23,6 @@ public class MenuPanel extends JPanel{
 	
 	private GamePanel pnlGame = GameWindow.pnlGame;
 	private JFrame frmMazeGame = GameWindow.frmMazeGame;
-	private Game g = GameWindow.getGame();
 	
 	public MenuPanel() {
 		super();
@@ -97,8 +96,6 @@ public class MenuPanel extends JPanel{
 				String guard;
 				String ogres_number;
 
-			
-
 				Object[] g_options = { "Rookie", "Druken", "Suspicious" };
 
 				Object[] o_options = { "1", "2", "3", "4", "5" };
@@ -109,7 +106,7 @@ public class MenuPanel extends JPanel{
 				ogres_number = (String) JOptionPane.showInputDialog(frmMazeGame,
 						"             Chose the Number of Ogres", "", JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
 
-				g = new Game(Integer.parseInt(ogres_number), guard);
+				GameWindow.setGame(new Game(Integer.parseInt(ogres_number), guard));
 
 				pnlGame.update();
 				pnlGame.requestFocus();

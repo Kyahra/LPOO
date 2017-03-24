@@ -79,13 +79,6 @@ public class GamePanel extends JPanel implements KeyListener{
 		return new ImageIcon(newimg);
 	}
 
-	private ImageIcon scaleEnd(ImageIcon im) {
-
-		Image img = im.getImage();
-		Image newimg = img.getScaledInstance(this.getWidth() / 2, this.getHeight() * 2, Image.SCALE_FAST);
-
-		return new ImageIcon(newimg);
-	}
 	
 	public void paintComponent () {
 		Point p = new Point();
@@ -147,10 +140,6 @@ public class GamePanel extends JPanel implements KeyListener{
 
 	}
 	
-	public void paintEnd(){
-		
-		this.add(new JLabel(end));
-	}
 	
 	public void update(){
 		removeAll();
