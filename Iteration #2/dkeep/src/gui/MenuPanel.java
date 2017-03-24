@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.border.MatteBorder;
 
 public class MenuPanel extends JPanel{
 	
@@ -44,7 +46,9 @@ public class MenuPanel extends JPanel{
 	
 	private void setCustomButton() {
 		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(MenuPanel.class.getResource("/gui/res/rsz_createmap.png")));
+		btnNewButton_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnNewButton_1.setBackground(Color.BLACK);
+		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Daniel\\Downloads\\rsz_1createmap.png"));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -62,7 +66,7 @@ public class MenuPanel extends JPanel{
 
 			}
 		});
-		btnNewButton_1.setBounds(221, 39, 174, 36);
+		btnNewButton_1.setBounds(197, 13, 238, 45);
 		add(btnNewButton_1);
 		
 	}
@@ -71,14 +75,16 @@ public class MenuPanel extends JPanel{
 	private void setExitButton() {
 		
 		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setIcon(new ImageIcon(MenuPanel.class.getResource("/gui/res/rsz_exit.png")));
+		btnNewButton_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnNewButton_2.setBackground(Color.BLACK);
+		btnNewButton_2.setIcon(new ImageIcon("C:\\Users\\Daniel\\Downloads\\rsz_exit (1).png"));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				System.exit(0);
 			}
 		});
-		btnNewButton_2.setBounds(431, 44, 66, 31);
+		btnNewButton_2.setBounds(443, 13, 102, 45);
 		add(btnNewButton_2);
 		
 
@@ -89,6 +95,8 @@ public class MenuPanel extends JPanel{
 	public void setNewGameButton(){
 		
 		btnNewGame  = new JButton("");
+		btnNewGame.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnNewGame.setBackground(Color.BLACK);
 		btnNewGame.setIcon(new ImageIcon(MenuPanel.class.getResource("/gui/res/rsz_newgame.png")));
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -114,7 +122,7 @@ public class MenuPanel extends JPanel{
 				
 			}
 		});
-		btnNewGame.setBounds(26, 30, 168, 45);
+		btnNewGame.setBounds(11, 13, 174, 45);
 		add(btnNewGame);
 		
 		

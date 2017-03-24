@@ -50,18 +50,18 @@ public class GameWindow {
 		frmMazeGame = new JFrame();
 		frmMazeGame.setResizable(false);
 		frmMazeGame.setTitle("Maze Game");
-		frmMazeGame.setBounds(100, 100, 550, 676);
+		frmMazeGame.setBounds(100, 100, 555, 676);
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazeGame.getContentPane().setLayout(null);
 
 		
 		pnlGame= new GamePanel(400, 400);
-		pnlGame.setBounds(0, 0, 545, 545);
+		pnlGame.setBounds(0, 0, 550, 545);
 		frmMazeGame.getContentPane().add(pnlGame);
 		
 		
 		pnlMenu= new MenuPanel();
-		pnlMenu.setBounds(0, 544, 545, 105);
+		pnlMenu.setBounds(0, 544, 550, 105);
 		frmMazeGame.getContentPane().add(pnlMenu);
 		pnlMenu.setLayout(null);
 		
