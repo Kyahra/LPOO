@@ -51,6 +51,7 @@ public class GameWindow {
 		frmMazeGame.setResizable(false);
 		frmMazeGame.setTitle("Maze Game");
 		frmMazeGame.setBounds(100, 100, 555, 676);
+
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazeGame.getContentPane().setLayout(null);
 
