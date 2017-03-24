@@ -3,6 +3,7 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
 import java.awt.Image;
@@ -11,6 +12,9 @@ import java.awt.Image;
 import logic.Game;
 import logic.Game.GameState;
 import logic.GameMap;
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.border.MatteBorder;
 
 
 
@@ -54,8 +58,17 @@ public class GameWindow {
 
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazeGame.getContentPane().setLayout(null);
-
 		
+		
+		JPanel iniPanel = new JPanel();	
+		iniPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		iniPanel.setBackground(Color.BLACK);
+		iniPanel.setBounds(0, 0, 550, 545);	
+		ImageIcon init = new ImageIcon(this.getClass().getResource("res/keep.png"));
+		iniPanel.add(new JLabel(init));
+		frmMazeGame.getContentPane().add(iniPanel);
+
+				
 		pnlGame= new GamePanel(400, 400);
 		pnlGame.setBounds(0, 0, 550, 545);
 		frmMazeGame.getContentPane().add(pnlGame);
