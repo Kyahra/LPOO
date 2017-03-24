@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class MenuPanel extends JPanel{
 	
@@ -42,7 +44,8 @@ public class MenuPanel extends JPanel{
 	
 	
 	private void setCustomButton() {
-		JButton btnNewButton_1 = new JButton("Custom Map");
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setIcon(new ImageIcon(MenuPanel.class.getResource("/gui/res/rsz_createmap.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -60,7 +63,7 @@ public class MenuPanel extends JPanel{
 
 			}
 		});
-		btnNewButton_1.setBounds(165, 11, 101, 36);
+		btnNewButton_1.setBounds(221, 39, 174, 36);
 		add(btnNewButton_1);
 		
 	}
@@ -68,14 +71,15 @@ public class MenuPanel extends JPanel{
 
 	private void setExitButton() {
 		
-		JButton btnNewButton_2 = new JButton("Exit");
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setIcon(new ImageIcon(MenuPanel.class.getResource("/gui/res/rsz_exit.png")));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				System.exit(0);
 			}
 		});
-		btnNewButton_2.setBounds(311, 39, 89, 23);
+		btnNewButton_2.setBounds(431, 44, 66, 31);
 		add(btnNewButton_2);
 		
 
@@ -85,7 +89,8 @@ public class MenuPanel extends JPanel{
 
 	public void setNewGameButton(){
 		
-		btnNewGame  = new JButton("New button");
+		btnNewGame  = new JButton("");
+		btnNewGame.setIcon(new ImageIcon(MenuPanel.class.getResource("/gui/res/rsz_newgame.png")));
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -112,7 +117,7 @@ public class MenuPanel extends JPanel{
 				
 			}
 		});
-		btnNewGame.setBounds(36, 39, 89, 23);
+		btnNewGame.setBounds(26, 30, 168, 45);
 		add(btnNewGame);
 		
 		
