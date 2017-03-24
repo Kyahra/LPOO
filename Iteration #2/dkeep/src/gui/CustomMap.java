@@ -20,27 +20,27 @@ public class CustomMap extends JPanel{
 		btnWall.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnWall.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconWall.png")));
 		btnWall.setBackground(Color.BLACK);
-		btnWall.setBounds(35, 40, 49, 49);
+		btnWall.setBounds(38, 40, 49, 49);
 		add(btnWall);
 		
 		JButton btnExit = new JButton("");
 		btnExit.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconDoor.png")));
-		btnExit.setBounds(111, 40, 49, 49);
+		btnExit.setBounds(120, 40, 49, 49);
 		add(btnExit);
 		
 		JButton btnKey = new JButton("");
 		btnKey.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconKey.png")));
-		btnKey.setBounds(198, 40, 49, 49);
+		btnKey.setBounds(197, 40, 49, 49);
 		add(btnKey);
 		
 		JButton btnHero = new JButton("");
 		btnHero.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconHero.png")));
-		btnHero.setBounds(275, 40, 49, 49);
+		btnHero.setBounds(279, 40, 49, 49);
 		add(btnHero);
 		
 		JButton btnOgre = new JButton("");
 		btnOgre.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconOgre.png")));
-		btnOgre.setBounds(361, 40, 49, 49);
+		btnOgre.setBounds(356, 40, 49, 49);
 		add(btnOgre);
 
 		
