@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	public GamePanel(int width, int height) {
 		super();
 
-		//this.setBorder(new EmptyBorder(4, 4, 4, 4));
+		this.setBorder(new EmptyBorder(4, 4, 4, 4));
 
 		setBackground(java.awt.Color.BLACK);
 		this.setSize(width, height);
