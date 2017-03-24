@@ -8,13 +8,14 @@ import javax.swing.ImageIcon;
 
 import java.awt.Image;
 
-
 import logic.Game;
 import logic.Game.GameState;
 import logic.GameMap;
-import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.border.MatteBorder;
+
+
+import javax.swing.JLayeredPane;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 
 
 
@@ -23,6 +24,8 @@ public class GameWindow {
 	static JFrame frmMazeGame;
 	static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
+	static CustomMap pnlCustomMap;
+	static JLayeredPane layeredPane;
 
 	private static Game g = new Game(0, "Rookie");
 
@@ -54,10 +57,20 @@ public class GameWindow {
 		frmMazeGame = new JFrame();
 		frmMazeGame.setResizable(false);
 		frmMazeGame.setTitle("Maze Game");
-		frmMazeGame.setBounds(100, 100, 555, 676);
+		frmMazeGame.setBounds(100, 100, 549, 649);
 
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazeGame.getContentPane().setLayout(null);
+
+
+		layeredPane = new JLayeredPane();
+		layeredPane.setBounds(0, 0, 549, 620);
+		frmMazeGame.getContentPane().add(layeredPane);
+		layeredPane.setLayout(null);
+
+	
+		pnlGame = new GamePanel(400, 400, 10, 10);
+
 		
 		
 		JPanel iniPanel = new JPanel();	
@@ -70,15 +83,15 @@ public class GameWindow {
 
 				
 		pnlGame= new GamePanel(400, 400);
+
 		pnlGame.setBounds(0, 0, 550, 545);
-		frmMazeGame.getContentPane().add(pnlGame);
-		
-		
-		pnlMenu= new MenuPanel();
-		pnlMenu.setBounds(0, 544, 550, 105);
-		frmMazeGame.getContentPane().add(pnlMenu);
+		layeredPane.add(pnlGame);
+
+		pnlMenu = new MenuPanel();
+		pnlMenu.setBounds(0, 0, 550, 649);
+		layeredPane.add(pnlMenu);
 		pnlMenu.setLayout(null);
-		
+		layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap }));
 		
 
 	}
@@ -103,11 +116,20 @@ public class GameWindow {
 	}
 
 	public static void setGame(Game game) {
-		g= game;
-		
+		g = game;
+
 	}
 
-	public static Game getGame() {	
+	public static Game getGame() {
 		return g;
+	}
+	
+	public static void createEditorPanel(int rows, int cols){
+		
+		pnlCustomMap = new CustomMap(rows, cols);
+		pnlCustomMap.setBounds(0, 0, 539, 609);
+		layeredPane.add(pnlCustomMap);
+
+		
 	}
 }

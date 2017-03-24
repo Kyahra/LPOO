@@ -18,14 +18,14 @@ public class GamePanel extends Map implements KeyListener{
 
 	
 	
-	public GamePanel(int width, int height) {
+	public GamePanel(int width, int height, int rows, int cols) {
 		super();
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setBackground(java.awt.Color.BLACK);
 		this.setSize(width, height);
-		this.setLayout(new GridLayout(10, 10));
+		this.setLayout(new GridLayout(rows, cols));
 		this.setVisible(true);
 
 		loadImages();

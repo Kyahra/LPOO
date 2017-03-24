@@ -7,6 +7,10 @@ import javax.swing.ImageIcon;
 
 public class CustomMapInterface extends JPanel{
 	
+	char c;
+	
+	
+	
 	public CustomMapInterface() {
 		super();
 
@@ -14,9 +18,10 @@ public class CustomMapInterface extends JPanel{
 		setBackground(java.awt.Color.BLACK);
 		setLayout(null);
 		
-		JButton btnWall = new JButton("Wall");
-		btnWall.setBounds(24, 39, 63, 43);
-		add(btnWall);
+		
+		setWall();
+		
+	
 		
 		JButton btnExit = new JButton("Exit");
 		btnExit.setBounds(104, 40, 63, 40);
@@ -33,9 +38,21 @@ public class CustomMapInterface extends JPanel{
 		JButton btnOgre = new JButton("Ogre\r\n");
 		btnOgre.setBounds(401, 40, 63, 40);
 		add(btnOgre);
+		
+		
+		
 
 		
 		this.setVisible(true);
+		
+	}
+
+	private void setWall() {
+		
+		JButton btnWall = new JButton("Wall");
+		btnWall.setBounds(24, 39, 63, 43);
+		add(btnWall);
+		
 		
 	}
 }
