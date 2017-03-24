@@ -1,16 +1,26 @@
 package gui;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+<<<<<<< HEAD
 =======
 import javax.swing.JFrame;
 
 public class CustomMap  extends JFrame  {
+>>>>>>> refs/remotes/origin/master
+=======
+
+
+public class CustomMap  extends JFrame  {
+
 >>>>>>> refs/remotes/origin/master
 
 	
@@ -19,6 +29,10 @@ public class CustomMap  extends JFrame  {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 		setBackground(java.awt.Color.BLACK);
 		setLayout(null);
 		
@@ -48,10 +62,14 @@ public class CustomMap  extends JFrame  {
 		btnOgre.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconOgre.png")));
 		btnOgre.setBounds(356, 40, 49, 49);
 		add(btnOgre);
+<<<<<<< HEAD
 =======
 		
 		
 		
+>>>>>>> refs/remotes/origin/master
+=======
+
 >>>>>>> refs/remotes/origin/master
 
 	
