@@ -7,10 +7,14 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 
-public class CustomMap extends JPanel{
+
+public class CustomMap  extends JFrame  {
+
+
 	
-	public CustomMap() {
+	public CustomMap(int cols, int rows) {
 		super();
+
 
 
 		setBackground(java.awt.Color.BLACK);
@@ -43,8 +47,7 @@ public class CustomMap extends JPanel{
 		btnOgre.setBounds(361, 40, 49, 49);
 		add(btnOgre);
 
-		
-		this.setVisible(true);
-		
+
+	
 	}
 }
