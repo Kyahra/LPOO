@@ -172,6 +172,11 @@ public class Game {
 	public GameState getState(){
 		return state;
 	}
+
+	public void setRows(int r) {
+		
+		
+	}
 	
 	
 
