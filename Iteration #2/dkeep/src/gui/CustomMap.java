@@ -1,18 +1,24 @@
 package gui;
 
+<<<<<<< HEAD
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+=======
+import javax.swing.JFrame;
 
-public class CustomMap extends JPanel{
+public class CustomMap  extends JFrame  {
+>>>>>>> refs/remotes/origin/master
+
 	
-	public CustomMap() {
+	public CustomMap(int cols, int rows) {
 		super();
 
 
+<<<<<<< HEAD
 		setBackground(java.awt.Color.BLACK);
 		setLayout(null);
 		
@@ -42,9 +48,12 @@ public class CustomMap extends JPanel{
 		btnOgre.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconOgre.png")));
 		btnOgre.setBounds(356, 40, 49, 49);
 		add(btnOgre);
+=======
+		
+		
+		
+>>>>>>> refs/remotes/origin/master
 
-		
-		this.setVisible(true);
-		
+	
 	}
 }
