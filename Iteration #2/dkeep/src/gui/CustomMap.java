@@ -1,6 +1,15 @@
 package gui;
 
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+
+
 
 import java.awt.event.MouseListener;
 
@@ -60,7 +69,23 @@ public class CustomMap  extends JPanel implements MouseListener  {
 		add(button_3);
 		
 
+
+		setBackground(java.awt.Color.BLACK);
+		setLayout(null);
 		
+		JButton btnWall = new JButton("");
+		btnWall.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnWall.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconWall.png")));
+		btnWall.setBackground(Color.BLACK);
+		btnWall.setBounds(38, 40, 49, 49);
+		add(btnWall);
+		
+		JButton btnExit = new JButton("");
+		btnExit.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconDoor.png")));
+		btnExit.setBounds(120, 40, 49, 49);
+		add(btnExit);
+		
+
 	}
 
 	private void setOgreButton() {
@@ -87,6 +112,22 @@ public class CustomMap  extends JPanel implements MouseListener  {
 		
 		
 	}
+
+		JButton btnKey = new JButton("");
+		btnKey.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconKey.png")));
+		btnKey.setBounds(197, 40, 49, 49);
+		add(btnKey);
+		
+		JButton btnHero = new JButton("");
+		btnHero.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconHero.png")));
+		btnHero.setBounds(279, 40, 49, 49);
+		add(btnHero);
+		
+		JButton btnOgre = new JButton("");
+		btnOgre.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconOgre.png")));
+		btnOgre.setBounds(356, 40, 49, 49);
+		add(btnOgre);
+
 
 	private void setExitButton() {
 		JButton button = new JButton("Exit");
