@@ -13,25 +13,15 @@ import java.awt.event.KeyListener;
 
 import com.sun.prism.paint.Color;
 
-public class GamePanel extends JPanel implements KeyListener{
+public class GamePanel extends Map implements KeyListener{
 
-	private ImageIcon wall;
-	private ImageIcon guard;
-	private ImageIcon black_cell;
-	private ImageIcon hero;
-	private ImageIcon key;
-	private ImageIcon door;
-	private ImageIcon ogre;
-	private ImageIcon club;
-	private ImageIcon stuned_ogre;
-	private ImageIcon armed_hero;
-	private ImageIcon end;
+
 	
 	
 	public GamePanel(int width, int height) {
 		super();
 
-		this.setBorder(new EmptyBorder(4, 4, 4, 4));
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setBackground(java.awt.Color.BLACK);
 		this.setSize(width, height);
@@ -44,41 +34,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 	}
 
-	private void loadImages() {
-
-		wall = new ImageIcon(this.getClass().getResource("res/wall.png"));
-
-		guard = new ImageIcon(this.getClass().getResource("res/guard.png"));
-		black_cell = new ImageIcon(this.getClass().getResource("res/black.png"));
-		hero = new ImageIcon(this.getClass().getResource("res/hero.png"));
-		key = new ImageIcon(this.getClass().getResource("res/key.png"));
-		door = new ImageIcon(this.getClass().getResource("res/door.png"));
-		ogre = new ImageIcon(this.getClass().getResource("res/ogre.png"));
-		club = new ImageIcon(this.getClass().getResource("res/club.png"));
-		stuned_ogre = new ImageIcon(this.getClass().getResource("res/stuned_ogre.png"));
-		end = new ImageIcon(this.getClass().getResource("res/end.png"));
-
-		wall = scaleImage(wall);
-		guard = scaleImage(guard);
-		black_cell = scaleImage(black_cell);
-		hero = scaleImage(hero);
-		key = scaleImage(key);
-		door = scaleImage(door);
-		ogre = scaleImage(ogre);
-		club = scaleImage(club);
-		stuned_ogre= scaleImage(stuned_ogre);
 	
-
-	}
-
-	private ImageIcon scaleImage(ImageIcon im) {
-
-		Image img = im.getImage();
-		Image newimg = img.getScaledInstance(this.getWidth() / 10, this.getHeight() / 10, Image.SCALE_FAST);
-
-		return new ImageIcon(newimg);
-	}
-
 	
 	public void paintComponent () {
 		Point p = new Point();

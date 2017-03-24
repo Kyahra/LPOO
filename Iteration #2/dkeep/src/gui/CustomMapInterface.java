@@ -5,9 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 
-public class CustomMap extends JPanel{
+public class CustomMapInterface extends JPanel{
 	
-	public CustomMap() {
+	public CustomMapInterface() {
 		super();
 
 
