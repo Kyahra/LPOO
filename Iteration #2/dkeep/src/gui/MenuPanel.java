@@ -48,7 +48,7 @@ public class MenuPanel extends JPanel{
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnNewButton_1.setBackground(Color.BLACK);
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\Daniel\\Downloads\\rsz_1createmap.png"));
+		btnNewButton_1.setIcon(new ImageIcon(MenuPanel.class.getResource("/gui/res/rsz_createmap.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -66,7 +66,7 @@ public class MenuPanel extends JPanel{
 
 			}
 		});
-		btnNewButton_1.setBounds(197, 13, 238, 45);
+		btnNewButton_1.setBounds(197, 13, 236, 45);
 		add(btnNewButton_1);
 		
 	}
@@ -77,14 +77,14 @@ public class MenuPanel extends JPanel{
 		JButton btnNewButton_2 = new JButton("");
 		btnNewButton_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnNewButton_2.setBackground(Color.BLACK);
-		btnNewButton_2.setIcon(new ImageIcon("C:\\Users\\Daniel\\Downloads\\rsz_exit (1).png"));
+		btnNewButton_2.setIcon(new ImageIcon(MenuPanel.class.getResource("/gui/res/rsz_exit.png")));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				System.exit(0);
 			}
 		});
-		btnNewButton_2.setBounds(443, 13, 102, 45);
+		btnNewButton_2.setBounds(436, 13, 102, 45);
 		add(btnNewButton_2);
 		
 
