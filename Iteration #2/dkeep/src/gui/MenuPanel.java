@@ -65,8 +65,7 @@ public class MenuPanel extends JPanel{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String cols;
-				String rows;
+				String size;
 				String ogres;
 				
 				
@@ -75,22 +74,23 @@ public class MenuPanel extends JPanel{
 				
 				Object[] o_options = {"1","2","3","4","5"};
 
-				cols = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
+				size = (String) JOptionPane.showInputDialog(frmMazeGame, "Map Size?", "",
 						JOptionPane.PLAIN_MESSAGE, null, options, "5");
 
-				rows = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
-						JOptionPane.PLAIN_MESSAGE, null, options, "5");
 				
 				ogres = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Ogres?", "",
 						JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
 				
 				GameWindow.pnlGame.setVisible(false);
 				GameWindow.pnlMenu.setVisible(false);
-				GameWindow.pnlInit.setVisible(false);
+		
 				
 			
-				GameWindow.createEditorPanel(Integer.parseInt(rows),Integer.parseInt(cols), Integer.parseInt(ogres));
+				GameWindow.createEditorPanel(Integer.parseInt(size), Integer.parseInt(ogres));
 				GameWindow.pnlCustomMap.setVisible(true);
+				
+				JOptionPane.showMessageDialog(GameWindow.frmMazeGame, " Click the icons and then click again on the map area \n                   to position the chosen icon.");
+				
 				
 
 			}
@@ -133,8 +133,7 @@ public class MenuPanel extends JPanel{
 				
 				String guard;
 				String ogres_number;
-				
-				
+	
 
 				Object[] g_options = { "Rookie", "Druken", "Suspicious" };
 
@@ -149,12 +148,13 @@ public class MenuPanel extends JPanel{
 				GameWindow.setGame(new Game(Integer.parseInt(ogres_number), guard));
 
 				GameWindow.pnlMenu.setVisible(false);
-				GameWindow.pnlInit.setVisible(false);
+			
 				GameWindow.pnlGame.update();
 				GameWindow.pnlGame.requestFocus();
 				//GameWindow.pnlGame.revalidate();
 				GameWindow.pnlGame.setVisible(true);
 
+				
 				
 			}
 		});

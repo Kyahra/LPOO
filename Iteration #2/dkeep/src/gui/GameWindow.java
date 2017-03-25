@@ -23,9 +23,9 @@ public class GameWindow {
 	static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
 	static EndPanel pnlEnd; 
-	static InitPanel pnlInit;
 
-	static CustomMap pnlCustomMap;
+
+	static MapEditor pnlCustomMap;
 	static JLayeredPane layeredPane;
 
 
@@ -70,6 +70,7 @@ public class GameWindow {
 		frmMazeGame.getContentPane().add(layeredPane);
 		layeredPane.setLayout(null);
 
+<<<<<<< HEAD
 		
 		pnlInit = new InitPanel();
 		pnlInit.setBounds(0, 0, 550, 500);
@@ -84,17 +85,35 @@ public class GameWindow {
 		layeredPane.add(pnlInit);
 		
 		
+=======
+>>>>>>> Kya
 		pnlEnd = new EndPanel();
 		pnlEnd.setBounds(0, 0, 550, 620);
 		pnlEnd.setVisible(false);
 		layeredPane.add(pnlEnd);
 		
+<<<<<<< HEAD
 				layeredPane
 						.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap, pnlInit, pnlEnd }));
 				
 						pnlGame = new GamePanel(400, 400, 10, 10);
 						pnlGame.setBounds(0, 0, 550, 584);
 						layeredPane.add(pnlGame);
+=======
+		
+		pnlMenu = new MenuPanel();
+		pnlMenu.setBounds(0, 0, 550, 584);
+		layeredPane.add(pnlMenu);
+
+		pnlMenu.setLayout(null);
+
+		layeredPane
+				.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap,  pnlEnd }));
+
+		pnlGame = new GamePanel(400, 400, 10, 10);
+		pnlGame.setBounds(0, 0, 550, 584);
+		layeredPane.add(pnlGame);
+>>>>>>> Kya
 
 	}
 
@@ -105,7 +124,11 @@ public class GameWindow {
 
 		switch (state) {
 		case LOST:
+<<<<<<< HEAD
 			//pnlGame.setVisible(false);
+=======
+			pnlGame.setVisible(false);
+>>>>>>> Kya
 			pnlEnd.setVisible(true);
 			break;
 		case WON:
@@ -130,9 +153,9 @@ public class GameWindow {
 		return g;
 	}
 
-	public static void createEditorPanel(int rows, int cols, int ogres) {
+	public static void createEditorPanel(int size, int ogres) {
 
-		pnlCustomMap = new CustomMap(rows, cols,ogres);
+		pnlCustomMap = new MapEditor(size,ogres);
 		pnlCustomMap.setBounds(0, 0, 539, 609);
 		layeredPane.add(pnlCustomMap);
 
