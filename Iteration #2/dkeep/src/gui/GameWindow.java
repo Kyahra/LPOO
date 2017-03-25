@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -26,11 +27,12 @@ public class GameWindow {
 	static DefeatPanel pnlDefeat;
 
 
+
 	static MapEditor pnlCustomMap;
 	static JLayeredPane layeredPane;
 
 
- 	private static Game g = new Game(0, "Rookie");
+ 	static Game g = new Game(0, "Rookie");
 
 	// Launch the application.
 
@@ -82,6 +84,7 @@ public class GameWindow {
         pnlDefeat.setBounds(0, 0, 550, 620);
         pnlDefeat.setVisible(false);
         layeredPane.add(pnlDefeat);
+
         
         
         pnlMenu = new MenuPanel();
@@ -91,7 +94,7 @@ public class GameWindow {
         pnlMenu.setLayout(null);
 
         layeredPane
-                .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap,  pnlVictory, pnlDefeat }));
+        .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap,  pnlVictory, pnlDefeat }));
 
         pnlGame = new GamePanel(400, 400, 10, 10);
         pnlGame.setBounds(0, 0, 550, 584);
@@ -100,20 +103,25 @@ public class GameWindow {
 
 	}
 
-	public static void EndGame() {
+	public static void EndGame() throws InterruptedException {
 
 		GameState state = g.getState();
-		g.printMap();
+		
+		
+		
+		   switch (state) {
+	        case LOST:
+	        	pnlGame.setVisible(false);
+	            pnlDefeat.setVisible(true);
+	            break;
+	        case WON:
+	            pnlVictory.setVisible(true);
+	        default:
+	            break;
+	        }
+		
 
-		switch (state) {
-		case LOST:
-			pnlDefeat.setVisible(true);
-			break;
-		case WON:
-			pnlVictory.setVisible(true);
-		default:
-			break;
-		}
+		
 
 	}
 
