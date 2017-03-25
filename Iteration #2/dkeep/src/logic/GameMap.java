@@ -51,6 +51,8 @@ public abstract class GameMap {
 		map[c.getY()][c.getX()] = c.getChar();
 
 	}
+	
+
 
 	public  void cleanCharacter(Character c) {
 		
