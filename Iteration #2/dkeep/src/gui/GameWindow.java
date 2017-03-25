@@ -56,64 +56,40 @@ public class GameWindow {
 
 	private void initialize() {
 
-		frmMazeGame = new JFrame();
-		frmMazeGame.setResizable(false);
-		frmMazeGame.setTitle("Maze Game");
-		frmMazeGame.setBounds(100, 100, 549, 607);
 
-		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmMazeGame.getContentPane().setLayout(null);
+        frmMazeGame = new JFrame();
+        frmMazeGame.setResizable(false);
+        frmMazeGame.setTitle("Maze Game");
+        frmMazeGame.setBounds(100, 100, 549, 607);
 
-		
-		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 549, 620);
-		frmMazeGame.getContentPane().add(layeredPane);
-		layeredPane.setLayout(null);
+        frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmMazeGame.getContentPane().setLayout(null);
 
-<<<<<<< HEAD
-		
-		pnlInit = new InitPanel();
-		pnlInit.setBounds(0, 0, 550, 500);
-		pnlInit.setVisible(true);
-				
-				
-				pnlMenu = new MenuPanel();
-				pnlMenu.setBounds(0, 0, 550, 584);
-				layeredPane.add(pnlMenu);
-				
-						pnlMenu.setLayout(null);
-		layeredPane.add(pnlInit);
-		
-		
-=======
->>>>>>> Kya
-		pnlEnd = new EndPanel();
-		pnlEnd.setBounds(0, 0, 550, 620);
-		pnlEnd.setVisible(false);
-		layeredPane.add(pnlEnd);
-		
-<<<<<<< HEAD
-				layeredPane
-						.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap, pnlInit, pnlEnd }));
-				
-						pnlGame = new GamePanel(400, 400, 10, 10);
-						pnlGame.setBounds(0, 0, 550, 584);
-						layeredPane.add(pnlGame);
-=======
-		
-		pnlMenu = new MenuPanel();
-		pnlMenu.setBounds(0, 0, 550, 584);
-		layeredPane.add(pnlMenu);
+        
+        layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0, 0, 549, 620);
+        frmMazeGame.getContentPane().add(layeredPane);
+        layeredPane.setLayout(null);
 
-		pnlMenu.setLayout(null);
+        pnlEnd = new EndPanel();
+        pnlEnd.setBounds(0, 0, 550, 620);
+        pnlEnd.setVisible(false);
+        layeredPane.add(pnlEnd);
+        
+        
+        pnlMenu = new MenuPanel();
+        pnlMenu.setBounds(0, 0, 550, 584);
+        layeredPane.add(pnlMenu);
 
-		layeredPane
-				.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap,  pnlEnd }));
+        pnlMenu.setLayout(null);
 
-		pnlGame = new GamePanel(400, 400, 10, 10);
-		pnlGame.setBounds(0, 0, 550, 584);
-		layeredPane.add(pnlGame);
->>>>>>> Kya
+        layeredPane
+                .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap,  pnlEnd }));
+
+        pnlGame = new GamePanel(400, 400, 10, 10);
+        pnlGame.setBounds(0, 0, 550, 584);
+        layeredPane.add(pnlGame);
+
 
 	}
 
@@ -124,11 +100,7 @@ public class GameWindow {
 
 		switch (state) {
 		case LOST:
-<<<<<<< HEAD
 			//pnlGame.setVisible(false);
-=======
-			pnlGame.setVisible(false);
->>>>>>> Kya
 			pnlEnd.setVisible(true);
 			break;
 		case WON:
