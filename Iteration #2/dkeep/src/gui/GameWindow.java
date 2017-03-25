@@ -21,10 +21,11 @@ import logic.GameMap;
 public class GameWindow {
 
 	static JFrame frmMazeGame;
-	static GamePanel pnlGame;
+	//static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
 	static VictoryPanel pnlVictory;
 	static DefeatPanel pnlDefeat;
+	static GameBar pnlGameBar;
 
 
 
@@ -94,12 +95,19 @@ public class GameWindow {
         pnlMenu.setLayout(null);
 
         layeredPane
-        .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap,  pnlVictory, pnlDefeat }));
+        .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlCustomMap,  pnlVictory, pnlDefeat, pnlGameBar }));
 
+        /*
         pnlGame = new GamePanel(400, 400, 10, 10);
         pnlGame.setBounds(0, 0, 550, 584);
         pnlGame.setVisible(false);
         layeredPane.add(pnlGame);
+        */
+        
+        pnlGameBar = new GameBar();
+        pnlGameBar.setBounds(0, 0, 550, 584);
+        pnlGameBar.setVisible(false);
+        layeredPane.add(pnlGameBar);
 
 
 	}
@@ -112,7 +120,9 @@ public class GameWindow {
 		
 		   switch (state) {
 	        case LOST:
-	        	TimeUnit.SECONDS.sleep(1);
+
+	        	pnlGameBar.setVisible(false);
+
 	            pnlDefeat.setVisible(true);
 	            break;
 	        case WON:

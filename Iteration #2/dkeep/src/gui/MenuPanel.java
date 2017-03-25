@@ -24,7 +24,7 @@ public class MenuPanel extends JPanel{
 	private JButton btnExit;
 	private JButton btnCustom;
 	
-	private GamePanel pnlGame = GameWindow.pnlGame;
+	private GameBar pnlGameBar = GameWindow.pnlGameBar;
 	private JFrame frmMazeGame = GameWindow.frmMazeGame;
 	
 	public MenuPanel() {
@@ -76,7 +76,7 @@ public class MenuPanel extends JPanel{
 						JOptionPane.PLAIN_MESSAGE, null, options, "5");
 
 
-				GameWindow.pnlGame.setVisible(false);
+				GameWindow.pnlGameBar.setVisible(false);
 				GameWindow.pnlMenu.setVisible(false);
 		
 			
@@ -146,11 +146,11 @@ public class MenuPanel extends JPanel{
 
 				GameWindow.pnlMenu.setVisible(false);
 			
-				GameWindow.pnlGame.update();
+				GameWindow.pnlGameBar.update();
 				
 			
-				GameWindow.pnlGame.setVisible(true);
-				GameWindow.pnlGame.requestFocus();
+				GameWindow.pnlGameBar.setVisible(true);
+				GameWindow.pnlGameBar.pnlGame.requestFocus();
 
 				
 				
