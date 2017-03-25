@@ -22,7 +22,8 @@ public class GameWindow {
 	static JFrame frmMazeGame;
 	static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
-	static EndPanel pnlEnd; 
+	static VictoryPanel pnlVictory;
+	static DefeatPanel pnlDefeat;
 
 
 	static MapEditor pnlCustomMap;
@@ -71,10 +72,16 @@ public class GameWindow {
         frmMazeGame.getContentPane().add(layeredPane);
         layeredPane.setLayout(null);
 
-        pnlEnd = new EndPanel();
-        pnlEnd.setBounds(0, 0, 550, 620);
-        pnlEnd.setVisible(false);
-        layeredPane.add(pnlEnd);
+        pnlVictory = new VictoryPanel();
+        pnlVictory.setBounds(0, 0, 550, 620);
+        pnlVictory.setVisible(false);
+        layeredPane.add(pnlVictory);
+        
+        
+        pnlDefeat = new DefeatPanel();
+        pnlDefeat.setBounds(0, 0, 550, 620);
+        pnlDefeat.setVisible(false);
+        layeredPane.add(pnlDefeat);
         
         
         pnlMenu = new MenuPanel();
@@ -84,7 +91,7 @@ public class GameWindow {
         pnlMenu.setLayout(null);
 
         layeredPane
-                .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap,  pnlEnd }));
+                .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap,  pnlVictory, pnlDefeat }));
 
         pnlGame = new GamePanel(400, 400, 10, 10);
         pnlGame.setBounds(0, 0, 550, 584);
@@ -100,12 +107,10 @@ public class GameWindow {
 
 		switch (state) {
 		case LOST:
-			//pnlGame.setVisible(false);
-			pnlEnd.setVisible(true);
+			pnlDefeat.setVisible(true);
 			break;
 		case WON:
-			pnlEnd.setWinImage();
-			pnlEnd.setVisible(true);
+			pnlVictory.setVisible(true);
 		default:
 			break;
 		}
