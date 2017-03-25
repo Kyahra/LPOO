@@ -36,11 +36,11 @@ public class Map  extends JPanel {
 
 		guard = new ImageIcon(this.getClass().getResource("res/guard.png"));
 		black_cell = new ImageIcon(this.getClass().getResource("res/black.png"));
-		hero = new ImageIcon(this.getClass().getResource("res/hero.png"));
-		key = new ImageIcon(this.getClass().getResource("res/key.png"));
+		hero = new ImageIcon(this.getClass().getResource("res/HeroR.png"));
+		key = new ImageIcon(this.getClass().getResource("res/Key3.png"));
 		door = new ImageIcon(this.getClass().getResource("res/door.png"));
 		ogre = new ImageIcon(this.getClass().getResource("res/ogre.png"));
-		club = new ImageIcon(this.getClass().getResource("res/club.png"));
+		club = new ImageIcon(this.getClass().getResource("res/Sword.png"));
 		stuned_ogre = new ImageIcon(this.getClass().getResource("res/stuned_ogre.png"));
 		end = new ImageIcon(this.getClass().getResource("res/end.png"));
 

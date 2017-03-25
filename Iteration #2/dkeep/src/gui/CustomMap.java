@@ -17,8 +17,8 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 
-public class CustomMap extends JPanel implements MouseListener {
 
+public class CustomMap extends JPanel implements MouseListener {
 	
 	private static final long serialVersionUID = -6282798323298335606L;
 	
@@ -46,7 +46,7 @@ public class CustomMap extends JPanel implements MouseListener {
 		setPlayButton();
 		setBackButton();
 		setBackground(java.awt.Color.BLACK);
-		
+
 		addMouseListener(this);
 		
 		this.rows = rows;
@@ -57,6 +57,7 @@ public class CustomMap extends JPanel implements MouseListener {
 		
 		H_DIVISOR = MAP_HEIGHT/rows;
 		W_DIVISOR = MAP_WIDTH/cols;
+
 		
 
 	}
@@ -85,7 +86,9 @@ public class CustomMap extends JPanel implements MouseListener {
 	private void setHeroButton() {
 		JButton btnHero = new JButton("");
 		btnHero.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconHero.png")));
+
 		btnHero.setBounds(343, 506, 49, 49);
+
 		btnHero.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnHero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,6 +97,7 @@ public class CustomMap extends JPanel implements MouseListener {
 		});
 
 		add(btnHero);
+
 
 	}
 

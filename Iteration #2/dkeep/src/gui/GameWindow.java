@@ -1,35 +1,35 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-
-import java.awt.Image;
-
-import logic.Game;
-import logic.Game.GameState;
-import logic.GameMap;
-
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
-import java.awt.Color;
-import java.awt.Component;
+import logic.Game;
+import logic.Game.GameState;
+import logic.GameMap;
 
 public class GameWindow {
 
 	static JFrame frmMazeGame;
 	static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
+	static EndPanel pnlEnd; 
+	static InitPanel pnlInit;
+
 	static CustomMap pnlCustomMap;
 	static JLayeredPane layeredPane;
 
-	private static Game g = new Game(0, "Rookie");
+
+ 	private static Game g = new Game(0, "Rookie");
 
 	// Launch the application.
 
@@ -64,18 +64,33 @@ public class GameWindow {
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazeGame.getContentPane().setLayout(null);
 
+		
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, 549, 620);
 		frmMazeGame.getContentPane().add(layeredPane);
 		layeredPane.setLayout(null);
 
+		
+		pnlInit = new InitPanel();
+		pnlInit.setBounds(0, 0, 550, 500);
+		pnlInit.setVisible(true);
+		layeredPane.add(pnlInit);
+		
+		
+		pnlEnd = new EndPanel();
+		pnlEnd.setBounds(0, 0, 550, 500);
+		pnlEnd.setVisible(false);
+		layeredPane.add(pnlEnd);
+		
+		
 		pnlMenu = new MenuPanel();
 		pnlMenu.setBounds(0, 0, 550, 584);
 		layeredPane.add(pnlMenu);
+
 		pnlMenu.setLayout(null);
 
 		layeredPane
-				.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap }));
+				.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap, pnlInit, pnlEnd }));
 
 		pnlGame = new GamePanel(400, 400, 10, 10);
 		pnlGame.setBounds(0, 0, 550, 584);
@@ -90,8 +105,10 @@ public class GameWindow {
 
 		switch (state) {
 		case LOST:
+			pnlEnd.setVisible(true);
 			break;
 		case WON:
+			pnlEnd.setVisible(true);
 		default:
 			break;
 		}
