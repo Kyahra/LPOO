@@ -65,8 +65,7 @@ public class MenuPanel extends JPanel{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String cols;
-				String rows;
+				String size;
 				String ogres;
 				
 				
@@ -75,11 +74,10 @@ public class MenuPanel extends JPanel{
 				
 				Object[] o_options = {"1","2","3","4","5"};
 
-				cols = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
+				size = (String) JOptionPane.showInputDialog(frmMazeGame, "Map Size?", "",
 						JOptionPane.PLAIN_MESSAGE, null, options, "5");
 
-				rows = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
-						JOptionPane.PLAIN_MESSAGE, null, options, "5");
+				
 				
 				ogres = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Ogres?", "",
 						JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
@@ -89,7 +87,7 @@ public class MenuPanel extends JPanel{
 				GameWindow.pnlInit.setVisible(false);
 				
 			
-				GameWindow.createEditorPanel(Integer.parseInt(rows),Integer.parseInt(cols), Integer.parseInt(ogres));
+				GameWindow.createEditorPanel(Integer.parseInt(size), Integer.parseInt(ogres));
 				GameWindow.pnlCustomMap.setVisible(true);
 				
 
