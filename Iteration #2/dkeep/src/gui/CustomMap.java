@@ -1,17 +1,14 @@
 package gui;
 
-
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-import java.awt.Image;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.MatteBorder;
 
-
+import logic.KeepMap;
 
 import java.awt.event.MouseListener;
 
@@ -19,15 +16,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
+public class CustomMap extends JPanel implements MouseListener {
 
-public class CustomMap  extends JPanel implements MouseListener  {
-
+	
+	private static final long serialVersionUID = -6282798323298335606L;
 	char c;
 	
-	public CustomMap(int rows, int cols) {
+	
+
+	public CustomMap(int rows, int cols, int ogres) {
 		super();
 		setLayout(null);
-		
+
 		setWallButton();
 		setExitButton();
 		setKeyButton();
@@ -36,128 +36,137 @@ public class CustomMap  extends JPanel implements MouseListener  {
 		setPlayButton();
 		setBackButton();
 		setBackground(java.awt.Color.BLACK);
-		
-		GamePanel panel = new GamePanel(350,350,rows,cols);
-		panel.setBackground(Color.GREEN);
-		panel.setBounds(20, 72, 317, 327);
+
+		GamePanel panel = new GamePanel(350, 350, rows, cols);
+		panel.setBounds(64, 67, 403, 380);
 		add(panel);
 		
-	
+		
+
 	}
+
 	private void setBackButton() {
 		JButton btnNewButton_2 = new JButton("Back");
-		btnNewButton_2.setBounds(170, 33, 89, 23);
+		btnNewButton_2.setBounds(285, 22, 89, 23);
 		add(btnNewButton_2);
-		
-		
-		
+
 	}
+
 	private void setPlayButton() {
-	JButton btnNewButton_1 = new JButton("Play");
-		btnNewButton_1.setBounds(44, 33, 89, 23);
+		JButton btnNewButton_1 = new JButton("Play");
+		btnNewButton_1.setBounds(151, 22, 89, 23);
 		add(btnNewButton_1);
-		
+
 	}
-	
 
 	private void setHeroButton() {
-		JButton button_3 = new JButton("Hero");
-		button_3.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconHero.png")));
-		button_3.addActionListener(new ActionListener() {
+		JButton btnHero = new JButton("");
+		btnHero.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconHero.png")));
+		btnHero.setBounds(341, 488, 49, 49);
+		btnHero.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnHero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c='H';
+				c = 'H';
 			}
 		});
-		button_3.setBounds(367, 340, 49, 59);
-		add(button_3);
-		
-	
+
+		add(btnHero);
+
 	}
 
 	private void setOgreButton() {
-		JButton button_2 = new JButton("Ogre");
-		button_2.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconOgre.png")));
-		button_2.addActionListener(new ActionListener() {
+		  JButton btnOgre = new JButton("");
+	        btnOgre.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconOgre.png")));
+	        btnOgre.setBounds(250, 488, 49, 49);
+	        btnOgre.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnOgre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c='O';
+				c = 'O';
 			}
 		});
-		button_2.setBounds(367, 265, 49, 52);
-		add(button_2);
-		
+	
+		add(btnOgre);
+
 	}
 
 	private void setKeyButton() {
-		JButton button_1 = new JButton("Key");
-		button_1.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconKey.png")));
-		button_1.addActionListener(new ActionListener() {
+		JButton btnKey = new JButton("");
+		btnKey.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconKey.png")));
+		btnKey.setBounds(414, 488, 52, 49);
+		btnKey.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnKey.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c= 'k';
+				c = 'k';
 			}
 		});
-		button_1.setBounds(367, 187, 49, 52);
-		add(button_1);
-		
-		
+
+		add(btnKey);
+
 	}
 
-
-
 	private void setExitButton() {
-		JButton button = new JButton("Exit");
-		button.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconDoor.png")));
-		button.addActionListener(new ActionListener() {
+		JButton btnExit = new JButton("");
+		btnExit.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconDoor.png")));
+		btnExit.setBounds(164, 488, 49, 49);
+		btnExit.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c='I';
+				c = 'I';
 			}
 		});
-		button.setBounds(367, 122, 49, 54);
-		add(button);
-		
+
+		add(btnExit);
+
 	}
 
 	private void setWallButton() {
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setHorizontalAlignment(SwingConstants.RIGHT);
-		btnNewButton.setVerticalAlignment(SwingConstants.TOP);
-		btnNewButton.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconWall.png")));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnWall = new JButton("");
+		btnWall.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnWall.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconWall.png")));
+		btnWall.setBackground(Color.BLACK);
+		btnWall.setBounds(84, 488, 49, 49);
+		btnWall.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnWall.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c='X';
+				c = 'X';
 			}
 		});
-		btnNewButton.setBounds(357, 74, 59, 52);
-		add(btnNewButton);
-		
+
+		add(btnWall);
+
 	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void mousePressed(MouseEvent e) {
-//		public Point getMousePosition(boolean allowChildren)
-//                throws HeadlessException
-		
-//		public Component getComponentAt(Point p);
-		
+		// public Point getMousePosition(boolean allowChildren)
+		// throws HeadlessException
+
+		// public Component getComponentAt(Point p);
+
 	}
+
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
 
 }

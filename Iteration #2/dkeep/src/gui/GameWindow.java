@@ -12,7 +12,6 @@ import logic.Game;
 import logic.Game.GameState;
 import logic.GameMap;
 
-
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
@@ -21,8 +20,6 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import java.awt.Color;
 import java.awt.Component;
-
-
 
 public class GameWindow {
 
@@ -67,29 +64,22 @@ public class GameWindow {
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazeGame.getContentPane().setLayout(null);
 
-
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, 549, 620);
 		frmMazeGame.getContentPane().add(layeredPane);
 		layeredPane.setLayout(null);
-		
+
 		pnlMenu = new MenuPanel();
 		pnlMenu.setBounds(0, 0, 550, 584);
 		layeredPane.add(pnlMenu);
 		pnlMenu.setLayout(null);
-		
-				
-		
-			
-				layeredPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap }));
-		
-		
-	
-		pnlGame = new GamePanel(400, 400, 10, 10);	
+
+		layeredPane
+				.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap }));
+
+		pnlGame = new GamePanel(400, 400, 10, 10);
 		pnlGame.setBounds(0, 0, 550, 584);
-		//pnlGame.setVisible(false);
 		layeredPane.add(pnlGame);
-		
 
 	}
 
@@ -120,13 +110,12 @@ public class GameWindow {
 	public static Game getGame() {
 		return g;
 	}
-	
-	public static void createEditorPanel(int rows, int cols){
-		
-		pnlCustomMap = new CustomMap(rows, cols);
+
+	public static void createEditorPanel(int rows, int cols, int ogres) {
+
+		pnlCustomMap = new CustomMap(rows, cols,ogres);
 		pnlCustomMap.setBounds(0, 0, 539, 609);
 		layeredPane.add(pnlCustomMap);
 
-		
 	}
 }
