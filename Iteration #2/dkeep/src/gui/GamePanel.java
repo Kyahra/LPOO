@@ -26,9 +26,11 @@ public class GamePanel extends Map implements KeyListener{
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setBackground(java.awt.Color.BLACK);
-		this.setSize(width, height);
 		this.setLayout(new GridLayout(rows, cols));
+		this.setSize(width, height);
 		this.setVisible(true);
+		
+		
 
 		loadImages();
 		
@@ -38,7 +40,7 @@ public class GamePanel extends Map implements KeyListener{
 
 	
 	public void update(){
-		super.update(GameWindow.getMap());
+		super.update(GameWindow.getMap().getMatrix());
 	}
 	
 	private void playGameRound(String direction) throws InterruptedException{
