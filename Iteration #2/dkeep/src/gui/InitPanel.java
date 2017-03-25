@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class EndPanel extends JPanel {
+public class InitPanel extends JPanel {
 
 	/**
 	 * 
@@ -16,15 +16,14 @@ public class EndPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EndPanel() {
+	public InitPanel() {
 
+		
 		super();
 		setBackground(Color.BLACK);
-		ImageIcon init = new ImageIcon(this.getClass().getResource("res/speedLimit.png"));
+		ImageIcon init = new ImageIcon(this.getClass().getResource("res/keep.png"));
 		JLabel label = new JLabel(init);
 		this.add(label);
-		
-
 		
 	}
 

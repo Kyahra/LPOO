@@ -37,7 +37,7 @@ public class CustomMap extends JPanel implements MouseListener {
 		setBackButton();
 		setBackground(java.awt.Color.BLACK);
 
-		
+		/*
 		JButton btnWall = new JButton("");
 		btnWall.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnWall.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconWall.png")));
@@ -59,7 +59,7 @@ public class CustomMap extends JPanel implements MouseListener {
 		GamePanel panel = new GamePanel(350, 350, rows, cols);
 		panel.setBounds(64, 67, 403, 380);
 		add(panel);
-
+*/
 		
 
 	}
