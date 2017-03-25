@@ -18,23 +18,20 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 
-public class CustomMap extends JPanel implements MouseListener {
+public class MapEditor extends JPanel implements MouseListener {
 	
 	private static final long serialVersionUID = -6282798323298335606L;
 	
-	private char c;
-	private CustomMapGrid game_panel;
-	private double MAP_WIDTH = 350;
-	private double MAP_HEIGHT = 350;
-	private double H_DIVISOR;
-	private double W_DIVISOR;
+	private char c= ' ';
+	private MapEditorGrid game_panel;
+	private double MAP_SIZE = 350;
+	private double DIVISOR;
 	
-	private int rows;
-	private int cols;
+	private int size;
 	private int ogres;
 	
 
-	public CustomMap(int rows, int cols, int ogres) {
+	public MapEditor(int size, int ogres) {
 		super();
 		setLayout(null);
 
@@ -49,21 +46,20 @@ public class CustomMap extends JPanel implements MouseListener {
 
 		addMouseListener(this);
 		
-		this.rows = rows;
-		this.cols = cols;
+		this.size =size;
 		this.ogres = ogres;
 		
 		setGamePanel();
 		
-		H_DIVISOR = MAP_HEIGHT/rows;
-		W_DIVISOR = MAP_WIDTH/cols;
+		DIVISOR = MAP_SIZE/size;
+		
 
 		
 
 	}
 
 	private void setGamePanel() {
-		game_panel = new CustomMapGrid(400, 400, rows, cols,ogres);
+		game_panel = new MapEditorGrid(400, 400, size,ogres);
 		game_panel.setBounds(75, 75, 400, 400);
 		add(game_panel);
 		
@@ -85,7 +81,7 @@ public class CustomMap extends JPanel implements MouseListener {
 
 	private void setHeroButton() {
 		JButton btnHero = new JButton("");
-		btnHero.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconHero.png")));
+		btnHero.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconHero.png")));
 
 		btnHero.setBounds(343, 506, 49, 49);
 
@@ -103,7 +99,7 @@ public class CustomMap extends JPanel implements MouseListener {
 
 	private void setOgreButton() {
 		  JButton btnOgre = new JButton("");
-	        btnOgre.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconOgre.png")));
+	        btnOgre.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconOgre.png")));
 	        btnOgre.setBounds(258, 506, 49, 49);
 	        btnOgre.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnOgre.addActionListener(new ActionListener() {
@@ -118,7 +114,7 @@ public class CustomMap extends JPanel implements MouseListener {
 
 	private void setKeyButton() {
 		JButton btnKey = new JButton("");
-		btnKey.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconKey.png")));
+		btnKey.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconKey.png")));
 		btnKey.setBounds(410, 506, 52, 49);
 		btnKey.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnKey.addActionListener(new ActionListener() {
@@ -133,12 +129,12 @@ public class CustomMap extends JPanel implements MouseListener {
 
 	private void setExitButton() {
 		JButton btnExit = new JButton("");
-		btnExit.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconDoor.png")));
+		btnExit.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconDoor.png")));
 		btnExit.setBounds(165, 506, 52, 49);
 		btnExit.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				c = 'I';
+				c = 'S';
 			}
 		});
 
@@ -149,7 +145,7 @@ public class CustomMap extends JPanel implements MouseListener {
 	private void setWallButton() {
 		JButton btnWall = new JButton("");
 		btnWall.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnWall.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconWall.png")));
+		btnWall.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconWall.png")));
 		btnWall.setBackground(Color.BLACK);
 		btnWall.setBounds(89, 506, 49, 49);
 		btnWall.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -186,11 +182,13 @@ public class CustomMap extends JPanel implements MouseListener {
 		
 		
 		
-		double x = Math.floor((e.getX()-100)/H_DIVISOR);
-		double y = Math.floor((e.getY()-100)/W_DIVISOR);
+		int x = (int) Math.floor((e.getX()-100)/DIVISOR);
+		int y = (int) Math.floor((e.getY()-100)/DIVISOR);
 		
-		System.out.println(x);
-		System.out.println(y);
+		if(c != ' ' && x >0 && y>0 && x<size && y <size){
+			game_panel.setNewChar(x,y,c);
+			game_panel.update();
+		}
 		
 		
 		
