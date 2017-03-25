@@ -140,6 +140,9 @@ public class MenuPanel extends JPanel{
 						"             Chose the Number of Ogres", "", JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
 
 				GameWindow.setGame(new Game(Integer.parseInt(ogres_number), guard));
+				
+				GameWindow.getGame().setDirection("W");
+				
 
 				GameWindow.pnlMenu.setVisible(false);
 			

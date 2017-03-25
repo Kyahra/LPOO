@@ -83,10 +83,14 @@ public class Game {
 
 	public void clean() {
 		map.clean();
+		
+	
 	
 	}
 
 	public void updateMap() {
+		
+		
 		map.draw();
 	
 	}
@@ -122,6 +126,7 @@ public class Game {
 			state = GameState.LOST;
 			return true;
 		}
+		
 		
 		
 		if( state == GameState.WON) return true;
@@ -161,9 +166,12 @@ public class Game {
 
 	public void update(){
 		
+
+	
 		clean();
 		updateGame();
 		updateMap();
+
 		
 
 	
