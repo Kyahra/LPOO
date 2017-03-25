@@ -46,21 +46,17 @@ public class GamePanel extends Map implements KeyListener{
 		
 
 		if (GameWindow.getGame().isOver()){
-			TimeUnit.SECONDS.sleep(1);
+			
 			GameWindow.EndGame();
 			
 		}
 		GameWindow.getGame().setDirection(direction);
 		
-		if(GameWindow.getGame().getState() == GameState.WON)
-			GameWindow.EndGame();
 		
 		GameWindow.getGame().update();
 		update();
 		
-		
-		
-		
+	
 			
 	}
 
