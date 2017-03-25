@@ -170,6 +170,10 @@ public class MapEditorGrid extends Map {
 			c[i] = m[i].clone();
 		return c;
 	}
+
+	public GameMap getMap() {
+		return map;
+	}
 	
 
 }
