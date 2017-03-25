@@ -71,8 +71,7 @@ public class MenuPanel extends JPanel{
 				
 				
 
-				Object[] options = { "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
-						"19", "20" };
+				Object[] options = { "5", "6", "7", "8", "9", "10", "11", "12", "13" };
 				
 				Object[] o_options = {"1","2","3","4","5"};
 
@@ -153,7 +152,9 @@ public class MenuPanel extends JPanel{
 				GameWindow.pnlInit.setVisible(false);
 				GameWindow.pnlGame.update();
 				GameWindow.pnlGame.requestFocus();
+				//GameWindow.pnlGame.revalidate();
 				GameWindow.pnlGame.setVisible(true);
+
 				
 			}
 		});
