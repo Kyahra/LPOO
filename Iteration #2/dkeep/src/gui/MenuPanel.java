@@ -87,6 +87,7 @@ public class MenuPanel extends JPanel{
 				
 				GameWindow.pnlGame.setVisible(false);
 				GameWindow.pnlMenu.setVisible(false);
+				GameWindow.pnlInit.setVisible(false);
 				
 			
 				GameWindow.createEditorPanel(Integer.parseInt(rows),Integer.parseInt(cols), Integer.parseInt(ogres));
