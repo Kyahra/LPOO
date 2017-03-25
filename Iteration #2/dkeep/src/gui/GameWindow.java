@@ -125,9 +125,9 @@ public class GameWindow {
 		return g;
 	}
 
-	public static void createEditorPanel(int size, int ogres) {
+	public static void createEditorPanel(int size) {
 
-		pnlCustomMap = new MapEditor(size,ogres);
+		pnlCustomMap = new MapEditor(size);
 		pnlCustomMap.setBounds(0, 0, 539, 609);
 		layeredPane.add(pnlCustomMap);
 
