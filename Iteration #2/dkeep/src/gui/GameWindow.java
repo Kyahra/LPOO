@@ -78,7 +78,7 @@ public class GameWindow {
 		
 		
 		pnlEnd = new EndPanel();
-		pnlEnd.setBounds(0, 0, 550, 500);
+		pnlEnd.setBounds(0, 0, 550, 620);
 		pnlEnd.setVisible(false);
 		layeredPane.add(pnlEnd);
 		
@@ -108,6 +108,7 @@ public class GameWindow {
 			pnlEnd.setVisible(true);
 			break;
 		case WON:
+			pnlEnd.setWinImage();
 			pnlEnd.setVisible(true);
 		default:
 			break;

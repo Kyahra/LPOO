@@ -20,12 +20,17 @@ public class EndPanel extends JPanel {
 
 		super();
 		setBackground(Color.BLACK);
-		ImageIcon init = new ImageIcon(this.getClass().getResource("res/speedLimit.png"));
+		ImageIcon init = new ImageIcon(this.getClass().getResource("res/thumbsDown2.png"));
 		JLabel label = new JLabel(init);
 		this.add(label);
+				
+	}
+	
+	public void setWinImage(){
 		
-
-		
+		ImageIcon init = new ImageIcon(this.getClass().getResource("res/thumbsUp3.png"));
+		JLabel label = new JLabel(init);
+		this.add(label);
 	}
 
 }
