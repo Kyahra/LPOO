@@ -135,6 +135,11 @@ public abstract class GameMap {
 		
 	}
 
+	public char[][] getMatrix() {
+		return map;
+	}
+
+	
 
 
 	

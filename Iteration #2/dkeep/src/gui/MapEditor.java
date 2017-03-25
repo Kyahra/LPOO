@@ -28,10 +28,10 @@ public class MapEditor extends JPanel implements MouseListener {
 	private double DIVISOR;
 	
 	private int size;
-	private int ogres;
+
 	
 
-	public MapEditor(int size, int ogres) {
+	public MapEditor(int size) {
 		super();
 		setLayout(null);
 
@@ -47,7 +47,7 @@ public class MapEditor extends JPanel implements MouseListener {
 		addMouseListener(this);
 		
 		this.size =size;
-		this.ogres = ogres;
+	
 		
 		setGamePanel();
 		
@@ -59,7 +59,7 @@ public class MapEditor extends JPanel implements MouseListener {
 	}
 
 	private void setGamePanel() {
-		game_panel = new MapEditorGrid(400, 400, size,ogres);
+		game_panel = new MapEditorGrid(400, 400, size);
 		game_panel.setBounds(75, 75, 400, 400);
 		add(game_panel);
 		
