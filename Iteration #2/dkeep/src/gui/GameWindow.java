@@ -1,33 +1,29 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-
-import java.awt.Image;
-
-import logic.Game;
-import logic.Game.GameState;
-import logic.GameMap;
-
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
-import java.awt.Color;
-import java.awt.Component;
+import logic.Game;
+import logic.Game.GameState;
+import logic.GameMap;
 
 public class GameWindow {
 
 	static JFrame frmMazeGame;
 	static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
-
 	static EndPanel pnlEnd; 
+	static InitPanel pnlInit;
 
 	static CustomMap pnlCustomMap;
 	static JLayeredPane layeredPane;
@@ -69,29 +65,24 @@ public class GameWindow {
 		frmMazeGame.getContentPane().setLayout(null);
 
 		
-		
-		JPanel iniPanel = new JPanel();	
-		iniPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		iniPanel.setBackground(Color.BLACK);
-		iniPanel.setBounds(0, 0, 550, 545);	
-		ImageIcon init = new ImageIcon(this.getClass().getResource("res/keep.png"));
-		iniPanel.add(new JLabel(init));
-		frmMazeGame.getContentPane().add(iniPanel);
-
-		
-		pnlEnd= new EndPanel();
-		pnlEnd.setBounds(0, 0, 550, 545);
-		frmMazeGame.getContentPane().add(pnlEnd);
-
-		
-		
-
-
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, 549, 620);
 		frmMazeGame.getContentPane().add(layeredPane);
 		layeredPane.setLayout(null);
 
+		
+		pnlInit = new InitPanel();
+		pnlInit.setBounds(0, 0, 550, 500);
+		pnlInit.setVisible(true);
+		layeredPane.add(pnlInit);
+		
+		
+		pnlEnd = new EndPanel();
+		pnlEnd.setBounds(0, 0, 550, 500);
+		pnlEnd.setVisible(false);
+		layeredPane.add(pnlEnd);
+		
+		
 		pnlMenu = new MenuPanel();
 		pnlMenu.setBounds(0, 0, 550, 584);
 		layeredPane.add(pnlMenu);
@@ -99,7 +90,7 @@ public class GameWindow {
 		pnlMenu.setLayout(null);
 
 		layeredPane
-				.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap }));
+				.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap, pnlInit, pnlEnd }));
 
 		pnlGame = new GamePanel(400, 400, 10, 10);
 		pnlGame.setBounds(0, 0, 550, 584);

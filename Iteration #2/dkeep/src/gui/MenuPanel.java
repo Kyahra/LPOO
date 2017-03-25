@@ -149,6 +149,7 @@ public class MenuPanel extends JPanel{
 				GameWindow.setGame(new Game(Integer.parseInt(ogres_number), guard));
 
 				GameWindow.pnlMenu.setVisible(false);
+				GameWindow.pnlInit.setVisible(false);
 				GameWindow.pnlGame.update();
 				GameWindow.pnlGame.requestFocus();
 				GameWindow.pnlGame.setVisible(true);
