@@ -22,16 +22,19 @@ public class CustomMap extends JPanel implements MouseListener {
 	
 	private static final long serialVersionUID = -6282798323298335606L;
 	
-	private char c = ' ';
+	private char c;
 	private CustomMapGrid game_panel;
-	private double MAP_SIZE = 350;
-	private double DIVISOR;
-
-	private int size;
+	private double MAP_WIDTH = 350;
+	private double MAP_HEIGHT = 350;
+	private double H_DIVISOR;
+	private double W_DIVISOR;
+	
+	private int rows;
+	private int cols;
 	private int ogres;
 	
 
-	public CustomMap(int size, int ogres) {
+	public CustomMap(int rows, int cols, int ogres) {
 		super();
 		setLayout(null);
 
@@ -46,20 +49,21 @@ public class CustomMap extends JPanel implements MouseListener {
 
 		addMouseListener(this);
 		
-		this.size = size;
+		this.rows = rows;
+		this.cols = cols;
 		this.ogres = ogres;
 		
 		setGamePanel();
 		
-		DIVISOR = MAP_SIZE/size;
-
+		H_DIVISOR = MAP_HEIGHT/rows;
+		W_DIVISOR = MAP_WIDTH/cols;
 
 		
 
 	}
 
 	private void setGamePanel() {
-		game_panel = new CustomMapGrid(400, 400, size,ogres);
+		game_panel = new CustomMapGrid(400, 400, rows, cols,ogres);
 		game_panel.setBounds(75, 75, 400, 400);
 		add(game_panel);
 		
@@ -180,17 +184,19 @@ public class CustomMap extends JPanel implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		int x = (int) Math.floor((e.getX()-100)/DIVISOR);
-		int y = (int) Math.floor((e.getY()-100)/DIVISOR);
 		
+		
+		double x = Math.floor((e.getX()-100)/H_DIVISOR);
+		double y = Math.floor((e.getY()-100)/W_DIVISOR);
+		
+		System.out.println(x);
+		System.out.println(y);
+		
+		
+		
+		
+		// throws HeadlessException
 
-	
-		if(c != ' ' && insideGrid(x, y)){
-			System.out.println("yo");
-			game_panel.insertNewChar(x,y,c);
-			game_panel.update();
-		}
-		
 		// public Component getComponentAt(Point p);
 
 	}
@@ -199,12 +205,6 @@ public class CustomMap extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
-	}
-	
-	public boolean insideGrid(int x, int y){
-		
-		return (x >0 && x<size && y>0 && y <size);
-		
 	}
 
 }

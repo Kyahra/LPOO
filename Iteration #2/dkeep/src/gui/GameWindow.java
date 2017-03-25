@@ -129,13 +129,11 @@ public class GameWindow {
 		return g;
 	}
 
-	public static void createEditorPanel(int size, int ogres) {
+	public static void createEditorPanel(int rows, int cols, int ogres) {
 
-		pnlCustomMap = new CustomMap(size,ogres);
+		pnlCustomMap = new CustomMap(rows, cols,ogres);
 		pnlCustomMap.setBounds(0, 0, 539, 609);
 		layeredPane.add(pnlCustomMap);
 
 	}
-
-	
 }
