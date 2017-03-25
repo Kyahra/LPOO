@@ -145,7 +145,9 @@ public class MenuPanel extends JPanel{
 			
 				GameWindow.pnlGame.update();
 				GameWindow.pnlGame.requestFocus();
+				//GameWindow.pnlGame.revalidate();
 				GameWindow.pnlGame.setVisible(true);
+
 				
 				
 			}
