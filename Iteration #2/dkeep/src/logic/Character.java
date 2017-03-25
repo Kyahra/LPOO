@@ -15,6 +15,12 @@ public class Character {
 		this.c = c;
 
 	}
+	public Character(char c) {
+
+	
+		this.c = c;
+
+	}
 
 	public int getX() {
 		return position.x;

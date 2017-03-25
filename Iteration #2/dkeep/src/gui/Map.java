@@ -2,10 +2,14 @@ package gui;
 
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logic.GameMap;
 
 public class Map  extends JPanel {
 	
@@ -59,6 +63,76 @@ public class Map  extends JPanel {
 		Image newimg = img.getScaledInstance(this.getWidth() / 10, this.getHeight() / 10, Image.SCALE_FAST);
 
 		return new ImageIcon(newimg);
+	}
+	
+	public void paintComponent (GameMap map) {
+		Point p = new Point();
+		char c;
+
+		for (int i = 0; i < map.getRows(); i++)
+			for (int j = 0; j < map.getCols(); j++) {
+
+				p.setLocation(j, i);
+				c = map.getChar(p);
+
+				switch (c) {
+				case 'X':
+					this.add(new JLabel(wall));
+					break;
+				case 'I':
+					this.add(new JLabel(wall));
+					break;
+				case 'G':
+					this.add(new JLabel(ogre));
+					break;
+				case 'H':
+					this.add(new JLabel(hero));
+					break;
+				case 'k':
+					this.add(new JLabel(key));
+					break;
+				case 'S':
+					this.add(new JLabel(door));
+					break;
+				case 'O':
+					this.add(new JLabel(ogre));
+					break;
+				case '*':
+					this.add(new JLabel(club));
+					break;
+				case '$':
+					this.add(new JLabel(club));
+					break;
+				case 'A':
+					this.add(new JLabel(hero));
+					break;
+				case 'K':
+					this.add(new JLabel(hero));
+					break;
+				case '8':
+					this.add(new JLabel(stuned_ogre));
+					break;
+				case 'g':
+					this.add(new JLabel(stuned_ogre));
+					break;
+				default:
+					this.add(new JLabel(black_cell));
+					break;
+				}
+
+			}
+		
+
+	}
+	
+	public void update(GameMap map){
+		removeAll();
+
+		repaint();
+		
+		paintComponent(map);
+		
+		revalidate();
 	}
 
 }

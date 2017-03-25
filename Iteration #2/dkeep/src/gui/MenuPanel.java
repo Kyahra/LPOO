@@ -8,6 +8,7 @@ import logic.Game;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
@@ -29,7 +30,6 @@ public class MenuPanel extends JPanel{
 	public MenuPanel() {
 		super();
 
-		
 
 		setBackground(java.awt.Color.BLACK);
 		setLayout(null);
@@ -37,13 +37,26 @@ public class MenuPanel extends JPanel{
 		setNewGameButton();
 		setExitButton();
 		setCustomButton();
-	
 		
-		this.setVisible(true);
+		setImage();
+	
+	
 		
 	}
 	
 	
+	private void setImage() {
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.BLACK);
+		panel.setBounds(43, 11, 452, 515);
+		ImageIcon init = new ImageIcon(this.getClass().getResource("res/keep.png"));
+		panel.add(new JLabel(init));
+		add(panel);
+		
+		
+	}
+
+
 	private void setCustomButton() {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -52,22 +65,39 @@ public class MenuPanel extends JPanel{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String cols_str;
-				String rows_str;
+				String cols;
+				String rows;
+				String ogres;
+				
+				
 
 				Object[] options = { "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
 						"19", "20" };
+				
+				Object[] o_options = {"1","2","3","4","5"};
 
-				cols_str = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
+				cols = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
 						JOptionPane.PLAIN_MESSAGE, null, options, "5");
 
-				rows_str = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
+				rows = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
 						JOptionPane.PLAIN_MESSAGE, null, options, "5");
+				
+				ogres = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Ogres?", "",
+						JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
+				
+				GameWindow.pnlGame.setVisible(false);
+				GameWindow.pnlMenu.setVisible(false);
+				
+			
+				GameWindow.createEditorPanel(Integer.parseInt(rows),Integer.parseInt(cols), Integer.parseInt(ogres));
+				GameWindow.pnlCustomMap.setVisible(true);
+				
 
 			}
 		});
-		btnNewButton_1.setBounds(197, 13, 236, 45);
+		btnNewButton_1.setBounds(192, 521, 236, 45);
 		add(btnNewButton_1);
+		
 		
 	}
 
@@ -84,7 +114,7 @@ public class MenuPanel extends JPanel{
 				System.exit(0);
 			}
 		});
-		btnNewButton_2.setBounds(436, 13, 102, 45);
+		btnNewButton_2.setBounds(430, 521, 102, 45);
 		add(btnNewButton_2);
 		
 
@@ -103,6 +133,8 @@ public class MenuPanel extends JPanel{
 				
 				String guard;
 				String ogres_number;
+				
+				
 
 				Object[] g_options = { "Rookie", "Druken", "Suspicious" };
 
@@ -116,13 +148,14 @@ public class MenuPanel extends JPanel{
 
 				GameWindow.setGame(new Game(Integer.parseInt(ogres_number), guard));
 
-				pnlGame.update();
-				pnlGame.requestFocus();
-				pnlGame.setVisible(true);
+				GameWindow.pnlMenu.setVisible(false);
+				GameWindow.pnlGame.update();
+				GameWindow.pnlGame.requestFocus();
+				GameWindow.pnlGame.setVisible(true);
 				
 			}
 		});
-		btnNewGame.setBounds(11, 13, 174, 45);
+		btnNewGame.setBounds(10, 521, 174, 45);
 		add(btnNewGame);
 		
 		
