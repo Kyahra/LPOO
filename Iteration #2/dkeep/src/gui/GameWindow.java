@@ -74,6 +74,13 @@ public class GameWindow {
 		pnlInit = new InitPanel();
 		pnlInit.setBounds(0, 0, 550, 500);
 		pnlInit.setVisible(true);
+				
+				
+				pnlMenu = new MenuPanel();
+				pnlMenu.setBounds(0, 0, 550, 584);
+				layeredPane.add(pnlMenu);
+				
+						pnlMenu.setLayout(null);
 		layeredPane.add(pnlInit);
 		
 		
@@ -82,19 +89,12 @@ public class GameWindow {
 		pnlEnd.setVisible(false);
 		layeredPane.add(pnlEnd);
 		
-		
-		pnlMenu = new MenuPanel();
-		pnlMenu.setBounds(0, 0, 550, 584);
-		layeredPane.add(pnlMenu);
-
-		pnlMenu.setLayout(null);
-
-		layeredPane
-				.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap, pnlInit, pnlEnd }));
-
-		pnlGame = new GamePanel(400, 400, 10, 10);
-		pnlGame.setBounds(0, 0, 550, 584);
-		layeredPane.add(pnlGame);
+				layeredPane
+						.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap, pnlInit, pnlEnd }));
+				
+						pnlGame = new GamePanel(400, 400, 10, 10);
+						pnlGame.setBounds(0, 0, 550, 584);
+						layeredPane.add(pnlGame);
 
 	}
 
@@ -105,6 +105,7 @@ public class GameWindow {
 
 		switch (state) {
 		case LOST:
+			//pnlGame.setVisible(false);
 			pnlEnd.setVisible(true);
 			break;
 		case WON:

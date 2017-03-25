@@ -70,15 +70,23 @@ public class CustomMap extends JPanel implements MouseListener {
 	}
 
 	private void setBackButton() {
-		JButton btnNewButton_2 = new JButton("Back");
-		btnNewButton_2.setBounds(303, 22, 89, 23);
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/rsz_play.png")));
+		btnNewButton_2.setBounds(300, 15, 121, 42);
 		add(btnNewButton_2);
 
 	}
 
 	private void setPlayButton() {
-		JButton btnNewButton_1 = new JButton("Play");
-		btnNewButton_1.setBounds(169, 22, 89, 23);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton_1.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/rsz_menu.png")));
+		btnNewButton_1.setBackground(Color.BLACK);
+		btnNewButton_1.setBounds(131, 11, 121, 49);
 		add(btnNewButton_1);
 
 	}
@@ -118,7 +126,7 @@ public class CustomMap extends JPanel implements MouseListener {
 
 	private void setKeyButton() {
 		JButton btnKey = new JButton("");
-		btnKey.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconKey.png")));
+		btnKey.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconKey3.png")));
 		btnKey.setBounds(410, 506, 52, 49);
 		btnKey.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnKey.addActionListener(new ActionListener() {
