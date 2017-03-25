@@ -26,10 +26,14 @@ public class GameWindow {
 	static JFrame frmMazeGame;
 	static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
+
+	static EndPanel pnlEnd; 
+
 	static CustomMap pnlCustomMap;
 	static JLayeredPane layeredPane;
 
-	private static Game g = new Game(0, "Rookie");
+
+ 	private static Game g = new Game(0, "Rookie");
 
 	// Launch the application.
 
@@ -64,6 +68,25 @@ public class GameWindow {
 		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMazeGame.getContentPane().setLayout(null);
 
+		
+		
+		JPanel iniPanel = new JPanel();	
+		iniPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		iniPanel.setBackground(Color.BLACK);
+		iniPanel.setBounds(0, 0, 550, 545);	
+		ImageIcon init = new ImageIcon(this.getClass().getResource("res/keep.png"));
+		iniPanel.add(new JLabel(init));
+		frmMazeGame.getContentPane().add(iniPanel);
+
+		
+		pnlEnd= new EndPanel();
+		pnlEnd.setBounds(0, 0, 550, 545);
+		frmMazeGame.getContentPane().add(pnlEnd);
+
+		
+		
+
+
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(0, 0, 549, 620);
 		frmMazeGame.getContentPane().add(layeredPane);
@@ -72,6 +95,7 @@ public class GameWindow {
 		pnlMenu = new MenuPanel();
 		pnlMenu.setBounds(0, 0, 550, 584);
 		layeredPane.add(pnlMenu);
+
 		pnlMenu.setLayout(null);
 
 		layeredPane
@@ -90,8 +114,10 @@ public class GameWindow {
 
 		switch (state) {
 		case LOST:
+			pnlEnd.setVisible(true);
 			break;
 		case WON:
+			pnlEnd.setVisible(true);
 		default:
 			break;
 		}

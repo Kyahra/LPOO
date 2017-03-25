@@ -16,8 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
-public class CustomMap extends JPanel implements MouseListener {
 
+public class CustomMap extends JPanel implements MouseListener {
 	
 	private static final long serialVersionUID = -6282798323298335606L;
 	char c;
@@ -37,10 +37,29 @@ public class CustomMap extends JPanel implements MouseListener {
 		setBackButton();
 		setBackground(java.awt.Color.BLACK);
 
+		
+		JButton btnWall = new JButton("");
+		btnWall.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnWall.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconWall.png")));
+		btnWall.setBackground(Color.BLACK);
+		btnWall.setBounds(38, 40, 49, 49);
+		getContentPane().add(btnWall);
+		
+		JButton btnExit = new JButton("");
+		btnExit.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconDoor.png")));
+		btnExit.setBounds(120, 40, 49, 49);
+		getContentPane().add(btnExit);
+		
+		JButton btnKey = new JButton("");
+		btnKey.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconKey.png")));
+		btnKey.setBounds(197, 40, 49, 49);
+		getContentPane().add(btnKey);
+
+
 		GamePanel panel = new GamePanel(350, 350, rows, cols);
 		panel.setBounds(64, 67, 403, 380);
 		add(panel);
-		
+
 		
 
 	}
@@ -62,6 +81,7 @@ public class CustomMap extends JPanel implements MouseListener {
 	private void setHeroButton() {
 		JButton btnHero = new JButton("");
 		btnHero.setIcon(new ImageIcon(CustomMap.class.getResource("/gui/res/iconHero.png")));
+
 		btnHero.setBounds(341, 488, 49, 49);
 		btnHero.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnHero.addActionListener(new ActionListener() {
@@ -71,6 +91,7 @@ public class CustomMap extends JPanel implements MouseListener {
 		});
 
 		add(btnHero);
+
 
 	}
 
