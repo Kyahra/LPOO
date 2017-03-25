@@ -116,12 +116,12 @@ public class GameWindow {
 
 		GameState state = g.getState();
 		
-		pnlGame.setVisible(false);
+			pnlGameBar.setVisible(false);
 		
 		   switch (state) {
 	        case LOST:
 
-	        	pnlGameBar.setVisible(false);
+	        
 
 	            pnlDefeat.setVisible(true);
 	            break;

@@ -225,9 +225,9 @@ public class MapEditor extends JPanel implements MouseListener {
 				GameWindow.setGame(g);
 				
 				GameWindow.pnlCustomMap.setVisible(false);
-				GameWindow.pnlGame.update();
-				GameWindow.pnlGame.setVisible(true);
-				GameWindow.pnlGame.requestFocus();
+				GameWindow.pnlGameBar.update();
+				GameWindow.pnlGameBar.setVisible(true);
+				GameWindow.pnlGameBar.requestFocus();
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/rsz_play.png")));
