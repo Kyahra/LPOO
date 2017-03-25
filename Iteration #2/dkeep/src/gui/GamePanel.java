@@ -9,7 +9,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.concurrent.TimeUnit;
 
 import com.sun.prism.paint.Color;
 
@@ -39,20 +39,25 @@ public class GamePanel extends Map implements KeyListener{
 		super.update(GameWindow.getMap());
 	}
 	
-	private void playGameRound(String direction){
+	private void playGameRound(String direction) throws InterruptedException{
 
+		if (GameWindow.getGame().isOver()){
+			TimeUnit.SECONDS.sleep(1);
+			GameWindow.EndGame();
+			
+		}
 		GameWindow.getGame().setDirection(direction);
 		GameWindow.getGame().update();
 		update();
 		
-		if (GameWindow.getGame().isOver())
-			GameWindow.EndGame();
+		
 			
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
+		try{
 		
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_LEFT: 
@@ -68,6 +73,10 @@ public class GamePanel extends Map implements KeyListener{
 			playGameRound("S");  
 			break;
 		 }	
+		
+		}catch (InterruptedException e1){
+			
+		}
 		
 	}
 	

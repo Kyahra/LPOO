@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,7 +30,7 @@ public class GameWindow {
 	static JLayeredPane layeredPane;
 
 
- 	private static Game g = new Game(0, "Rookie");
+ 	static Game g = new Game(0, "Rookie");
 
 	// Launch the application.
 
@@ -93,14 +94,14 @@ public class GameWindow {
 
 	}
 
-	public static void EndGame() {
+	public static void EndGame() throws InterruptedException {
 
 		GameState state = g.getState();
-		g.printMap();
+		
 
 		switch (state) {
 		case LOST:
-			//pnlGame.setVisible(false);
+			pnlGame.setVisible(false);
 			pnlEnd.setVisible(true);
 			break;
 		case WON:
