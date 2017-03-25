@@ -23,8 +23,9 @@ public class GameWindow {
 	static JFrame frmMazeGame;
 	static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
+	static EndPanel pnlEnd; 
 
-	private static Game g = new Game(0, "Rookie");
+ 	private static Game g = new Game(0, "Rookie");
 
 	// Launch the application.
 
@@ -68,6 +69,10 @@ public class GameWindow {
 		iniPanel.add(new JLabel(init));
 		frmMazeGame.getContentPane().add(iniPanel);
 
+		
+		pnlEnd= new EndPanel();
+		pnlEnd.setBounds(0, 0, 550, 545);
+		frmMazeGame.getContentPane().add(pnlEnd);
 				
 		pnlGame= new GamePanel(400, 400);
 		pnlGame.setBounds(0, 0, 550, 545);
@@ -90,8 +95,10 @@ public class GameWindow {
 
 		switch (state) {
 		case LOST:
+			pnlEnd.setVisible(true);
 			break;
 		case WON:
+			pnlEnd.setVisible(true);
 		default:
 			break;
 		}
