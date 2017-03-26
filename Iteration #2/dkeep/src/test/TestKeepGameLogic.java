@@ -99,7 +99,7 @@ public class TestKeepGameLogic {
 		assertEquals('I',g.getMap().getChar(new Point(1,0)));
 
 	}
-	
+
 	
 	@Test
 	public void heroMovesIntoDoor() {
@@ -241,7 +241,18 @@ public class TestKeepGameLogic {
 
 	}
 	
+	@Test
+	public void ogreClub() {
+		
+		Game g = new Game(1,"Rookie");
+		g.setMap(new KeepMap(map,1));
+		normalizePositions(g);
+		
+		assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getClub().getChar(),'*');
+		
+	}
 	
+
 	
 
 }

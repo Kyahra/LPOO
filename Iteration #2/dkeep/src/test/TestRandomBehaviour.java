@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -8,7 +9,9 @@ import org.junit.Test;
 import java.awt.Point;
 
 import logic.Character;
+import logic.DungeonMap;
 import logic.Game;
+import logic.Guard;
 import logic.KeepMap;
 
 public class TestRandomBehaviour {
@@ -24,6 +27,23 @@ public class TestRandomBehaviour {
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
 			{ 'X', 'H', ' ', '*', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
+
+	@Test
+	public void printMap() {
+		Game g = new Game(1,"Rookie");
+		g.setMap(new KeepMap(map,1));
+		
+		assertEquals(g.printMap()," X X X X X X X X X X \n"
+								+ " I               O X \n"
+								+ " X               * X \n"
+								+ " X                 X \n"
+								+ " X                 X \n"
+								+ " X                 X \n"
+								+ " X                 X \n"
+								+ " X                 X \n"
+								+ " X H   *           X \n"
+								+ " X X X X X X X X X X \n");
+	}
 	
 
 	@Test(timeout =1000)
