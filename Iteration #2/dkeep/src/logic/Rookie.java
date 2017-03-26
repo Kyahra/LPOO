@@ -2,6 +2,12 @@ package logic;
 
 import java.awt.Point;
 
+/**  
+* Rookie.java - This guard follows the path without failure
+* @author  Daniel e Sofia
+* @version 1.0 
+* 
+*/ 
 public class Rookie extends Guard{
 
 	private int[] guard_y= {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
@@ -9,12 +15,21 @@ public class Rookie extends Guard{
 	private int guard_x_idx;
 	private int guard_y_idx;
 	
+	/**  
+	 * Guard constructor  
+	 * 
+	 * @param position  initial guard position
+	 */
 	public Rookie(Point position){
 		super(position);
 
 	
 	}
 	
+	/**  
+	 * Sets guard actions  
+	 *
+	 */
 	public void updateGuard(){
 
 		if(guard_x_idx >= 23){

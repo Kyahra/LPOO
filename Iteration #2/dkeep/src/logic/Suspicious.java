@@ -3,17 +3,30 @@ package logic;
 import java.awt.Point;
 import java.util.Random;
 
+/**  
+* Suspicious.java - Sometimes this guard inverts his direction.
+* @author  Daniel e Sofia
+* @version 1.0 
+* 
+*/ 
 public class Suspicious extends Guard{
 
 	
-	
+	/**  
+	 * Guard constructor  
+	 * 
+	 * @param position  initial guard position
+	 */
 	public Suspicious(Point position){
 		
 		super(position);
 	
 	}
 	
-	
+	/**  
+	 * Sets guard actions  
+	 *
+	 */
 	public void updateGuard(){
 			
 		int direction = getIdxDirection();
@@ -33,9 +46,7 @@ public class Suspicious extends Guard{
 		}
 		
 		position = new Point(guard_x[guard_idx],guard_y[guard_idx]);
-
 		
 	}
-	
 	
 }

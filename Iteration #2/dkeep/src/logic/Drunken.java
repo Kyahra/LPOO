@@ -3,15 +3,31 @@ package logic;
 import java.awt.Point;
 import java.util.Random;
 
+/**  
+* Drunken.java - Guard subclasse, this guard is able to fall asleep and to change direction
+* @author  Daniel e Sofia
+* @version 1.0 
+* 
+*/ 
 public class Drunken extends Guard {
 
-	protected boolean isSleeping = false;
+
+	/**  
+	 * Drunken constructor  
+	 * 
+	 * @param position  inicial guard position
+	 */
 
 	public Drunken(Point position) {
 		super(position);
 
 	}
 	
+	/**  
+	 * Guard action when he is sleeping  
+	 * 
+	 * @param rand  determines if he inverts direction or not
+	 */
 	public void sleepingAction(int rand){
 		
 		if(moveNumber <= 0){
@@ -26,6 +42,11 @@ public class Drunken extends Guard {
 		}			
 	}
 	
+	/**  
+	 * Guard action when he is awake   
+	 * 
+	 * @param rand  determines if he inverts direction or not
+	 */
 	public void awakeAction(int rand){
 		
 		if(rand <3){
@@ -45,7 +66,10 @@ public class Drunken extends Guard {
 		}
 	}
 	
-	
+	/**  
+	 * Sets guard actions  
+	 *
+	 */
 	public void updateGuard(){
 		
 		int random_number = getIdxDirection();
@@ -59,14 +83,5 @@ public class Drunken extends Guard {
 		position = new Point(guard_x[guard_idx],guard_y[guard_idx]);
 
 	}
-
-	public boolean isSleeping() {
-		return isSleeping;
-	}
-	
-
-//	public void setSleeping(boolean isSleeping) {
-//		this.isSleeping = isSleeping;
-//	}
 
 }
