@@ -4,6 +4,12 @@ import logic.Character;
 import java.awt.Point;
 import java.util.Random;
 
+/**  
+* Guard.java - This is the enemy of the game.
+* @author  Daniel e Sofia
+* @version 1.0 
+* 
+*/ 
 public class Guard extends Character{
 
 	protected int[] guard_y= {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
@@ -12,7 +18,11 @@ public class Guard extends Character{
 	protected int moveNumber = 4;
 	protected boolean front = true;
 	
-	
+	/**  
+	 * Guard constructor  
+	 * 
+	 * @param position  initial guard position
+	 */
 	public Guard(Point position){
 	
 		setPosition(position);
@@ -21,8 +31,18 @@ public class Guard extends Character{
 	
 	}
 	
+	/**  
+	 * Sets guard actions  
+	 *
+	 */
 	public void updateGuard(){};
 	
+	
+	/**  
+	 * Sets the new direction index  
+	 *
+	 * @return direction index
+	 */
 	public int getIdxDirection(){
 		
 		Random rand = new Random();		
@@ -31,17 +51,48 @@ public class Guard extends Character{
 		
 	}
 	
+	/**  
+	 * Checks whereas the guard is sleeping 
+	 *
+	 * @return true if the guard is sleeping, false otherwise
+	 */
+	public boolean isSleeping() {
+		return isSleeping;
+	}
+
+	/**  
+	 * Sets the guard sleeping state
+	 *
+	 * @param true if the guard is sleeping, false otherwise
+	 */
+	public void setSleeping(boolean isSleeping) {
+		this.isSleeping = isSleeping;
+	}
 
 
+	/**  
+	 * Gets an auxiliary variable that helps with ogre sleeping time
+	 *
+	 * @return number 
+	 */
 	public int getMoveNumber() {
 		return moveNumber;
 	}
 
-
+	/**  
+	 * Checks whereas the guard is front turned 
+	 *
+	 * @return true if the guard is front turned , false otherwise
+	 */
 	public boolean isFront() {
 		return front;
 	}
-
+	
+	/**  
+	 * Sets guard front state
+	 *
+	 * @param true if the guard is front turned, false otherwise
+	 */
 	public void setFront(boolean front) {
 		this.front = front;
 	}
