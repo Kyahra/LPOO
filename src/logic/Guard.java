@@ -51,23 +51,7 @@ public class Guard extends Character{
 		
 	}
 	
-	/**  
-	 * Checks whereas the guard is sleeping 
-	 *
-	 * @return true if the guard is sleeping, false otherwise
-	 */
-	public boolean isSleeping() {
-		return isSleeping;
-	}
 
-	/**  
-	 * Sets the guard sleeping state
-	 *
-	 * @param true if the guard is sleeping, false otherwise
-	 */
-	public void setSleeping(boolean isSleeping) {
-		this.isSleeping = isSleeping;
-	}
 
 
 	/**  

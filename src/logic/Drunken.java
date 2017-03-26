@@ -9,8 +9,11 @@ import java.util.Random;
 * @version 1.0 
 * 
 */ 
-public class Drunken extends Guard {
 
+
+
+public class Drunken extends Guard {
+	private boolean isSleeping = false;
 
 	/**  
 	 * Drunken constructor  
@@ -82,6 +85,24 @@ public class Drunken extends Guard {
 					
 		position = new Point(guard_x[guard_idx],guard_y[guard_idx]);
 
+	}
+	
+	/**  
+	 * Checks whereas the guard is sleeping 
+	 *
+	 * @return true if the guard is sleeping, false otherwise
+	 */
+	public boolean isSleeping() {
+		return isSleeping;
+	}
+
+	/**  
+	 * Sets the guard sleeping state
+	 *
+	 * @param true if the guard is sleeping, false otherwise
+	 */
+	public void setSleeping(boolean isSleeping) {
+		this.isSleeping = isSleeping;
 	}
 
 }

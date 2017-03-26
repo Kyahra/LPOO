@@ -1,4 +1,4 @@
-# LPOO1617_T3G8
+# LPOO_T3G8
 
 ![alt tag](http://i.imgur.com/E3ByK7T.png)
 ![alt tag](http://i.imgur.com/H0v241P.png)
@@ -6,3 +6,5 @@
 
 Sofia Catarina Bahamonde Alves up201504570 sofiacbahamonde@gmail.com <br />
 Daniel Pereira Machado up201506365 up201506365 up201506365@fe.up.pt <br />
+
+

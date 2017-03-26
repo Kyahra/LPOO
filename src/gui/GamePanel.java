@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
-import com.sun.prism.paint.Color;
 
 
 public class GamePanel extends Map implements KeyListener{
