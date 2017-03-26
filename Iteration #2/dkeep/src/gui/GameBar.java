@@ -36,11 +36,10 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 		setUpButton();
 		setLeftButton();
 		setDownButton();
-		setRightButton();	
-		setLayout(null);
+		setRightButton();
 		
 		pnlGame = new GamePanel(400, 400,10);
-		pnlGame.setBounds(0, 0, 550, 495);
+		pnlGame.setBounds(0, 0, 550, 491);
 		this.add(pnlGame);
 				
 		sethowToPlayButton();		
@@ -53,6 +52,7 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 	
 	public void setMenuButton(){
 		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(27, 519, 113, 49);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GameWindow.pnlGameBar.setVisible(false);
@@ -62,13 +62,13 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 		btnNewButton.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnNewButton.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/rsz_menu.png")));
 		btnNewButton.setBackground(Color.BLACK);
-		btnNewButton.setBounds(30, 517, 113, 49);
 		add(btnNewButton);
 	}
 	
 	
 	public void sethowToPlayButton(){
 		JButton howToPlay = new JButton("");
+		howToPlay.setBounds(164, 519, 188, 44);
 		howToPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -82,13 +82,13 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 		howToPlay.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		howToPlay.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/rsz_2howtoplay.png")));
 		howToPlay.setBackground(Color.BLACK);
-		howToPlay.setBounds(170, 522, 188, 44);
 		add(howToPlay);
 	}
 	
 	public void setUpButton(){
 		
 		JButton up = new JButton("");
+		up.setBounds(415, 492, 29, 25);
 		up.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -99,7 +99,7 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 				}
 			}
 		});
-		up.setBounds(441, 507, 29, 25);
+		setLayout(null);
 		up.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		up.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/arrowUp.png")));
 		up.setBackground(Color.BLACK);
@@ -110,7 +110,7 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 	public void setLeftButton(){
 
 		JButton left = new JButton("");
-		left.setBounds(415, 530, 29, 25);
+		left.setBounds(386, 519, 29, 25);
 		left.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -129,6 +129,7 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 	public void setDownButton(){
 		
 		JButton down = new JButton("");
+		down.setBounds(415, 547, 29, 25);
 		down.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -137,7 +138,6 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 				}
 			}
 		});
-		down.setBounds(441, 552, 29, 25);
 		down.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/arrowDown.png")));
 		down.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		down.setBackground(Color.BLACK);
@@ -147,6 +147,7 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 	public void setRightButton(){
 
 		JButton right = new JButton("");
+		right.setBounds(445, 519, 29, 29);
 		right.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -155,7 +156,6 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 				}
 			}
 		});
-		right.setBounds(468, 528, 29, 29);
 		right.setAlignmentX(Component.CENTER_ALIGNMENT);
 		right.setBackground(Color.BLACK);
 		right.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/arrowRight.png")));
