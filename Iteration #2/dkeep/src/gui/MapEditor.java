@@ -65,6 +65,12 @@ public class MapEditor extends JPanel implements MouseListener {
 		game_panel = new MapEditorGrid(400, 400, size);
 		game_panel.setBounds(75, 75, 400, 400);
 		add(game_panel);
+		{
+			JButton btnNewButton = new JButton("");
+			btnNewButton.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconSword.png")));
+			btnNewButton.setBounds(448, 506, 49, 49);
+			add(btnNewButton);
+		}
 		
 	}
 
@@ -87,9 +93,9 @@ public class MapEditor extends JPanel implements MouseListener {
 
 	private void setHeroButton() {
 		JButton btnHero = new JButton("");
-		btnHero.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconHero.png")));
+		btnHero.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconHeroR.png")));
 
-		btnHero.setBounds(343, 506, 49, 49);
+		btnHero.setBounds(300, 506, 49, 49);
 
 		btnHero.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnHero.addActionListener(new ActionListener() {
@@ -106,7 +112,7 @@ public class MapEditor extends JPanel implements MouseListener {
 	private void setOgreButton() {
 		  JButton btnOgre = new JButton("");
 	        btnOgre.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconOgre.png")));
-	        btnOgre.setBounds(258, 506, 49, 49);
+	        btnOgre.setBounds(221, 506, 49, 49);
 	        btnOgre.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnOgre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -123,7 +129,7 @@ public class MapEditor extends JPanel implements MouseListener {
 
 		btnKey.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconKey3.png")));
 
-		btnKey.setBounds(410, 506, 52, 49);
+		btnKey.setBounds(377, 506, 52, 49);
 		btnKey.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnKey.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -138,7 +144,7 @@ public class MapEditor extends JPanel implements MouseListener {
 	private void setExitButton() {
 		JButton btnExit = new JButton("");
 		btnExit.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconDoor.png")));
-		btnExit.setBounds(165, 506, 52, 49);
+		btnExit.setBounds(134, 506, 52, 49);
 		btnExit.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -155,7 +161,7 @@ public class MapEditor extends JPanel implements MouseListener {
 		btnWall.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnWall.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconWall.png")));
 		btnWall.setBackground(Color.BLACK);
-		btnWall.setBounds(89, 506, 49, 49);
+		btnWall.setBounds(63, 506, 49, 49);
 		btnWall.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnWall.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
