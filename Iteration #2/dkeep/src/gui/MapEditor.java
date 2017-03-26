@@ -58,8 +58,7 @@ public class MapEditor extends JPanel implements MouseListener {
 		
 		DIVISOR = MAP_SIZE/size;
 		
-
-		
+		addMouseListener(this);
 
 	}
 
@@ -208,7 +207,9 @@ public class MapEditor extends JPanel implements MouseListener {
 		int x = (int) Math.floor((e.getX()-100)/DIVISOR);
 		int y = (int) Math.floor((e.getY()-100)/DIVISOR);
 		
-		if(c != ' ' && x >0 && y>0 && x<size && y <size){
+	
+		
+		if(c != ' ' && x >=0 && y>=0 && x<size && y <size){
 			game_panel.setNewChar(x,y,c);
 			game_panel.update();
 		}
@@ -264,5 +265,4 @@ public class MapEditor extends JPanel implements MouseListener {
 		add(btnNewButton_1);
 
 	}
-
 }
