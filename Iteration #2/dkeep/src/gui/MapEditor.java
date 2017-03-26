@@ -229,6 +229,7 @@ public class MapEditor extends JPanel implements MouseListener {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+
 				ArrayList<Point> ogres_positions = game_panel.getOgresPositions();
 				
 				if(!game_panel.mapIsValid()){
@@ -239,6 +240,7 @@ public class MapEditor extends JPanel implements MouseListener {
 				}
 				
 				Game g =  new Game(0, "R");
+
 				
 				GameWindow.pnlGameBar.pnlGame.setSize(game_panel.getMap().length);
 				game_panel.normalizeMap();

@@ -43,6 +43,7 @@ public class MapEditorGrid extends Map {
 		super.update(map);
 	}
 
+
 	public boolean mapIsValid() {
 		if (checkHero())
 			if (checkKeys())
@@ -55,7 +56,7 @@ public class MapEditorGrid extends Map {
 
 	}
 
-	// verifica que existe 1 e 1 só herói
+	// verifica que existe 1 e 1 sÃ³ herÃ³i
 
 	public boolean checkHero() {
 
@@ -69,6 +70,7 @@ public class MapEditorGrid extends Map {
 
 		if (hero_cnt == 1)
 			return true;
+
 
 		return false;
 	}
@@ -196,6 +198,7 @@ public class MapEditorGrid extends Map {
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
+
 					map[i][j] = 'X';
 				else
 					map[i][j] = ' ';
@@ -204,5 +207,6 @@ public class MapEditorGrid extends Map {
 		}
 
 	}
+
 
 }
