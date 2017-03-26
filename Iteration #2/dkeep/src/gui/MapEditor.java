@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
 
 import logic.Game;
@@ -222,6 +223,14 @@ public class MapEditor extends JPanel implements MouseListener {
 		btnNewButton_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if(!game_panel.isValid()){
+//					JOptionPane.showMessageDialog(GameWindow.frmMazeGame, "Invalid Map!");
+//				game_panel.resetMap();
+//				game_panel.update();
+				
+				
+				}
 				
 				Game g =  new Game(game_panel.numberOfOgres(), "R");
 				

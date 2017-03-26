@@ -30,14 +30,7 @@ public class MapEditorGrid extends Map {
 
 		map = new char[size][size];
 
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
-					map[i][j] ='X';
-					
-
-			}
-		}
+		resetMap();
 
 		super.update(map);
 
@@ -53,7 +46,7 @@ public class MapEditorGrid extends Map {
 	}
 	
 	public boolean isValid(){
-		return (checkHero() && checkKeys() && checkBorder());
+		return checkHero();// &&  && checkBorder());
 		
 		
 	}
@@ -61,14 +54,17 @@ public class MapEditorGrid extends Map {
 	// verifica que existe 1 e 1 só herói
 	
 	public boolean checkHero(){
+		
+		
 		int hero_cnt=0;
 		
 		for(int i =0; i <size; i++)
 			for(int j =0; j<size; j++)
-				if(map[i][j] =='H') hero_cnt++;
+				if(map[i][j] ==' ') hero_cnt++;
 			
 		
 		if(hero_cnt ==1) return true;
+		
 		return false;
 	}
 	
@@ -182,6 +178,20 @@ public class MapEditorGrid extends Map {
 				if(map[i][j] == 'O') map[i][j] =' ';
 				if(map[i][j] == 'S') map[i][j] ='I';
 			}
+	}
+
+	public void resetMap() {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
+					map[i][j] ='X';
+				else
+					map[i][j] =' ';
+					
+
+			}
+		}
+		
 	}
 	
 
