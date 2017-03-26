@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.GridLayout;
-
 import javax.swing.JPanel;
 
 import logic.Game;
@@ -14,18 +12,13 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.border.MatteBorder;
 
 public class MenuPanel extends JPanel{
 	
 	private JButton btnNewGame;
-	private JButton btnExit;
-	private JButton btnCustom;
-	
-	private GameBar pnlGameBar = GameWindow.pnlGameBar;
-	private JFrame frmMazeGame = GameWindow.frmMazeGame;
+private JFrame frmMazeGame = GameWindow.frmMazeGame;
 	
 	public MenuPanel() {
 		super();
@@ -66,14 +59,15 @@ public class MenuPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				
 				String size;
-				
-
+			
 				Object[] options = { "5", "6", "7", "8", "9", "10", "11", "12", "13" };
 				
-				
-
 				size = (String) JOptionPane.showInputDialog(frmMazeGame, "Map Size?", "",
 						JOptionPane.PLAIN_MESSAGE, null, options, "5");
+				
+				
+				if(size == null)
+					return;
 
 
 				GameWindow.pnlGameBar.setVisible(false);
@@ -138,6 +132,9 @@ public class MenuPanel extends JPanel{
 
 				ogres_number = (String) JOptionPane.showInputDialog(frmMazeGame,
 						"             Chose the Number of Ogres", "", JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
+				
+				if(guard== null || 	ogres_number== null)
+					return;
 
 				GameWindow.setGame(new Game(Integer.parseInt(ogres_number), guard));
 				

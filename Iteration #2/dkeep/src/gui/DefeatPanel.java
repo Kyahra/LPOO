@@ -25,11 +25,10 @@ public class DefeatPanel extends JPanel {
         setBackground(Color.BLACK);
         ImageIcon defeat = new ImageIcon(this.getClass().getResource("res/thumbsDownCut.png"));
         JLabel label = new JLabel(defeat);
-        label.setBounds(10, 51, 512, 400);
+        label.setBounds(10, 49, 512, 400);
         
         setMenuButton();
         setExitButton();
-        setLayout(null);
         add(label);
        
     
@@ -40,13 +39,14 @@ public class DefeatPanel extends JPanel {
     public void setMenuButton(){
     	
     	JButton menuBtn = new JButton("");
-        menuBtn.setBounds(100, 460, 122, 45);
+    	menuBtn.setBounds(106, 486, 122, 45);
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GameWindow.pnlDefeat.setVisible(false);
                 GameWindow.pnlMenu.setVisible(true);
             }
         });
+        setLayout(null);
         menuBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         menuBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
         menuBtn.setIcon(new ImageIcon(VictoryPanel.class.getResource("/gui/res/rsz_menu.png")));
@@ -56,7 +56,7 @@ public class DefeatPanel extends JPanel {
     public void setExitButton(){
     	
     	JButton exitBtn = new JButton("");
-        exitBtn.setBounds(323, 460, 103, 45);
+    	exitBtn.setBounds(310, 486, 103, 45);
         exitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);

@@ -30,6 +30,26 @@ public class KeepMap extends GameMap {
 			ogres.add(new Ogre(new Point(7, 1)));
 
 	}
+	
+	public KeepMap(char[][] map, ArrayList<Point> ogres_positions){
+		super(map);
+		
+		Point hero_pos = super.searchChar('H');
+		Point club_pos = super.searchChar('*');
+		Point key_pos = super.searchChar('k');
+	
+
+		hero = new Hero(hero_pos);
+		key = new Character(key_pos, 'k');
+		club = new Character(club_pos, '*');
+
+		for (int i = 0; i <ogres_positions.size(); i++){
+			
+			ogres.add(new Ogre(ogres_positions.get(i)));
+			
+		}
+		
+	}
 
 	@Override
 	public void update(String direction) {
@@ -51,6 +71,7 @@ public class KeepMap extends GameMap {
 
 		if (hero.getState() == HeroState.STAIR)
 			won = true;
+		
 
 	}
 
@@ -76,8 +97,8 @@ public class KeepMap extends GameMap {
 			drawCharacter(club);
 
 		for (Ogre ogre : ogres) {
-			drawCharacter(ogre.getClub());
 			drawCharacter(ogre);
+			drawCharacter(ogre.getClub());
 		}
 
 	}

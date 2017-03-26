@@ -11,13 +11,14 @@ import javax.swing.border.MatteBorder;
 
 import logic.Game;
 import logic.KeepMap;
-import logic.Game.GameState;
+
 
 import java.awt.event.MouseListener;
-
+import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 
 
@@ -45,9 +46,10 @@ public class MapEditor extends JPanel implements MouseListener {
 		setHeroButton();
 		setPlayButton();
 		setBackButton();
+		setClubButton();
 		setBackground(java.awt.Color.BLACK);
 
-		addMouseListener(this);
+		
 		
 		this.size =size;
 	
@@ -56,21 +58,29 @@ public class MapEditor extends JPanel implements MouseListener {
 		
 		DIVISOR = MAP_SIZE/size;
 		
+		addMouseListener(this);
 
+	}
+
+	private void setClubButton() {
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				c='*';
+			}
+		});
+		btnNewButton.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnNewButton.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconSword.png")));
+		btnNewButton.setBounds(448, 506, 49, 49);
+		add(btnNewButton);
 		
-
 	}
 
 	private void setGamePanel() {
 		game_panel = new MapEditorGrid(400, 400, size);
 		game_panel.setBounds(75, 75, 400, 400);
 		add(game_panel);
-		{
-			JButton btnNewButton = new JButton("");
-			btnNewButton.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/iconSword.png")));
-			btnNewButton.setBounds(448, 506, 49, 49);
-			add(btnNewButton);
-		}
+		
 		
 	}
 
@@ -194,21 +204,17 @@ public class MapEditor extends JPanel implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		
-		
-		
 		int x = (int) Math.floor((e.getX()-100)/DIVISOR);
 		int y = (int) Math.floor((e.getY()-100)/DIVISOR);
 		
-		if(c != ' ' && x >0 && y>0 && x<size && y <size){
+	
+		
+		if(c != ' ' && x >=0 && y>=0 && x<size && y <size){
 			game_panel.setNewChar(x,y,c);
 			game_panel.update();
 		}
 	
-		
-		// throws HeadlessException
-
-		// public Component getComponentAt(Point p);
-
+	
 	}
 
 	@Override
@@ -223,11 +229,27 @@ public class MapEditor extends JPanel implements MouseListener {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Game g =  new Game(game_panel.numberOfOgres(), "R");
+
+				ArrayList<Point> ogres_positions = game_panel.getOgresPositions();
+				
+				if(!game_panel.mapIsValid()){
+					JOptionPane.showMessageDialog(GameWindow.frmMazeGame, 
+							  "                             ----- Invalid Map! -----\n"
+							+ "Your map must have one hero, one key, one club, one or\n"
+							+ "more exit doors and it must be possible for the hero to\n"
+							+ "access all positions that are not walls.\n");
+				
+				game_panel.resetMap();
+				game_panel.update();
+				return;
+				}
+				
+				Game g =  new Game(0, "R");
+
 				
 				GameWindow.pnlGameBar.pnlGame.setSize(game_panel.getMap().length);
 				game_panel.normalizeMap();
-				g.setMap(new KeepMap(game_panel.getMap(),game_panel.numberOfOgres()));
+				g.setMap(new KeepMap(game_panel.getMap(),ogres_positions));
 						
 				GameWindow.setGame(g);
 				
@@ -243,5 +265,4 @@ public class MapEditor extends JPanel implements MouseListener {
 		add(btnNewButton_1);
 
 	}
-
 }
