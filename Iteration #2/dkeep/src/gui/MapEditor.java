@@ -219,15 +219,15 @@ public class MapEditor extends JPanel implements MouseListener {
 				
 				Game g =  new Game(game_panel.numberOfOgres(), "R");
 				
-				g.setMap(game_panel.getMap());
+				game_panel.normalizeMap();
+				g.setMap(new KeepMap(game_panel.getMap(),game_panel.numberOfOgres()));
 						
-
 				GameWindow.setGame(g);
 				
 				GameWindow.pnlCustomMap.setVisible(false);
-				GameWindow.pnlGame.update();
-				GameWindow.pnlGame.setVisible(true);
-				GameWindow.pnlGame.requestFocus();
+				GameWindow.pnlGameBar.update();
+				GameWindow.pnlGameBar.setVisible(true);
+				GameWindow.pnlGameBar.requestFocus();
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(MapEditor.class.getResource("/gui/res/rsz_play.png")));

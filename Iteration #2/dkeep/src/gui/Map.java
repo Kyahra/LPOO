@@ -68,15 +68,14 @@ public class Map  extends JPanel {
 		return new ImageIcon(newimg);
 	}
 	
-	public void paintComponent (GameMap map) {
+	public void paintComponent (char[][] map) {
 		Point p = new Point();
 		char c;
 
-		for (int i = 0; i < map.getRows(); i++)
-			for (int j = 0; j < map.getCols(); j++) {
+		for (int i = 0; i < map.length; i++)
+			for (int j = 0; j < map.length; j++) {
 
-				p.setLocation(j, i);
-				c = map.getChar(p);
+				c = map[i][j];
 
 				switch (c) {
 				case 'X':
@@ -128,12 +127,13 @@ public class Map  extends JPanel {
 
 	}
 	
-	public void update(GameMap map){
+	public void update(char[][] map){
 		removeAll();
 
 		repaint();
 		
 		paintComponent(map);
+		
 		
 		revalidate();
 	}
