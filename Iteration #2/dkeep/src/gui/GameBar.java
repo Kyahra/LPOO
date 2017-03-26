@@ -33,6 +33,61 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 	public GameBar() {
 		setBackground(Color.BLACK);
 		
+		setUpButton();
+		setLeftButton();
+		setDownButton();
+		setRightButton();	
+		setLayout(null);
+		
+		pnlGame = new GamePanel(400, 400,10);
+		pnlGame.setBounds(0, 0, 550, 495);
+		this.add(pnlGame);
+				
+		sethowToPlayButton();		
+		setMenuButton();	
+		addMouseListener(this);
+		addKeyListener(this);
+		
+	}
+	
+	
+	public void setMenuButton(){
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GameWindow.pnlGameBar.setVisible(false);
+				GameWindow.pnlMenu.setVisible(true);
+			}
+		});
+		btnNewButton.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnNewButton.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/rsz_menu.png")));
+		btnNewButton.setBackground(Color.BLACK);
+		btnNewButton.setBounds(30, 517, 113, 49);
+		add(btnNewButton);
+	}
+	
+	
+	public void sethowToPlayButton(){
+		JButton howToPlay = new JButton("");
+		howToPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				JOptionPane.showMessageDialog(GameWindow.frmMazeGame, " Press keyboard arrow keys to move your hero\n "
+						+ "around the maze. You can also click on the buttons.\n"
+						+ " Your goal is to catch the key and then reach the doors.\n"
+						+ "                                                        \n"
+						+ " Good luck!!!              ");
+			}
+		});
+		howToPlay.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		howToPlay.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/rsz_2howtoplay.png")));
+		howToPlay.setBackground(Color.BLACK);
+		howToPlay.setBounds(170, 522, 188, 44);
+		add(howToPlay);
+	}
+	
+	public void setUpButton(){
+		
 		JButton up = new JButton("");
 		up.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -48,7 +103,12 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 		up.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		up.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/arrowUp.png")));
 		up.setBackground(Color.BLACK);
+		add(up);
 		
+	}
+	
+	public void setLeftButton(){
+
 		JButton left = new JButton("");
 		left.setBounds(415, 530, 29, 25);
 		left.addActionListener(new ActionListener() {
@@ -56,13 +116,17 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 				try{
 					pnlGame.playGameRound("A");
 				}catch (InterruptedException e1){
-
 				}
 			}
 		});
 		left.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/arrowLeft.png")));
 		left.setBackground(Color.BLACK);
 		left.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		add(left);
+
+	}
+
+	public void setDownButton(){
 		
 		JButton down = new JButton("");
 		down.addActionListener(new ActionListener() {
@@ -70,7 +134,6 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 				try{
 					pnlGame.playGameRound("S");
 				}catch (InterruptedException e1){
-
 				}
 			}
 		});
@@ -78,14 +141,17 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 		down.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/arrowDown.png")));
 		down.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		down.setBackground(Color.BLACK);
-		
+		add(down);
+	}
+	
+	public void setRightButton(){
+
 		JButton right = new JButton("");
 		right.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					pnlGame.playGameRound("D");
 				}catch (InterruptedException e1){
-
 				}
 			}
 		});
@@ -94,54 +160,9 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 		right.setBackground(Color.BLACK);
 		right.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/arrowRight.png")));
 		right.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		
-		
-		setLayout(null);
-		
-		pnlGame = new GamePanel(400, 400,10);
-		pnlGame.setBounds(0, 0, 550, 495);
-		this.add(pnlGame);
-		
-		add(down);
-		add(left);
-		add(up);
 		add(right);
-		
-		JButton howToPlay = new JButton("");
-		howToPlay.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				JOptionPane.showMessageDialog(GameWindow.frmMazeGame, " Press keyboard arrow keys to move your hero\n "
-																	+ "around the maze. You can also click on the buttons.\n"
-																	+ " Your goal is to catch the key and then reach the doors.\n"
-																	+ "                                                        \n"
-																	+ " Good luck!!!              ");
-			}
-		});
-		howToPlay.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		howToPlay.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/rsz_2howtoplay.png")));
-		howToPlay.setBackground(Color.BLACK);
-		howToPlay.setBounds(170, 522, 188, 44);
-		add(howToPlay);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GameWindow.pnlGameBar.setVisible(false);
-                GameWindow.pnlMenu.setVisible(true);
-			}
-		});
-		btnNewButton.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnNewButton.setIcon(new ImageIcon(GameBar.class.getResource("/gui/res/rsz_menu.png")));
-		btnNewButton.setBackground(Color.BLACK);
-		btnNewButton.setBounds(30, 517, 113, 49);
-		add(btnNewButton);
-		
-		addMouseListener(this);
-		addKeyListener(this);
-		
 	}
-
+	
 	public void update() {
 		pnlGame.update();
 		
