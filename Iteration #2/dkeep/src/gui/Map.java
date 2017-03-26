@@ -25,6 +25,7 @@ public class Map  extends JPanel {
 	protected ImageIcon armed_hero;
 	protected ImageIcon end;
 	protected ImageIcon sword;
+	protected ImageIcon closed_door;
 	
 	public Map() {
 		super();
@@ -37,7 +38,7 @@ public class Map  extends JPanel {
 
 		guard = new ImageIcon(this.getClass().getResource("res/guard.png"));
 		black_cell = new ImageIcon(this.getClass().getResource("res/black.png"));
-		hero = new ImageIcon(this.getClass().getResource("res/HeroR.png"));
+		hero = new ImageIcon(this.getClass().getResource("res/Hero.png"));
 		key = new ImageIcon(this.getClass().getResource("res/Key3.png"));
 		door = new ImageIcon(this.getClass().getResource("res/door.png"));
 		ogre = new ImageIcon(this.getClass().getResource("res/ogre.png"));
@@ -45,6 +46,7 @@ public class Map  extends JPanel {
 		stuned_ogre = new ImageIcon(this.getClass().getResource("res/stuned_ogre.png"));
 		end = new ImageIcon(this.getClass().getResource("res/end.png"));
 		club = new ImageIcon(this.getClass().getResource("res/club.png"));
+		closed_door = new ImageIcon(this.getClass().getResource("res/close_door.png"));
 
 		wall = scaleImage(wall);
 		guard = scaleImage(guard);
@@ -56,6 +58,7 @@ public class Map  extends JPanel {
 		club = scaleImage(club);
 		stuned_ogre= scaleImage(stuned_ogre);
 		sword = scaleImage(sword);
+		closed_door = scaleImage(closed_door);
 	
 
 	}
@@ -82,7 +85,7 @@ public class Map  extends JPanel {
 					this.add(new JLabel(wall));
 					break;
 				case 'I':
-					this.add(new JLabel(wall));
+					this.add(new JLabel(closed_door));
 					break;
 				case 'G':
 					this.add(new JLabel(ogre));

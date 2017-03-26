@@ -39,7 +39,7 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 		setRightButton();
 		
 		pnlGame = new GamePanel(400, 400,10);
-		pnlGame.setBounds(0, 0, 550, 495);
+		pnlGame.setBounds(0, 0, 550, 491);
 		this.add(pnlGame);
 				
 		sethowToPlayButton();		
