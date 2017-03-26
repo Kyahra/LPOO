@@ -7,12 +7,11 @@ import javax.swing.ImageIcon;
 
 
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
 
 import logic.Game;
 import logic.KeepMap;
-import logic.Game.GameState;
+
 
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class MapEditor extends JPanel implements MouseListener {
 		setClubButton();
 		setBackground(java.awt.Color.BLACK);
 
-		addMouseListener(this);
+		
 		
 		this.size =size;
 	
@@ -233,7 +232,12 @@ public class MapEditor extends JPanel implements MouseListener {
 				ArrayList<Point> ogres_positions = game_panel.getOgresPositions();
 				
 				if(!game_panel.mapIsValid()){
-				JOptionPane.showMessageDialog(GameWindow.frmMazeGame, "Invalid Map!");
+					JOptionPane.showMessageDialog(GameWindow.frmMazeGame, 
+							  "                             ----- Invalid Map! -----\n"
+							+ "Your map must have one hero, one key, one club, one or\n"
+							+ "more exit doors and it must be possible for the hero to\n"
+							+ "access all positions that are not walls.\n");
+				
 				game_panel.resetMap();
 				game_panel.update();
 				return;
