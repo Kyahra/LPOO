@@ -668,19 +668,6 @@ public class TestDungeonGameLogic {
 		
 	}
 	
-	@Test
-	public void testDrunkenCanSleep() {
-		
-		Game g = new Game(1,"Drunken");
-		g.setMap(new DungeonMap(map_2,"Drunken"));
-		((DungeonMap) g.getMap()).setGuard(new Drunken(new Point(8, 1)));
-		
-		assertEquals(((DungeonMap) g.getMap()).getGuard().getChar(),'G');
-
-		((DungeonMap) g.getMap()).getGuard().setSleeping(false);
-		assertEquals(((DungeonMap) g.getMap()).getGuard().getChar(),'G');
-			
-	}
 	
 	
 	@Test
@@ -694,7 +681,7 @@ public class TestDungeonGameLogic {
 			((DungeonMap) g.getMap()).getGuard().updateGuard();
 
 			int num  = ((DungeonMap) g.getMap()).getGuard().getMoveNumber();
-			boolean sleeping = ((DungeonMap) g.getMap()).getGuard().isSleeping();
+			boolean sleeping = ((Drunken)((DungeonMap) g.getMap()).getGuard()).isSleeping();
 			
 			if(num > 0 && num < 4 && sleeping)
 				assertEquals(((DungeonMap) g.getMap()).getGuard().getChar(),'g');	
@@ -705,7 +692,7 @@ public class TestDungeonGameLogic {
 			if(num == 0 && !sleeping)
 				assertEquals(((DungeonMap) g.getMap()).getGuard().getChar(),'G');
 					
-			if(((DungeonMap) g.getMap()).getGuard().isSleeping())
+			if(((Drunken)((DungeonMap) g.getMap()).getGuard()).isSleeping())
 				assertEquals(((DungeonMap) g.getMap()).getGuard().getChar(),'g');
 		}
 	}
@@ -728,7 +715,7 @@ public class TestDungeonGameLogic {
 			
 			Point new_pos = ((DungeonMap) g.getMap()).getGuard().getPosition();
 			
-			if(((DungeonMap) g.getMap()).getGuard().isSleeping())
+			if(((Drunken)((DungeonMap) g.getMap()).getGuard()).isSleeping())
 				assertEquals(old_pos,new_pos);	
 		}
 		

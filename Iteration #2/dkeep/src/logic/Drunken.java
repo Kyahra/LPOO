@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Drunken extends Guard {
 
+	protected boolean isSleeping = false;
 
 	public Drunken(Point position) {
 		super(position);
@@ -62,5 +63,10 @@ public class Drunken extends Guard {
 	public boolean isSleeping() {
 		return isSleeping;
 	}
+	
+
+//	public void setSleeping(boolean isSleeping) {
+//		this.isSleeping = isSleeping;
+//	}
 
 }

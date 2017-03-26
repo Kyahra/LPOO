@@ -22,7 +22,7 @@ public abstract class GameMap {
 
 		char c = 'X';
 
-		if(position.y >-1&& position.y <rows && position.x >-1 && position.x <cols)
+		
 		c = map[position.y][position.x];
 
 		return c;

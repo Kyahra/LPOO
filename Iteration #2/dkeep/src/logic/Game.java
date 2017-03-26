@@ -181,13 +181,7 @@ public class Game {
 		return state;
 	}
 
-	public void setRows(int r) {
-		
-		
-	}
 	
-	
-
 
 
 }
