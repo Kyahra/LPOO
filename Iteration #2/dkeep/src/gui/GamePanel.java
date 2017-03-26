@@ -82,6 +82,8 @@ public class GamePanel extends Map implements KeyListener{
 			
 		}
 		
+		requestFocus();
+		
 	}
 	
 	public void fillWalls(){

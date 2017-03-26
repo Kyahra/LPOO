@@ -15,7 +15,7 @@ import logic.Hero.HeroState;
 	public Ogre(Point position) {
 		setPosition(position);
 		c= 'O';
-		club = new Character(new Point(getX(), getY()+1), '*');
+		club = new Character(new Point(getX(), getY()), '*');
 		stuned = false;
 		stun_counter = 0;
 
