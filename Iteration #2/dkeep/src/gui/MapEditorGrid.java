@@ -11,7 +11,7 @@ import logic.KeepMap;
 
 public class MapEditorGrid extends Map {
 
-	GameMap map;
+	char[][] map;
 	int size;
 
 
@@ -28,12 +28,13 @@ public class MapEditorGrid extends Map {
 
 		loadImages();
 
-		map = new KeepMap(new char[size][size], 0);
+		map = new char[size][size];
 
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
-					map.drawCharacter(new Character(new Point(j,i),'X'));
+					map[i][j] ='X';
+					
 
 			}
 		}
@@ -43,7 +44,7 @@ public class MapEditorGrid extends Map {
 	}
 
 	public void setNewChar(int x, int y, char c) {
-		map.drawCharacter(new Character( new Point(x,y), c));
+		map[y][x] =c;
 		
 	}
 	
@@ -64,7 +65,7 @@ public class MapEditorGrid extends Map {
 		
 		for(int i =0; i <size; i++)
 			for(int j =0; j<size; j++)
-				if(map.getChar(new Point(i,j))== 'H') hero_cnt++;
+				if(map[i][j] =='H') hero_cnt++;
 			
 		
 		if(hero_cnt ==1) return true;
@@ -77,7 +78,7 @@ public class MapEditorGrid extends Map {
 		
 		for(int i =0; i <size; i++)
 			for(int j =0; j <size; j++)
-				if(map.getChar(new Point(i,j)) == 'k') return true;
+				if(map[i][j] =='k') return true;
 		
 		return false;
 		
@@ -90,7 +91,7 @@ public class MapEditorGrid extends Map {
 		
 		for(int i =0; i <size; i++)
 			for(int j=0; j <size; j++)
-				if(map.getChar(new Point(i,j)) == 'O') ogre_cnt++;
+				if(map[i][j] =='O') ogre_cnt++;
 		
 		return ogre_cnt;
 	}
@@ -102,7 +103,7 @@ public class MapEditorGrid extends Map {
 		for (int i = 0; i < size; i++)
 			for (int j = 0; j < size; j++)
 				if (i == 0 || j == 0 || i == size - 1 || j == size - 1)
-					if (map.getChar(new Point(i,j)) != 'X') return false;
+					if (map[i][j] =='X') return false;
 						
 		return true;
 		
@@ -115,7 +116,7 @@ public class MapEditorGrid extends Map {
 				boolean match = true;
 				for (int x = 0; x < square.length; x++)
 					for (int y = 0; y < square.length; y++) {
-						if (map.getChar(new Point(i+x,j+y)) != square[x][y])
+						if (map[i+x][j+y]  != square[x][y])
 							match = false;
 					}
 				if (match)
@@ -130,8 +131,8 @@ public class MapEditorGrid extends Map {
 		
 		for(int i =0; i <size; i++)
 			for(int j=0; j< size; j++){
-				if(map.getChar(new Point(i,j)) == 'S'){
-					char [][] m = deepClone(map.getMatrix());
+				if(map[i][j] =='S'){
+					char [][] m = deepClone(map);
 					
 					visit(m, i, j);
 					
@@ -171,8 +172,16 @@ public class MapEditorGrid extends Map {
 		return c;
 	}
 
-	public GameMap getMap() {
+	public char[][] getMap() {
 		return map;
+	}
+	
+	public void normalizeMap(){
+		for (int i = 0; i < size; i++)
+			for (int j = 0; j <size; j++){
+				if(map[i][j] == 'O') map[i][j] =' ';
+				if(map[i][j] == 'S') map[i][j] ='I';
+			}
 	}
 	
 
