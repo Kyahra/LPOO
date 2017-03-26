@@ -50,7 +50,17 @@ public class VictoryPanel extends JPanel {
         JLabel label = new JLabel(victory);
         label.setBounds(10, 0, 512, 450);
         
-        JButton menuBtn = new JButton("");
+        setMenuButton();
+        setExitButton();
+
+        setLayout(null);
+        add(label);
+        
+    }
+    
+    public void setMenuButton(){
+    	
+    	JButton menuBtn = new JButton("");
         menuBtn.setBounds(129, 456, 122, 45);
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -61,8 +71,12 @@ public class VictoryPanel extends JPanel {
         menuBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         menuBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
         menuBtn.setIcon(new ImageIcon(VictoryPanel.class.getResource("/gui/res/rsz_menu.png")));
-        
-        JButton exitBtn = new JButton("");
+        add(menuBtn);
+    }
+    
+    public void setExitButton(){
+    	
+    	JButton exitBtn = new JButton("");
         exitBtn.setBounds(310, 456, 103, 45);
         exitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -72,13 +86,7 @@ public class VictoryPanel extends JPanel {
         exitBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
         exitBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         exitBtn.setIcon(new ImageIcon(VictoryPanel.class.getResource("/gui/res/rsz_exit.png")));
-        setLayout(null);
-        add(label);
-        add(menuBtn);
         add(exitBtn);
-
-        
-        
     }
     
     public void setWinImage(){
