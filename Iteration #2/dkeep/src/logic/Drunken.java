@@ -14,6 +14,40 @@ public class Drunken extends Guard {
 
 	}
 
+	public void sleepingAction(int rand){
+		
+		if(moveNumber <= 0){
+			isSleeping  = false;
+			c = 'G';
+			moveNumber = 4;
+			if(rand > 1)
+				front = true;
+			else front  = false;				
+		}else{
+			moveNumber--;			
+		}			
+	}
+	
+	public void awakeAction(int rand){
+		
+		if(rand <3){
+			if(front){
+				if(guard_idx >= 23)
+					guard_idx = 0;
+				else guard_idx++;
+			}
+			else {
+				if(guard_idx <= 0)
+					guard_idx = 23;
+				else guard_idx--;
+			}
+		}else{
+			isSleeping = true;
+			c= 'g';
+		}
+	}
+	
+	
 	public void updateGuard(){
 
 		Random rand = new Random();		
@@ -21,38 +55,11 @@ public class Drunken extends Guard {
 		
 		
 		if(isSleeping){
-			if(moveNumber <= 0){
-				isSleeping  = false;
-				c = 'G';
-				moveNumber = 4;
-				if(random_number > 1)
-					front = true;
-				else front  = false;				
-			}else{
-				moveNumber--;			
-			}	
-		}else{
-			
-			if(random_number <3){
-
-				if(front){
-					if(guard_idx >= 23)
-						guard_idx = 0;
-					else guard_idx++;
-				}
-				else {
-					if(guard_idx <= 0)
-						guard_idx = 23;
-					else guard_idx--;
-				}
-
-			}else{
-				isSleeping = true;
-				c= 'g';
-			}
+			sleepingAction(random_number);
+		}else{			
+			awakeAction(random_number);
 		}
-			
-		
+					
 		position = new Point(guard_x[guard_idx],guard_y[guard_idx]);
 
 	}
