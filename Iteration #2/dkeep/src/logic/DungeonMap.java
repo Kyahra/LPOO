@@ -7,13 +7,25 @@ import java.util.Random;
 import logic.Game.GameState;
 import logic.Hero.HeroState;
 
+/**  
+* DungeonMap.java - First Level implementation
+* @author  Daniel e Sofia
+* @version 1.0 
+* 
+*/ 
 public class DungeonMap extends GameMap {
 
 	private Guard guard;
 	private Character lever;
 
 	boolean next_map = false;
-
+	
+	/**  
+	 * Level 1 constructor - DungeonMap 
+	 * 
+	 * @param map  level map
+	 * @param guard2 type of guard
+	 */
 	public DungeonMap(char[][] map, String guard2) {
 		super(map);
 		Point hero_pos = super.searchChar('H');
@@ -37,6 +49,12 @@ public class DungeonMap extends GameMap {
 		}
 	}
 
+	
+	/**  
+	 * Update the state of the level
+	 * 
+	 * @param direction hero next direction
+	 */
 	@Override
 	public void update(String direction) {
 
@@ -55,6 +73,9 @@ public class DungeonMap extends GameMap {
 
 	}
 
+	/**  
+	 * Draws the level
+	 */
 	@Override
 	public void draw() {
 		drawCharacter(lever);
@@ -62,6 +83,9 @@ public class DungeonMap extends GameMap {
 		drawCharacter(guard);
 	}
 
+	/**  
+	 * Cleans the map
+	 */
 	@Override
 	public void clean() {
 		cleanCharacter(hero);
@@ -69,24 +93,49 @@ public class DungeonMap extends GameMap {
 
 	}
 
+	/**  
+	 * Checks whether the hero was captured or not
+	 * 
+	 * @return true is the hero was captured, false otherwise
+	 */
 	public boolean isOver() {
 
 		return super.isCaptured(hero, guard);
 			
 	}
 	
+	/**  
+	 * Checks whether you have to move to the next level
+	 * 
+	 * @return true if you have to move to the next level, false otherwise
+	 */
 	public boolean next(){
 		return next_map;
 	}
 	
+	/**  
+	 * Sets guard
+	 * 
+	 * @param g  the guard
+	 */
 	public void setGuard(Guard g){
 		guard = g;
 	}
 	
+	/**  
+	 * Gets guard
+	 * 
+	 * @return  g  the guard
+	 */
 	public Guard getGuard(){
 		return guard;
 	}
 
+	/**  
+	 * Gets key position
+	 * 
+	 * @return key position
+	 */
 	@Override
 	public Point getKPos() {
 		return lever.getPosition();

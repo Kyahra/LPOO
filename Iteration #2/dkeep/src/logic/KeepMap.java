@@ -5,6 +5,12 @@ import java.util.ArrayList;
 
 import logic.Hero.HeroState;
 
+/**  
+* DungeonMap.java - First Level implementation
+* @author  Daniel e Sofia
+* @version 1.0 
+* 
+*/ 
 public class KeepMap extends GameMap {
 
 	
@@ -14,6 +20,12 @@ public class KeepMap extends GameMap {
 
 	boolean won = false;
 
+	/**  
+	 * Level 2 constructor - KeepMap 
+	 * 
+	 * @param map  level map
+	 * @param num_ogres number of ogres
+	 */
 	public KeepMap(char[][] map, int num_ogres) {
 		super(map);
 
@@ -31,6 +43,12 @@ public class KeepMap extends GameMap {
 
 	}
 	
+	/**  
+	 * Level 2 constructor - KeepMap 
+	 * 
+	 * @param map  level map
+	 * @param nuogres_positionsm_ogres ogres positions
+	 */
 	public KeepMap(char[][] map, ArrayList<Point> ogres_positions){
 		super(map);
 		
@@ -51,6 +69,12 @@ public class KeepMap extends GameMap {
 		
 	}
 
+	
+	/**  
+	 * Updates level2 map
+	 * 
+	 * @param direction  next hero direction 
+	 */
 	@Override
 	public void update(String direction) {
 
@@ -75,6 +99,10 @@ public class KeepMap extends GameMap {
 
 	}
 
+	
+	/**  
+	 * Cleans level2 map
+	 */
 	@Override
 	public void clean() {
 		cleanCharacter(hero);
@@ -86,6 +114,9 @@ public class KeepMap extends GameMap {
 
 	}
 
+	/**  
+	 * Draws level2 map
+	 */
 	@Override
 	public void draw() {
 		drawCharacter(hero);
@@ -103,6 +134,12 @@ public class KeepMap extends GameMap {
 
 	}
 
+	
+	/**  
+	 * Checks whether level2 is over
+	 * 
+	 * @return true if level2 is over, false otherwise
+	 */
 	@Override
 	public boolean isOver() {
 		for (Ogre ogre : ogres) {
@@ -123,15 +160,31 @@ public class KeepMap extends GameMap {
 		return false;
 	}
 
+	/**  
+	 * Checks whether you should win
+	 * 
+	 * @return true if you should win, false otherwise
+	 */
 	@Override
 	public boolean next() {
 		return won;
 	}
 	
+	/**  
+	 * Gets all ogres
+	 * 
+	 * @return ogres
+	 */
 	public ArrayList<Ogre> getOgres(){
 		return ogres;
 	}
 
+	
+	/**  
+	 * Gets the position of the key
+	 * 
+	 * @return position
+	 */
 	@Override
 	public Point getKPos() {
 		return new Point(8,1);
