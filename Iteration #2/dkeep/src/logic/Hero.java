@@ -21,12 +21,11 @@ public class Hero extends Character {
 
 	}
 
-	public void move(String direction, GameMap map) {
-
-		Point new_position = new Point(getX(), getY());
-		char c;
-		int direction_int=4;
-
+	
+	int getDirection(String direction){
+		
+		int direction_int = 4;
+		
 		switch (direction) {
 		case "D":
 			direction_int =0;
@@ -42,14 +41,14 @@ public class Hero extends Character {
 			break;
 
 		default:
-			return;
+			break;
 		}
+		return direction_int;
+	}
+	
+	
+	public void setState(char c, Point new_position){
 		
-		new_position = super.getNewPosition(getPosition(), direction_int);
-		
-
-		c = map.getChar(new_position);
-
 		switch (c) {
 		case 'X':
 			break;
@@ -77,6 +76,23 @@ public class Hero extends Character {
 		default:
 			break;
 		}
+		
+	}
+	
+	
+	public void move(String direction, GameMap map) {
+
+		Point new_position = new Point(getX(), getY());
+		char c;
+		int direction_int=4;
+
+		direction_int = getDirection(direction);
+				
+		new_position = super.getNewPosition(getPosition(), direction_int);
+		
+		c = map.getChar(new_position);
+		
+		setState(c, new_position);
 
 	}
 

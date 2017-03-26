@@ -15,6 +15,7 @@ import logic.Suspicious;
 import logic.Game.GameState;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 public class TestDungeonGameLogic {
 	char[][] map_1 = { { 'X', 'I', 'X', 'X', 'X' }, { 'X', 'H', ' ', 'G', 'X' }, { 'X', ' ', ' ', ' ', 'X' },
@@ -242,22 +243,71 @@ public class TestDungeonGameLogic {
 	@Test
 	public void testRookie() {
 		Game g = new Game(1,"Rookie");
-		g.setMap(new DungeonMap(map_1,"Rookie"));
+		g.setMap(new DungeonMap(map_2,"Rookie"));
 		
-		((DungeonMap) g.getMap()).setGuard(new Rookie(new Point(8, 1)));
-		assertEquals(((DungeonMap) g.getMap()).getGuard().getPosition(), new Point(8, 1));
-
-		for (int i = 0; i < 30; i++) {
-
-			g.setDirection("W");
-			g.updateGame();
+		boolean left= false;
+		boolean right= false;
+		boolean up = false;
+		boolean down = false;
+		
+		Point old_pos;
+		Point new_pos;
+		
+		while(!left || !right || !up || !down){
+			
+			old_pos = ((DungeonMap) g.getMap()).getGuard().getPosition();
+		
+			((DungeonMap) g.getMap()).getGuard().updateGuard();
+			
+			new_pos = ((DungeonMap) g.getMap()).getGuard().getPosition();
+			
+			if(isLeft(new_pos, old_pos))
+				left = true;
+			
+			if(isRight(new_pos, old_pos))
+				right = true;
+			
+			if( isUp(new_pos, old_pos))
+				up = true;
+			
+			if( isDown(new_pos, old_pos))
+				down = true;
+			
 	
 		}
-
-		assertEquals(((DungeonMap) g.getMap()).getGuard().getPosition(), new Point(6, 5));
-
 	}
 
+	@Test
+	public void testRookiePath() {
+		Game g = new Game(1,"Rookie");
+		g.setMap(new DungeonMap(map_1,"Rookie"));
+		
+		boolean completePath= false;
+		int numSteps = 0;
+		
+		ArrayList<Point> path = new ArrayList<Point>();
+		
+		Point old_pos;
+		Point new_pos;
+		
+		while(!completePath){
+			
+			if(numSteps > 23){
+			
+			old_pos = ((DungeonMap) g.getMap()).getGuard().getPosition();
+		
+			((DungeonMap) g.getMap()).getGuard().updateGuard();
+			
+			new_pos = ((DungeonMap) g.getMap()).getGuard().getPosition();
+			
+			
+			}
+	
+		}
+	}
+
+	
+	
 	@Test
 	public void testSuspicious() {
 		Game g = new Game(1,"Suspicious");
@@ -336,5 +386,40 @@ public class TestDungeonGameLogic {
 			return true;
 
 		return false;
+	}
+	
+	
+	private boolean isLeft(Point new_pos, Point old_pos) {
+
+		if (new_pos.getX() == old_pos.getX() - 1 && new_pos.getY() == old_pos.getY())
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean isRight(Point new_pos, Point old_pos) {
+
+		if (new_pos.getX() == old_pos.getX() + 1 && new_pos.getY() == old_pos.getY())
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean isUp(Point new_pos, Point old_pos) {
+
+		if (new_pos.getX() == old_pos.getX()  && new_pos.getY() == old_pos.getY()-1)
+			return true;
+		else
+			return false;
+		
+	}
+	
+	private boolean isDown(Point new_pos, Point old_pos) {
+
+		if (new_pos.getX() == old_pos.getX()  && new_pos.getY() == old_pos.getY()+1)
+			return true;
+		else
+			return false;
+		
 	}
 }

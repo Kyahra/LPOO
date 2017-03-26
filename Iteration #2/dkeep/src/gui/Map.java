@@ -24,6 +24,7 @@ public class Map  extends JPanel {
 	protected ImageIcon stuned_ogre;
 	protected ImageIcon armed_hero;
 	protected ImageIcon end;
+	protected ImageIcon sword;
 	
 	public Map() {
 		super();
@@ -40,9 +41,10 @@ public class Map  extends JPanel {
 		key = new ImageIcon(this.getClass().getResource("res/Key3.png"));
 		door = new ImageIcon(this.getClass().getResource("res/door.png"));
 		ogre = new ImageIcon(this.getClass().getResource("res/ogre.png"));
-		club = new ImageIcon(this.getClass().getResource("res/Sword.png"));
+		sword = new ImageIcon(this.getClass().getResource("res/Sword.png"));
 		stuned_ogre = new ImageIcon(this.getClass().getResource("res/stuned_ogre.png"));
 		end = new ImageIcon(this.getClass().getResource("res/end.png"));
+		club = new ImageIcon(this.getClass().getResource("res/club.png"));
 
 		wall = scaleImage(wall);
 		guard = scaleImage(guard);
@@ -53,6 +55,7 @@ public class Map  extends JPanel {
 		ogre = scaleImage(ogre);
 		club = scaleImage(club);
 		stuned_ogre= scaleImage(stuned_ogre);
+		sword = scaleImage(sword);
 	
 
 	}
@@ -65,15 +68,14 @@ public class Map  extends JPanel {
 		return new ImageIcon(newimg);
 	}
 	
-	public void paintComponent (GameMap map) {
+	public void paintComponent (char[][] map) {
 		Point p = new Point();
 		char c;
 
-		for (int i = 0; i < map.getRows(); i++)
-			for (int j = 0; j < map.getCols(); j++) {
+		for (int i = 0; i < map.length; i++)
+			for (int j = 0; j < map.length; j++) {
 
-				p.setLocation(j, i);
-				c = map.getChar(p);
+				c = map[i][j];
 
 				switch (c) {
 				case 'X':
@@ -98,7 +100,7 @@ public class Map  extends JPanel {
 					this.add(new JLabel(ogre));
 					break;
 				case '*':
-					this.add(new JLabel(club));
+					this.add(new JLabel(sword));
 					break;
 				case '$':
 					this.add(new JLabel(club));
@@ -125,12 +127,13 @@ public class Map  extends JPanel {
 
 	}
 	
-	public void update(GameMap map){
+	public void update(char[][] map){
 		removeAll();
 
 		repaint();
 		
 		paintComponent(map);
+		
 		
 		revalidate();
 	}

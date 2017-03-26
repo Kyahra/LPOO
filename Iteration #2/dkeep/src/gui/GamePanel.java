@@ -9,24 +9,28 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.concurrent.TimeUnit;
 
 import com.sun.prism.paint.Color;
+
+import logic.Game.GameState;
 
 public class GamePanel extends Map implements KeyListener{
 
 
 	
 	
-	public GamePanel(int width, int height, int rows, int cols) {
+	public GamePanel(int width, int height, int size) {
 		super();
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setBackground(java.awt.Color.BLACK);
+		this.setLayout(new GridLayout(size, size));
 		this.setSize(width, height);
-		this.setLayout(new GridLayout(rows, cols));
 		this.setVisible(true);
+		
+		
 
 		loadImages();
 		
@@ -36,23 +40,32 @@ public class GamePanel extends Map implements KeyListener{
 
 	
 	public void update(){
-		super.update(GameWindow.getMap());
+		super.update(GameWindow.getMap().getMatrix());
 	}
 	
-	private void playGameRound(String direction){
+	public void playGameRound(String direction) throws InterruptedException{
+		
+		
 
+		if (GameWindow.getGame().isOver()){
+			
+			GameWindow.EndGame();
+			
+		}
 		GameWindow.getGame().setDirection(direction);
+		
+		
 		GameWindow.getGame().update();
 		update();
 		
-		if (GameWindow.getGame().isOver())
-			GameWindow.EndGame();
+	
 			
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
+		try{
 		
 		switch(e.getKeyCode()){
 		case KeyEvent.VK_LEFT: 
@@ -69,6 +82,10 @@ public class GamePanel extends Map implements KeyListener{
 			break;
 		 }	
 		
+		}catch (InterruptedException e1){
+			
+		}
+		
 	}
 	
 	public void fillWalls(){
@@ -84,6 +101,12 @@ public class GamePanel extends Map implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setSize(int size) {
+		this.setLayout(new GridLayout(size, size));
 		
 	}
 

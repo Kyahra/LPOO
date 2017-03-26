@@ -44,8 +44,10 @@ public class KeepMap extends GameMap {
 			ogre.swingClub(this);
 		}
 
-		if (hero.getState() == HeroState.DOOR && hero.gotKey())
+		if (hero.getState() == HeroState.DOOR && hero.gotKey()){
 			openDoors();
+			
+		}
 
 		if (hero.getState() == HeroState.STAIR)
 			won = true;

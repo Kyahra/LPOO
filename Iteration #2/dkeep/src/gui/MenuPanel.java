@@ -24,7 +24,7 @@ public class MenuPanel extends JPanel{
 	private JButton btnExit;
 	private JButton btnCustom;
 	
-	private GamePanel pnlGame = GameWindow.pnlGame;
+	private GameBar pnlGameBar = GameWindow.pnlGameBar;
 	private JFrame frmMazeGame = GameWindow.frmMazeGame;
 	
 	public MenuPanel() {
@@ -65,32 +65,26 @@ public class MenuPanel extends JPanel{
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String cols;
-				String rows;
-				String ogres;
-				
+				String size;
 				
 
 				Object[] options = { "5", "6", "7", "8", "9", "10", "11", "12", "13" };
 				
-				Object[] o_options = {"1","2","3","4","5"};
+				
 
-				cols = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
+				size = (String) JOptionPane.showInputDialog(frmMazeGame, "Map Size?", "",
 						JOptionPane.PLAIN_MESSAGE, null, options, "5");
 
-				rows = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Collums?", "",
-						JOptionPane.PLAIN_MESSAGE, null, options, "5");
-				
-				ogres = (String) JOptionPane.showInputDialog(frmMazeGame, "Number of Ogres?", "",
-						JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
-				
-				GameWindow.pnlGame.setVisible(false);
+
+				GameWindow.pnlGameBar.setVisible(false);
 				GameWindow.pnlMenu.setVisible(false);
-				GameWindow.pnlInit.setVisible(false);
-				
+		
 			
-				GameWindow.createEditorPanel(Integer.parseInt(rows),Integer.parseInt(cols), Integer.parseInt(ogres));
+				GameWindow.createEditorPanel(Integer.parseInt(size));
 				GameWindow.pnlCustomMap.setVisible(true);
+				
+				JOptionPane.showMessageDialog(GameWindow.frmMazeGame, " Click the icons and then click again on the map area \n                   to position the chosen icon.");
+				
 				
 
 			}
@@ -133,8 +127,7 @@ public class MenuPanel extends JPanel{
 				
 				String guard;
 				String ogres_number;
-				
-				
+	
 
 				Object[] g_options = { "Rookie", "Druken", "Suspicious" };
 
@@ -147,14 +140,19 @@ public class MenuPanel extends JPanel{
 						"             Chose the Number of Ogres", "", JOptionPane.PLAIN_MESSAGE, null, o_options, "1");
 
 				GameWindow.setGame(new Game(Integer.parseInt(ogres_number), guard));
+				
+				GameWindow.getGame().setDirection("W");
+				
 
 				GameWindow.pnlMenu.setVisible(false);
-				GameWindow.pnlInit.setVisible(false);
-				GameWindow.pnlGame.update();
-				GameWindow.pnlGame.requestFocus();
-				//GameWindow.pnlGame.revalidate();
-				GameWindow.pnlGame.setVisible(true);
+			
+				GameWindow.pnlGameBar.update();
+				
+			
+				GameWindow.pnlGameBar.setVisible(true);
+				GameWindow.pnlGameBar.pnlGame.requestFocus();
 
+				
 				
 			}
 		});

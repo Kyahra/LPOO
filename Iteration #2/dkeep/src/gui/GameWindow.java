@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -20,16 +21,19 @@ import logic.GameMap;
 public class GameWindow {
 
 	static JFrame frmMazeGame;
-	static GamePanel pnlGame;
+	//static GamePanel pnlGame;
 	static MenuPanel pnlMenu;
-	static EndPanel pnlEnd; 
-	static InitPanel pnlInit;
+	static VictoryPanel pnlVictory;
+	static DefeatPanel pnlDefeat;
+	static GameBar pnlGameBar;
 
-	static CustomMap pnlCustomMap;
+
+
+	static MapEditor pnlCustomMap;
 	static JLayeredPane layeredPane;
 
 
- 	private static Game g = new Game(0, "Rookie");
+ 	static Game g = new Game(0, "Rookie");
 
 	// Launch the application.
 
@@ -56,64 +60,74 @@ public class GameWindow {
 
 	private void initialize() {
 
-		frmMazeGame = new JFrame();
-		frmMazeGame.setResizable(false);
-		frmMazeGame.setTitle("Maze Game");
-		frmMazeGame.setBounds(100, 100, 549, 607);
 
-		frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmMazeGame.getContentPane().setLayout(null);
+        frmMazeGame = new JFrame();
+        frmMazeGame.setResizable(false);
+        frmMazeGame.setTitle("Maze Game");
+        frmMazeGame.setBounds(100, 100, 549, 607);
 
-		
-		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 549, 620);
-		frmMazeGame.getContentPane().add(layeredPane);
-		layeredPane.setLayout(null);
+        frmMazeGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frmMazeGame.getContentPane().setLayout(null);
 
-		
-		pnlInit = new InitPanel();
-		pnlInit.setBounds(0, 0, 550, 500);
-		pnlInit.setVisible(true);
-				
-				
-				pnlMenu = new MenuPanel();
-				pnlMenu.setBounds(0, 0, 550, 584);
-				layeredPane.add(pnlMenu);
-				
-						pnlMenu.setLayout(null);
-		layeredPane.add(pnlInit);
-		
-		
-		pnlEnd = new EndPanel();
-		pnlEnd.setBounds(0, 0, 550, 620);
-		pnlEnd.setVisible(false);
-		layeredPane.add(pnlEnd);
-		
-				layeredPane
-						.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlGame, pnlCustomMap, pnlInit, pnlEnd }));
-				
-						pnlGame = new GamePanel(400, 400, 10, 10);
-						pnlGame.setBounds(0, 0, 550, 584);
-						layeredPane.add(pnlGame);
+        
+        layeredPane = new JLayeredPane();
+        layeredPane.setBounds(0, 0, 549, 620);
+        frmMazeGame.getContentPane().add(layeredPane);
+        layeredPane.setLayout(null);
+
+        pnlVictory = new VictoryPanel();
+        pnlVictory.setBounds(0, 0, 550, 620);
+        pnlVictory.setVisible(false);
+        layeredPane.add(pnlVictory);
+        
+        
+        pnlDefeat = new DefeatPanel();
+        pnlDefeat.setBounds(0, 0, 550, 620);
+        pnlDefeat.setVisible(false);
+        layeredPane.add(pnlDefeat);
+
+        
+        
+        pnlMenu = new MenuPanel();
+        pnlMenu.setBounds(0, 0, 550, 584);
+        layeredPane.add(pnlMenu);
+
+        pnlMenu.setLayout(null);
+
+        layeredPane
+        .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlCustomMap,  pnlVictory, pnlDefeat, pnlGameBar }));
+
+       
+        pnlGameBar = new GameBar();
+        pnlGameBar.setBounds(0, 0, 550, 584);
+        pnlGameBar.setVisible(false);
+        layeredPane.add(pnlGameBar);
+
 
 	}
 
-	public static void EndGame() {
+	public static void EndGame() throws InterruptedException {
 
 		GameState state = g.getState();
-		g.printMap();
+		
+			pnlGameBar.setVisible(false);
+		
+		   switch (state) {
+	        case LOST:
 
-		switch (state) {
-		case LOST:
-			//pnlGame.setVisible(false);
-			pnlEnd.setVisible(true);
-			break;
-		case WON:
-			pnlEnd.setWinImage();
-			pnlEnd.setVisible(true);
-		default:
-			break;
-		}
+	        
+
+	            pnlDefeat.setVisible(true);
+	            break;
+	        case WON:
+	            pnlVictory.setVisible(true);
+	            break;
+	        default:
+	            break;
+	        }
+		
+
+		
 
 	}
 
@@ -130,9 +144,9 @@ public class GameWindow {
 		return g;
 	}
 
-	public static void createEditorPanel(int rows, int cols, int ogres) {
+	public static void createEditorPanel(int size) {
 
-		pnlCustomMap = new CustomMap(rows, cols,ogres);
+		pnlCustomMap = new MapEditor(size);
 		pnlCustomMap.setBounds(0, 0, 539, 609);
 		layeredPane.add(pnlCustomMap);
 

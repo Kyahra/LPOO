@@ -236,7 +236,7 @@ public class TestKeepGameLogic {
 		g.updateGame();
 		
 		assertFalse(((KeepMap) g.getMap()).getOgres().get(0).isStuned());
-		assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getChar(), 'O');
+		//assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getChar(), 'O');
 	
 
 	}
