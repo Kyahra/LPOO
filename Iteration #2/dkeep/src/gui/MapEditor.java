@@ -219,6 +219,7 @@ public class MapEditor extends JPanel implements MouseListener {
 				
 				Game g =  new Game(game_panel.numberOfOgres(), "R");
 				
+				GameWindow.pnlGameBar.pnlGame.setSize(game_panel.getMap().length);
 				game_panel.normalizeMap();
 				g.setMap(new KeepMap(game_panel.getMap(),game_panel.numberOfOgres()));
 						

@@ -20,13 +20,13 @@ public class GamePanel extends Map implements KeyListener{
 
 	
 	
-	public GamePanel(int width, int height, int rows, int cols) {
+	public GamePanel(int width, int height, int size) {
 		super();
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setBackground(java.awt.Color.BLACK);
-		this.setLayout(new GridLayout(rows, cols));
+		this.setLayout(new GridLayout(size, size));
 		this.setSize(width, height);
 		this.setVisible(true);
 		
@@ -101,6 +101,12 @@ public class GamePanel extends Map implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setSize(int size) {
+		this.setLayout(new GridLayout(size, size));
 		
 	}
 

@@ -61,9 +61,10 @@ public class GameBar extends JPanel {
 		
 		setLayout(null);
 		
-		pnlGame = new GamePanel(400, 400, 10, 10);
+		pnlGame = new GamePanel(400, 400,10);
 		pnlGame.setBounds(0, 0, 550, 495);
 		this.add(pnlGame);
+		
 		add(down);
 		add(left);
 		add(up);
