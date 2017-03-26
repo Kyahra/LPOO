@@ -21,7 +21,7 @@ public class TestRandomBehaviour {
 			{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'O', 'X' }, 
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
-			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
+			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'k', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
@@ -37,7 +37,7 @@ public class TestRandomBehaviour {
 								+ " I               O X \n"
 								+ " X               * X \n"
 								+ " X                 X \n"
-								+ " X                 X \n"
+								+ " X               k X \n"
 								+ " X                 X \n"
 								+ " X                 X \n"
 								+ " X                 X \n"
@@ -55,11 +55,13 @@ public class TestRandomBehaviour {
 		boolean right= false;
 		boolean up = false;
 		boolean down = false;
+		boolean key =false;
+
 		
 		Point old_pos;
 		Point new_pos;
 		
-		while(!left || !right || !up || !down){
+		while(!left || !right || !up || !down || !key) {
 			
 			old_pos = ((KeepMap) g.getMap()).getOgres().get(0).getPosition();
 			
@@ -79,6 +81,11 @@ public class TestRandomBehaviour {
 			if( isDown(new_pos, old_pos))
 				down = true;
 			
+			if(((KeepMap) g.getMap()).getOgres().get(0).getChar() == '$'){
+				assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getPosition(), new Point(8,1));
+				key = true;
+				
+			}
 	
 		}
 	}
@@ -92,6 +99,7 @@ public class TestRandomBehaviour {
 		boolean right= false;
 		boolean up = false;
 		boolean down = false;
+		boolean key = false;
 		
 		Point ogre_pos;
 		Point club_pos;
@@ -115,6 +123,13 @@ public class TestRandomBehaviour {
 			
 			if( isDown(ogre_pos, club_pos))
 				down = true;
+			
+			if(((KeepMap) g.getMap()).getOgres().get(0).getClub().getChar() == '$'){
+				
+				assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getClub().getPosition(), new Point(8,1));
+				key = true;
+				
+			}
 			
 	
 		}

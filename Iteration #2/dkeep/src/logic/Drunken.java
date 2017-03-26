@@ -11,11 +11,13 @@ import java.util.Random;
 */ 
 public class Drunken extends Guard {
 
+
 	/**  
 	 * Drunken constructor  
 	 * 
 	 * @param position  inicial guard position
 	 */
+
 	public Drunken(Point position) {
 		super(position);
 
@@ -81,4 +83,5 @@ public class Drunken extends Guard {
 		position = new Point(guard_x[guard_idx],guard_y[guard_idx]);
 
 	}
+
 }

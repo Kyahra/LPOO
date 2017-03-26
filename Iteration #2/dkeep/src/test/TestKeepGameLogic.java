@@ -231,6 +231,7 @@ public class TestKeepGameLogic {
 		g.setDirection("A");
 		g.updateGame();
 
+		assertTrue(((KeepMap) g.getMap()).getOgres().get(0).isStuned());
 		
 		g.setDirection("A");
 		g.updateGame();
@@ -251,6 +252,8 @@ public class TestKeepGameLogic {
 		assertEquals(((KeepMap) g.getMap()).getOgres().get(0).getClub().getChar(),'*');
 		
 	}
+	
+
 	
 
 	
