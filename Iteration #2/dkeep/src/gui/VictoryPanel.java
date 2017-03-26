@@ -48,8 +48,10 @@ public class VictoryPanel extends JPanel {
         setBackground(Color.BLACK);
         ImageIcon victory = new ImageIcon(this.getClass().getResource("res/thumbsUpCut.png"));
         JLabel label = new JLabel(victory);
+        label.setBounds(10, 0, 512, 450);
         
         JButton menuBtn = new JButton("");
+        menuBtn.setBounds(129, 456, 122, 45);
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GameWindow.pnlVictory.setVisible(false);
@@ -61,6 +63,7 @@ public class VictoryPanel extends JPanel {
         menuBtn.setIcon(new ImageIcon(VictoryPanel.class.getResource("/gui/res/rsz_menu.png")));
         
         JButton exitBtn = new JButton("");
+        exitBtn.setBounds(310, 456, 103, 45);
         exitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -69,32 +72,10 @@ public class VictoryPanel extends JPanel {
         exitBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
         exitBtn.setHorizontalTextPosition(SwingConstants.CENTER);
         exitBtn.setIcon(new ImageIcon(VictoryPanel.class.getResource("/gui/res/rsz_exit.png")));
-        GroupLayout groupLayout = new GroupLayout(this);
-        groupLayout.setHorizontalGroup(
-            groupLayout.createParallelGroup(Alignment.LEADING)
-                .addGroup(groupLayout.createSequentialGroup()
-                    .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                        .addGroup(groupLayout.createSequentialGroup()
-                            .addGap(10)
-                            .addComponent(label))
-                        .addGroup(groupLayout.createSequentialGroup()
-                            .addGap(129)
-                            .addComponent(menuBtn, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-                            .addGap(59)
-                            .addComponent(exitBtn, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(2, Short.MAX_VALUE))
-        );
-        groupLayout.setVerticalGroup(
-            groupLayout.createParallelGroup(Alignment.LEADING)
-                .addGroup(groupLayout.createSequentialGroup()
-                    .addComponent(label)
-                    .addPreferredGap(ComponentPlacement.RELATED)
-                    .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-                        .addComponent(menuBtn, GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
-                        .addComponent(exitBtn, 0, 0, Short.MAX_VALUE))
-                    .addGap(111))
-        );
-        setLayout(groupLayout);
+        setLayout(null);
+        add(label);
+        add(menuBtn);
+        add(exitBtn);
 
         
         

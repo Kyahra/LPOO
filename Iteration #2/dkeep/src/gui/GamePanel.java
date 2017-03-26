@@ -43,7 +43,7 @@ public class GamePanel extends Map implements KeyListener{
 		super.update(GameWindow.getMap().getMatrix());
 	}
 	
-	private void playGameRound(String direction) throws InterruptedException{
+	public void playGameRound(String direction) throws InterruptedException{
 		
 		
 
