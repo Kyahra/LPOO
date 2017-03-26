@@ -111,10 +111,10 @@ public class GameBar extends JPanel implements MouseListener, KeyListener{
 			public void actionPerformed(ActionEvent e) {
 				
 				JOptionPane.showMessageDialog(GameWindow.frmMazeGame, " Press keyboard arrow keys to move your hero\n "
-																	+ " around the maze. You can also click on the buttons.\n"
+																	+ "around the maze. You can also click on the buttons.\n"
 																	+ " Your goal is to catch the key and then reach the doors.\n"
 																	+ "                                                        \n"
-																	+ "                  Good luck!!!              ");
+																	+ " Good luck!!!              ");
 			}
 		});
 		howToPlay.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));

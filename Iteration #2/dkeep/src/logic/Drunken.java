@@ -7,6 +7,7 @@ public class Drunken extends Guard {
 
 	private boolean isSleeping = false;
 	private int moveNumber = 4;
+	private boolean front = true;
 
 	public Drunken(Point position) {
 		super(position);
@@ -24,15 +25,27 @@ public class Drunken extends Guard {
 				isSleeping  = false;
 				c = 'G';
 				moveNumber = 4;
+				if(random_number > 1)
+					front = true;
+				else front  = false;				
 			}else{
 				moveNumber--;			
 			}	
 		}else{
 			
 			if(random_number <3){
-				if(guard_idx >= 23)
-					guard_idx = 0;
-				else guard_idx++;
+
+				if(front){
+					if(guard_idx >= 23)
+						guard_idx = 0;
+					else guard_idx++;
+				}
+				else {
+					if(guard_idx <= 0)
+						guard_idx = 23;
+					else guard_idx--;
+				}
+
 			}else{
 				isSleeping = true;
 				c= 'g';
