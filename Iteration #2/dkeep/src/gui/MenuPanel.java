@@ -82,7 +82,6 @@ public class MenuPanel extends JPanel{
 			
 				GameWindow.createEditorPanel(Integer.parseInt(size));
 				GameWindow.pnlCustomMap.setVisible(true);
-
 				
 				JOptionPane.showMessageDialog(GameWindow.frmMazeGame, " Click the icons and then click again on the map area \n                   to position the chosen icon.");
 				

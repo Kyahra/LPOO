@@ -97,7 +97,12 @@ public class GameWindow {
         layeredPane
         .setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[] { pnlMenu, pnlCustomMap,  pnlVictory, pnlDefeat, pnlGameBar }));
 
-        
+        /*
+        pnlGame = new GamePanel(400, 400, 10, 10);
+        pnlGame.setBounds(0, 0, 550, 584);
+        pnlGame.setVisible(false);
+        layeredPane.add(pnlGame);
+        */
         
         pnlGameBar = new GameBar();
         pnlGameBar.setBounds(0, 0, 550, 584);
@@ -115,6 +120,8 @@ public class GameWindow {
 		
 		   switch (state) {
 	        case LOST:
+
+	        
 
 	            pnlDefeat.setVisible(true);
 	            break;

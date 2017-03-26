@@ -26,7 +26,7 @@ public class MapEditor extends JPanel implements MouseListener {
 	private static final long serialVersionUID = -6282798323298335606L;
 	
 	private char c= ' ';
-	MapEditorGrid pnlGame;
+	private MapEditorGrid game_panel;
 	private double MAP_SIZE = 350;
 	private double DIVISOR;
 	
@@ -62,11 +62,9 @@ public class MapEditor extends JPanel implements MouseListener {
 	}
 
 	private void setGamePanel() {
-		pnlGame = new MapEditorGrid(400, 400, size);
-		pnlGame.setBounds(75, 75, 400, 400);
-		pnlGame.requestFocus();
-		pnlGame.setVisible(true);
-		add(pnlGame);
+		game_panel = new MapEditorGrid(400, 400, size);
+		game_panel.setBounds(75, 75, 400, 400);
+		add(game_panel);
 		
 	}
 
@@ -177,7 +175,7 @@ public class MapEditor extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
+		// TODO Auto-generated method stub
 
 	}
 
@@ -195,9 +193,10 @@ public class MapEditor extends JPanel implements MouseListener {
 		int x = (int) Math.floor((e.getX()-100)/DIVISOR);
 		int y = (int) Math.floor((e.getY()-100)/DIVISOR);
 		
-		if(c != ' ' && x >0 && y>0 && x<size && y <size)
-			pnlGame.setNewChar(x,y,c);
-		
+		if(c != ' ' && x >0 && y>0 && x<size && y <size){
+			game_panel.setNewChar(x,y,c);
+			game_panel.update();
+		}
 	
 		
 		// throws HeadlessException
@@ -218,26 +217,13 @@ public class MapEditor extends JPanel implements MouseListener {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				if(!pnlGame.isValid()){
-					JOptionPane.showMessageDialog(GameWindow.frmMazeGame, "Invalid Map!");
-					pnlGame.resetMap();
-					pnlGame.update();
-					return;
-					
-				}
+				Game g =  new Game(game_panel.numberOfOgres(), "R");
 				
-				Game g =  new Game(pnlGame.numberOfOgres(), "R");
-				
-				
-				
-				GameWindow.pnlGameBar.pnlGame.setSize(pnlGame.getMap().length);
-				
-				pnlGame.normalizeMap();
-				g.setMap(new KeepMap(pnlGame.getMap(),pnlGame.numberOfOgres()));
+				GameWindow.pnlGameBar.pnlGame.setSize(game_panel.getMap().length);
+				game_panel.normalizeMap();
+				g.setMap(new KeepMap(game_panel.getMap(),game_panel.numberOfOgres()));
+						
 				GameWindow.setGame(g);
-				
-				
-				
 				
 				GameWindow.pnlCustomMap.setVisible(false);
 				GameWindow.pnlGameBar.update();

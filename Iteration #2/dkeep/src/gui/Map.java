@@ -37,7 +37,7 @@ public class Map  extends JPanel {
 
 		guard = new ImageIcon(this.getClass().getResource("res/guard.png"));
 		black_cell = new ImageIcon(this.getClass().getResource("res/black.png"));
-		hero = new ImageIcon(this.getClass().getResource("res/hero.png"));
+		hero = new ImageIcon(this.getClass().getResource("res/HeroR.png"));
 		key = new ImageIcon(this.getClass().getResource("res/Key3.png"));
 		door = new ImageIcon(this.getClass().getResource("res/door.png"));
 		ogre = new ImageIcon(this.getClass().getResource("res/ogre.png"));
@@ -136,7 +136,6 @@ public class Map  extends JPanel {
 		
 		
 		revalidate();
-		
 	}
 
 }

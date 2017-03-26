@@ -30,7 +30,14 @@ public class MapEditorGrid extends Map {
 
 		map = new char[size][size];
 
-		resetMap();
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
+					map[i][j] ='X';
+					
+
+			}
+		}
 
 		super.update(map);
 
@@ -38,7 +45,6 @@ public class MapEditorGrid extends Map {
 
 	public void setNewChar(int x, int y, char c) {
 		map[y][x] =c;
-		update();
 		
 	}
 	
@@ -47,10 +53,8 @@ public class MapEditorGrid extends Map {
 	}
 	
 	public boolean isValid(){
+		return (checkHero() && checkKeys() && checkBorder());
 		
-	
-	//	return (checkHero() && checkKeys() && checkBorder());
-		return checkHero();
 		
 	}
 
@@ -178,22 +182,6 @@ public class MapEditorGrid extends Map {
 				if(map[i][j] == 'O') map[i][j] =' ';
 				if(map[i][j] == 'S') map[i][j] ='I';
 			}
-	}
-
-	public void resetMap() {
-		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size; j++) {
-				if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
-					map[i][j] ='X';
-				else 
-					map[i][j] =' ';
-					
-
-			}
-		}
-		
-		super.update(map);
-		
 	}
 	
 
