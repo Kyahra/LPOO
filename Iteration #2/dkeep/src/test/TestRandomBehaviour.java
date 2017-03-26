@@ -24,6 +24,7 @@ public class TestRandomBehaviour {
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, 
 			{ 'X', 'H', ' ', '*', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, };
+	
 
 	@Test(timeout =1000)
 	public void testOgreRandomPositions() {
