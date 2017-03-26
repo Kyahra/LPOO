@@ -5,15 +5,12 @@ import java.util.Random;
 
 public class Drunken extends Guard {
 
-	private boolean isSleeping = false;
-	private int moveNumber = 4;
-	private boolean front = true;
 
 	public Drunken(Point position) {
 		super(position);
 
 	}
-
+	
 	public void sleepingAction(int rand){
 		
 		if(moveNumber <= 0){
@@ -49,11 +46,9 @@ public class Drunken extends Guard {
 	
 	
 	public void updateGuard(){
-
-		Random rand = new Random();		
-		int random_number = rand.nextInt(4);
 		
-		
+		int random_number = getIdxDirection();
+			
 		if(isSleeping){
 			sleepingAction(random_number);
 		}else{			

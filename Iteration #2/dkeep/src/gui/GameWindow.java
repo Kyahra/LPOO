@@ -91,6 +91,7 @@ public class GameWindow {
 
 		GameState state = g.getState();
 
+
 		pnlGameBar.setVisible(false);
 
 		switch (state) {
@@ -103,6 +104,7 @@ public class GameWindow {
 		default:
 			break;
 		}
+    
 
 	}
 

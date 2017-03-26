@@ -12,24 +12,23 @@ public class Suspicious extends Guard{
 		super(position);
 	
 	}
-		
+	
+	
 	public void updateGuard(){
-
-		Random rand = new Random();		
-		int direction = rand.nextInt(4);
-		
-		
+			
+		int direction = getIdxDirection();
+				
 		if(direction <3){
 			if(guard_idx >= 23)
 				guard_idx = 0;
 			else
 				guard_idx++;
-			
+		
 		}else{
 			if(guard_idx > 0){
 				guard_idx--;
 			}else{
-				guard_idx++;
+				guard_idx = 23;
 			}
 		}
 		
