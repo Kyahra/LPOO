@@ -35,7 +35,10 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 
 ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png "Settings" menu)
 
-
+<p align="center">
+  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png" width="350"/>
+  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png" width="350"/>
+</p>
 
 
 
