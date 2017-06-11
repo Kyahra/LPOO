@@ -25,6 +25,21 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 
 ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/mainMenu.png "Main menu")
 
+![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png "Game")
+
+![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/helpmenu.png "Help menu")
+
+![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png " Level menu")
+
+![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/scoremenu.png "Score menu")
+
+![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png "Settings" menu)
+
+
+
+
+
+
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/Kyahra/LPOO1617_T3G8?token=b95cdade23d33bd80209bd0cdcb8c574b0a21573)](https://bettercodehub.com/)
 
