@@ -1,8 +1,8 @@
 # Beer Pong
 
-## Setup and Installation
+## Setup 
 
-To do.
+Instalar o APK que se encontra na pasta Executable
 
 ## UML
 
