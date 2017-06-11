@@ -1,4 +1,5 @@
-# LPOO1617_T3G8
+# Final Release
+## Beer Pong
 
 ![alt tag](http://i.imgur.com/E3ByK7T.png)
 ![alt tag](http://i.imgur.com/H0v241P.png)
