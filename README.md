@@ -23,11 +23,10 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 
 ### Manual do utilizador
 
-| First Header  | Second Header |
+| Screenshoots  | Intruções |
 | ------------- | ------------- |
-| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png "game")  | Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit
-</p>  |
-| Content Cell  | Content Cell  |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/mainMenu.png "main menu")  | Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png "level menu")  | Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit |
 
 
 <div style="float: right">
