@@ -26,20 +26,9 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 | Screenshoots  | Intruções |
 | ------------- | ------------- |
 | ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/mainMenu.png "main menu")  | Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit |
-| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png "level menu")  | Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png "level menu")  | Após clicar no botão Play é possível escolher o nível que se pretende: Easy, Medium ou Hard. Easy, tal como o próprio nome indica é o nível mais fácil, trata-se apenas de acertar com a bola, sem qualquer obstáculo ou condicionante. A bola pode facil uma trajetória limpa. Medium já é um pouco mais complicado, existe uma mesa no entre a bola e o copo, dificultando um bocadinho fazer com que a bola acerte no copo. Por último, Hard é o nível mais complexo, pois além da mesa, o ecrã roda ligeiramente, sendo mais difícil posicionar a bola no ecrã. |
 
 
-<div style="float: right">
-</div>
-
-<p align="left">
-  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png" width="350"/>
-  Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit
-</p>
-<p align="rigth">
-    Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit
-</p>
-sdfadfoaisdfaijsdfiajdfajldifjalfdjadfjaifdjlaijfdlajsfdlad
 <p align="center">
   <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/helpmenu.png" width="350"/>
 </p>
