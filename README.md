@@ -30,6 +30,7 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 
 <p align="left">
   <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png" width="350"/>
+  Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit
 </p>
 <p align="rigth">
     Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit
