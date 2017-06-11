@@ -26,22 +26,24 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 <p align="center">
   <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/mainMenu.png" width="350"/>
 </p>
-
-![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/mainMenu.png "Main menu")
-
-![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png "Game")
-
-![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/helpmenu.png "Help menu")
-
-![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png " Level menu")
-
-![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/scoremenu.png "Score menu")
-
-![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png "Settings menu")
-
-<p align="center">
-  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/mainMenu.png" width="350"/>
+<p align="left">
+  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png" width="350"/>
 </p>
+
+sdfadfoaisdfaijsdfiajdfajldifjalfdjadfjaifdjlaijfdlajsfdlad
+<p align="center">
+  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/helpmenu.png" width="350"/>
+</p>
+<p align="center">
+  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png " width="350"/>
+</p>
+<p align="center">
+  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/scoremenu.png" width="350"/>
+</p>
+<p align="center">
+  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png" width="350"/>
+</p>
+
 
 
 
