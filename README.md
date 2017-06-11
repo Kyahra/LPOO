@@ -23,6 +23,10 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 
 ### Manual do utilizador
 
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 
 <div style="float: right">
