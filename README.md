@@ -3,12 +3,12 @@
 
 ### Setup and Installation
 
+To do.
+
 ### UML
 
+![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/UML/firstUML.png "UML")
 
-
-![alt tag](http://i.imgur.com/E3ByK7T.png)
-![alt tag](http://i.imgur.com/H0v241P.png)
 
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/Kyahra/LPOO1617_T3G8?token=b95cdade23d33bd80209bd0cdcb8c574b0a21573)](https://bettercodehub.com/)
