@@ -26,25 +26,13 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 | Screenshoots  | Intruções |
 | ------------- | ------------- |
 | ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/mainMenu.png "main menu")  | Este é o menu pricipal. É possível abrir um Menu de Ajuda, com algumas indicações acerca do jogo. No ícone Definições é possível       ajustar algumas definições, como o som ou o volume. Além disso será possível partilhar os resultados no Facebook. Por fim, basta clicar no botão Play para iniciar o jogo. Para sair do jogo, o utilizador deve clicar no botão Exit |
-| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/helpmenu.png "help menu")  | Após clicar no botão Play é possível escolher o nível que se pretende: Easy, Medium ou Hard. Easy, tal como o próprio nome indica é o nível mais fácil, trata-se apenas de acertar com a bola, sem qualquer obstáculo ou condicionante. A bola pode facil uma trajetória limpa. Medium já é um pouco mais complicado, existe uma mesa no entre a bola e o copo, dificultando um bocadinho fazer com que a bola acerte no copo. Por último, Hard é o nível mais complexo, pois além da mesa, o ecrã roda ligeiramente, sendo mais difícil posicionar a bola no ecrã. |
-| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png "settings menu")  | Após clicar no botão Play é possível escolher o nível que se pretende: Easy, Medium ou Hard. Easy, tal como o próprio nome indica é o nível mais fácil, trata-se apenas de acertar com a bola, sem qualquer obstáculo ou condicionante. A bola pode facil uma trajetória limpa. Medium já é um pouco mais complicado, existe uma mesa no entre a bola e o copo, dificultando um bocadinho fazer com que a bola acerte no copo. Por último, Hard é o nível mais complexo, pois além da mesa, o ecrã roda ligeiramente, sendo mais difícil posicionar a bola no ecrã. |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/helpmenu.png "help menu")  | Se o utilizador clicar no ícone de ajuda é-lhe mostrado um pequeno texto com um resumo daquilo em que consiste o jogo. Basicamente, o jogador deve arrastar o dedo por cima da bola na direção que ele pretende que tome, quanto maior for o movimento maior será a velocidade da bola. O jogador também deve ter em atenção que quantas mais colisões a bola fizer maior será a sua pontuação. A bola pode bater em qualquer local, nas paredes, no chão, ou até mesmo na mesa (nos níveis em existe mesa). |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png "settings menu")  | Após clicar no ícone das definições o utilizador pode alterar as definições do jogo. É possível ativar/desativar a música de fundo e o som produzido pelos botões. |
 | ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png "level menu")  | Após clicar no botão Play é possível escolher o nível que se pretende: Easy, Medium ou Hard. Easy, tal como o próprio nome indica é o nível mais fácil, trata-se apenas de acertar com a bola, sem qualquer obstáculo ou condicionante. A bola pode facil uma trajetória limpa. Medium já é um pouco mais complicado, existe uma mesa no entre a bola e o copo, dificultando um bocadinho fazer com que a bola acerte no copo. Por último, Hard é o nível mais complexo, pois além da mesa, o ecrã roda ligeiramente, sendo mais difícil posicionar a bola no ecrã. |
-| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png "game")  | Após clicar no botão Play é possível escolher o nível que se pretende: Easy, Medium ou Hard. Easy, tal como o próprio nome indica é o nível mais fácil, trata-se apenas de acertar com a bola, sem qualquer obstáculo ou condicionante. A bola pode facil uma trajetória limpa. Medium já é um pouco mais complicado, existe uma mesa no entre a bola e o copo, dificultando um bocadinho fazer com que a bola acerte no copo. Por último, Hard é o nível mais complexo, pois além da mesa, o ecrã roda ligeiramente, sendo mais difícil posicionar a bola no ecrã. |
-| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/scoremenu.png "score menu")  | Após clicar no botão Play é possível escolher o nível que se pretende: Easy, Medium ou Hard. Easy, tal como o próprio nome indica é o nível mais fácil, trata-se apenas de acertar com a bola, sem qualquer obstáculo ou condicionante. A bola pode facil uma trajetória limpa. Medium já é um pouco mais complicado, existe uma mesa no entre a bola e o copo, dificultando um bocadinho fazer com que a bola acerte no copo. Por último, Hard é o nível mais complexo, pois além da mesa, o ecrã roda ligeiramente, sendo mais difícil posicionar a bola no ecrã. |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/beerpongame.png "game")  | Quando o utilizador escolhe o nível pretendido é aberta a janela do jogo. O seu objetivo é fazer com que a bola acerte no copo vermelho, para isso a bola não precisa de ir diretamente para o copo, pode bater em diversos locais, fazendo com que o jogador aumente a sua pontuação. É possível iniciar uma nova tentativa ao clicar na setinha para trás. |
+| ![alt tag](https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/scoremenu.png "score menu")  | Quando acaba uma jogada é calculada a pontuação referente a essa mesma jogada. Neste calculo é tido em conta se o jogador acertou no interior do copo e o número de colisões da bola durante a jogada. Essa pontuação é apresentada neste menu. O utilizador pode partilhar a pontuação no Facebook, sendo que basta clicar em partilhar. Para voltar ao menu Principal basta clicar no botão Menu.|
 
 
-<p align="center">
-  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/helpmenu.png" width="350"/>
-</p>
-<p align="center">
-  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/levelMenu.png " width="350"/>
-</p>
-<p align="center">
-  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/scoremenu.png" width="350"/>
-</p>
-<p align="center">
-  <img src="https://github.com/Kyahra/LPOO1617_T3G8/blob/finalRelease/ImagesREADME/settingsmenu.png" width="350"/>
-</p>
 
 
 
@@ -52,8 +40,5 @@ Ao longo do projeto fomos confrontados com as mais diversas situações. Tudo co
 
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/Kyahra/LPOO1617_T3G8?token=b95cdade23d33bd80209bd0cdcb8c574b0a21573)](https://bettercodehub.com/)
-
-Sofia Catarina Bahamonde Alves up201504570 sofiacbahamonde@gmail.com <br />
-Daniel Pereira Machado up201506365 up201506365 up201506365@fe.up.pt <br />
 
 
